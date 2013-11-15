@@ -3,9 +3,14 @@
 #EmployeeGivePositionForm select,
 #UserAddForm input,
 #UserAddForm select,
+#UserEditForm input,
+#UserEditForm select,
 #EmployeeUpdatePositionForm input,
 #EmployeeUpdatePositionForm select,
-#StocksAddForm input,
-#StocksAddForm select{
+#StockAddForm input,
+#StockAddForm select,
+#StockEditForm input,
+#StockEditForm select{
 	margin: 5px;
 }
+

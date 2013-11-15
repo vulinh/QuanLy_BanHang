@@ -28,7 +28,7 @@ class EmployeesController extends AppController{
 		return $dataUser2;
 	}
 
-	function list_employee(){
+	function index(){
 		$dataUser1 = $this->_listEmployeeNotGivePosition();
 		$dataUser2 = $this->_listEmployeeGavePosition();
 

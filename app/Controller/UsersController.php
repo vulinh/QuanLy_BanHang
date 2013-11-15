@@ -42,6 +42,17 @@ class UsersController extends AppController{
         $this->redirect(array('controller'=>'users','action'=>'login'));
     }
 
+    function index(){
+       if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
+
+        $this->set('dataUser',$this->User->find('all'));
+       
+       }
+       else{
+    $this->redirect(array('controller'=>'users','action'=>'login'));
+        }
+    }
+
 	function add(){
 		if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
   		if (!empty($this->request->data))
@@ -64,6 +75,15 @@ class UsersController extends AppController{
 		$data = $this->Area->find('list',array('fields' =>array('Area.nameArea'))); 
 		$this->set('dataArea',$data);
 	}
+
+    function view($id=null){
+        if($this->request->is('get'))
+        {
+            $this->set('dataUser',$this->User->query('SELECT *FROM (users INNER JOIN areas ON users.idArea=areas.id)
+                WHERE users.id='.$id));
+        }
+        
+    }
 
     function edit($id = null) 
     {

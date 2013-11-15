@@ -1,14 +1,14 @@
 <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
-           LOẠI KHO
+           KHO
         </div>
     </div>
     <div class="span3">
     	<div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Chức Năng</li>
-              <li><?php echo $this->Html->link('Thêm một loại kho mới',array('controller'=>'typestocks','action'=>'add')) ?></li>
+              <li><?php echo $this->Html->link('Thêm một kho mới',array('controller'=>'stocks','action'=>'add')) ?></li>
             </ul>
     	</div>
     </div>
@@ -29,9 +29,9 @@
 	    		
 				echo '<tr>';
 				echo '<td>'.$valueStock['Stock']['id'].'</td>';
-				echo '<td>'.$valueStock['Stock']['nameTypeStock'].'</td>';
-				echo '<td style="width:65px">'.$this->Html->link('Cập Nhật',array('controller'=>'typestocks','action'=>'edit/'.$valueStock['Typestock']['id'])).'</td>';
-				echo '<td>'.$this->Html->link('Xóa',array('controller'=>'typestocks','action'=>'delete/'.$valueStock['Typestock']['id'])).'</td>';
+				echo '<td>'.$valueStock['Stock']['nameStock'].'</td>';
+				echo '<td style="width:65px">'.$this->Html->link('Cập Nhật',array('controller'=>'stocks','action'=>'edit/'.$valueStock['Stock']['id'])).'</td>';
+				echo '<td>'.$this->Html->link('Xóa',array('controller'=>'stocks','action'=>'delete/'.$valueStock['Stock']['id'])).'</td>';
 				echo '</tr>';
 	    		
 	    		} 

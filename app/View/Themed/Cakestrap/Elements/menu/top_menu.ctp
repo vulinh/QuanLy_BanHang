@@ -1,27 +1,38 @@
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button><!-- /.navbar-toggle -->
-		<?php echo $this->Html->Link('CakeStrap', 'http://twitter.github.com/bootstrap/', array('class' => 'navbar-brand')); ?>
-	</div><!-- /.navbar-header -->
-	<div class="collapse navbar-collapse navbar-ex1-collapse">
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">Link</a></li>
-			<li><a href="#">Link</a></li>
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					<li><a href="#">Separated link</a></li>
-					<li><a href="#">One more separated link</a></li>
-				</ul>
-			</li>
-		</ul><!-- /.nav navbar-nav -->
-	</div><!-- /.navbar-collapse -->
-</nav><!-- /.navbar navbar-default -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Quản Lý Bán Hàng</a>
+    <ul class="nav nav-tabs">
+  <li>
+    <a href="#">Home</a>
+  </li>
+  <li>
+  	<ul class="nav" role="navigation">
+		<li class="dropdown">
+            <?php echo $this->Html->link('Quản Lý Người Dùng <b class="caret"></b>',array('action'=>'#'),array('id'=>'drop1','role'=>'button','class'=>'dropdown-toggle','data-toggle'=>'dropdown','escape'=>false))?>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><?php echo $this->Html->link('Người Dùng',array('controller'=>'users','action'=>'index'),array('role'=>'menuitem')) ?></li>
+               	<li role="presentation"><?php echo $this->Html->link('Loại Kho',array('controller'=>'typestocks','action'=>'index'),array('role'=>'menuitem')) ?></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Chuyển Kho</a></li>
+                <!-- <li role="presentation" class="divider"></li> -->
+                <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li> -->
+           	</ul>
+        </li>
+
+        <li class="dropdown">
+            <!-- <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Kho<b class="caret"></b></a> -->
+            <?php echo $this->Html->link('Quản Lý Kho <b class="caret"></b>',array('action'=>'#'),array('id'=>'drop1','role'=>'button','class'=>'dropdown-toggle','data-toggle'=>'dropdown','escape'=>false))?>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><?php echo $this->Html->link('Kho',array('controller'=>'stocks','action'=>'index'),array('role'=>'menuitem')) ?></li>
+               	<li role="presentation"><?php echo $this->Html->link('Loại Kho',array('controller'=>'typestocks','action'=>'index'),array('role'=>'menuitem')) ?></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Chuyển Kho</a></li>
+                <!-- <li role="presentation" class="divider"></li> -->
+                <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li> -->
+           	</ul>
+        </li>
+
+                   
+    </ul>
+  </li>
+</ul>
+  </div>
+</div>

@@ -60,6 +60,14 @@ $this->loadModel('Typestock');
 	      else{
 	        $this->redirect(array('controller'=>'users','action'=>'login'));
 	      }
+
+	      $this->loadModel('User');
+		$dataUser = $this->User->find('list',array('fields' =>array('User.name'))); 
+		$this->set('dataUser',$dataUser);
+
+$this->loadModel('Typestock');
+		$dataTypestock = $this->Typestock->find('list',array('fields' =>array('Typestock.nameTypeStock'))); 
+		$this->set('dataTypestock',$dataTypestock);
 	    }
 	    function delete($id=null)	
 	    {

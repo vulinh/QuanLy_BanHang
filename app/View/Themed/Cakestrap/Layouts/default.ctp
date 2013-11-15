@@ -73,13 +73,22 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->script('libs/jquery-1.10.2.min');
 		echo $this->Html->script('libs/bootstrap.min');
  		echo $this->Html->script('libs/bootstrap-tab');
+ 		echo $this->Html->script('libs/bootstrap-tooltip');
  		echo $this->fetch('script');
-?>		
+?>	
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+			$('.is_password').hide();
+	});
+
+</script>	
 <script>
 	$('#tab_NV a').click(function (e) {
   e.preventDefault();
   $(this).tab('show');
 })
+	$('.tt').tooltip();
 </script>
 <script>
 	$('#tab_NV a[href="#not_yet"]').tab('show');
