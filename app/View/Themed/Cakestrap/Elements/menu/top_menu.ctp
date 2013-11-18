@@ -30,6 +30,17 @@
            	</ul>
         </li>
 
+        <li class="dropdown">
+            <?php echo $this->Html->link('Quản Lý Sản Phẩm <b class="caret"></b>',array('action'=>'#'),array('id'=>'drop1','role'=>'button','class'=>'dropdown-toggle','data-toggle'=>'dropdown','escape'=>false))?>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><?php echo $this->Html->link('Sản phẩm',array('controller'=>'Products','action'=>'index'),array('role'=>'menuitem')) ?></li>
+                <li role="presentation"><?php echo $this->Html->link('Nhà cung cấp',array('controller'=>'Suppliers','action'=>'index'),array('role'=>'menuitem')) ?></li>
+                <li role="presentation"><?php echo $this->Html->link('Nhà sản xuất',array('controller'=>'Manufacturers','action'=>'index'),array('role'=>'menuitem')) ?></li>
+                <li role="presentation"><?php echo $this->Html->link('Loại sản phẩm',array('controller'=>'Categoryproducts','action'=>'index'),array('role'=>'menuitem')) ?></li>
+                <li role="presentation"><?php echo $this->Html->link('Ngoại tệ',array('controller'=>'Exchangerates','action'=>'index'),array('role'=>'menuitem')) ?></li>
+                <li role="presentation"><?php echo $this->Html->link('Đơn vị',array('controller'=>'Units','action'=>'index'),array('role'=>'menuitem')) ?></li>
+            </ul>
+        </li>
                    
     </ul>
   </li>
