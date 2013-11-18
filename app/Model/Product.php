@@ -150,28 +150,28 @@ class Product extends AppModel {
 			'className' => 'Categoryproducts',
 			'foreignKey' => 'idCategoryProduct',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'id,nameCategoryProduct',
 			'order' => ''
 		),
 		'Suppliers' => array(
 			'className' => 'Suppliers',
 			'foreignKey' => 'idSupplier',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'id,nameSupplier',
 			'order' => ''
 		),
 		'Units' => array(
 			'className' => 'Units',
 			'foreignKey' => 'idUnit',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'id,nameUnit',
 			'order' => ''
 		),
 		'Exchangerates' => array(
 			'className' => 'Exchangerates',
 			'foreignKey' => 'idExchangeRate',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'id,nameExchangeRate',
 			'order' => ''
 		)
 	);

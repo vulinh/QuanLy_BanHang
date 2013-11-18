@@ -57,7 +57,7 @@ class CategoryproductsController extends AppController {
         if ($this->request->is('post')) {
             $this->Categoryproduct->create();
             if ($this->Categoryproduct->save($this->request->data)) {
-                $this->Session->setFlash(__('Thêm thành công'), 'flash/success');
+                $this->Session->setFlash(__('Đã thêm loại sản phẩm '.$this->request->data['nameCategoryproduct']), 'flash/success');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('Không thêm được dữ liệu, vui lòng thử lại'), 'flash/error');
@@ -109,11 +109,13 @@ class CategoryproductsController extends AppController {
         if (!$this->Categoryproduct->exists()) {
             throw new NotFoundException(__('Invalid categoryproduct'));
         }
+        $options = array('conditions' => array('Categoryproduct.' . $this->Categoryproduct->primaryKey => $id));
+        $data =  $this->request->data = $this->Categoryproduct->find('first', $options);
         if ($this->Categoryproduct->delete()) {
-            $this->Session->setFlash(__('Đã xóa sản phẩm.'), 'flash/success');
+            $this->Session->setFlash(__('Đã xóa loại sản phẩm '.$data['Categoryproduct']['nameCategoryproduct']), 'flash/success');
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash(__('Không xóa được sản phẩm'), 'flash/error');
+        $this->Session->setFlash(__('Không xóa được loại sản phẩm '.$data['Categoryproduct']['nameCategoryproduct']), 'flash/error');
         $this->redirect(array('action' => 'index'));
     }
 

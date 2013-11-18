@@ -51,7 +51,7 @@ class SuppliersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Supplier->create();
 			if ($this->Supplier->save($this->request->data)) {
-				$this->Session->setFlash(__('Thêm nhà cung cấp thành công'), 'flash/success');
+				$this->Session->setFlash(__('Đã thêm nhà cung cấp '.$this->request->data['nameSupplier']), 'flash/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Không thể thêm nhà cung cấp này. Vui lòng kiểm tra lại.'), 'flash/error');

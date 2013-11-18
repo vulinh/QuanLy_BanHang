@@ -1,92 +1,105 @@
+<div class="row-fluid">
+    <div class="span12">
+        <div class="well" style="text-align:center;font-size:30px">
+           Sản Phẩm
+        </div>
+    </div>
+    <div class="span3">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Chức Năng</li>
+              <li class="list-group-item"><?php echo $this->Html->link(__('Thêm sản phẩm'), array('action' => 'add'), array('class' => '')); ?></li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách loại sản phẩm'), array('controller' => 'categoryproducts', 'action' => 'index'), array('class' => '')); ?></li> 
+                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm loại sản phẩm'), array('controller' => 'categoryproducts', 'action' => 'add'), array('class' => '')); ?></li> 
+                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách nhà cung cấp'), array('controller' => 'suppliers', 'action' => 'index'), array('class' => '')); ?></li> 
+                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm nhà cung cấp'), array('controller' => 'suppliers', 'action' => 'add'), array('class' => '')); ?></li> 
+                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách đơn vị'), array('controller' => 'units', 'action' => 'index'), array('class' => '')); ?></li> 
+                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm đơn vị'), array('controller' => 'units', 'action' => 'add'), array('class' => '')); ?></li> 
+                <li class="list-group-item"><?php echo $this->Html->link(__('Danhs sách tiền tệ'), array('controller' => 'exchangerates', 'action' => 'index'), array('class' => '')); ?></li> 
+                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm tiền tệ'), array('controller' => 'exchangerates', 'action' => 'add'), array('class' => '')); ?></li> 
+            </ul>
+        </div>
+    </div>
+ <div class="span8">
+        <div class="well">
+		<div class="products index">
+			
+			<div class="table-responsive">
+				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<?php 
+                                echo '<th>'.$this->Paginator->sort('#').'</th>';
+							    echo '<th>'.$this->Paginator->sort('Tên sản phẩm').'</th>';
+							    echo '<th>'.$this->Paginator->sort('Loại sản phẩm').'</th>';
+            //                  echo '<th>'.$this->Paginator->sort('Exchangerates').'</th>'; 
+            //                  echo '<th>'.$this->Paginator->sort('Units').'</th>';
+							    echo '<th>'.$this->Paginator->sort('Giá').'</th>';
+			//				    echo '<th>'.$this->Paginator->sort('retail').'</th>'; 
+			//				    echo '<th>'.$this->Paginator->sort('wholesale').'</th>'; 
+			//				    echo '<th>'.$this->Paginator->sort('Xuất xứ').'</th>'; 
+							    echo '<th>'.$this->Paginator->sort('Nhà cung cấp').'</th>';
+							    echo '<th>'.$this->Paginator->sort('import_time').'</th>'; 
+			//				    echo '<th>'.$this->Paginator->sort('warranty_time').'</th>'; 
+			//				    echo '<th>'.$this->Paginator->sort('tag').'</th>'; 
+			//				    echo '<th>'.$this->Paginator->sort('promotion').'</th>'; 
+							    echo '<th>'.$this->Paginator->sort('Hiển thị').'</th>';
+                                ?> 
+							    <th class="actions"><?php echo __('Tác vụ'); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+<?php foreach ($products as $product): ?>
+	<tr>
+		<?php 
+            echo '<td>'.h($product['Product']['id']).'</td>';
+		    echo '<td>'.h($product['Product']['nameProduct']).'</td>';
+		    echo '<td>'.$this->Html->link($product['Categoryproducts']['nameCategoryProduct'], array('controller' => 'categoryproducts', 'action' => 'view', $product['Categoryproducts']['id'])).'</td>';
+	//	    echo '<td>'.$this->Html->link($product['Exchangerates']['nameExchangeRate'], array('controller' => 'exchangerates', 'action' => 'view', $product['Exchangerates']['id'])).'</td>';
+	//	    echo '<td>'.$this->Html->link($product['Units']['nameUnit'], array('controller' => 'units', 'action' => 'view', $product['Units']['id'])).'</td>';
+		    echo '<td>'.h($product['Product']['price']).'</td>';
+	//	    echo '<td>'.h($product['Product']['retail']).'</td>';
+	//	    echo '<td>'.h($product['Product']['wholesale']).'</td>'; 
+	//	    echo '<td>'.h($product['Product']['made_in']).'</td>';
+		    echo '<td>'.$this->Html->link($product['Suppliers']['nameSupplier'], array('controller' => 'suppliers', 'action' => 'view', $product['Suppliers']['id'])).'</td>';
+		    echo '<td>'.h($product['Product']['import_time']).'</td>';
+	//	    echo '<td>'.h($product['Product']['warranty_time']).'</td>';
+	//	    echo '<td>'.h($product['Product']['tag']).'</td>';
+	//	    echo '<td>'.h($product['Product']['promotion']).'</td>';
+            if($product['Product']['enable'] ==1 )
+                $hienthi = 'true';
+            else
+                $hienthi = 'false';
+		    echo '<td>'.h($hienthi).'</td>';
+            ?>
+		<td class="actions"> 
+			<?php echo $this->Html->link('<i class="icon-list"></i>', array('action' => 'view', $product['Product']['id']), array('class'=>'tt', 'escape'=>false, 'data-toggle'=>'tooltip', 'data-original-title'=> 'Xem Chi Tiết '.$product['Product']['nameProduct'])); ?>
+			<?php echo $this->Html->link('<i class=" icon-pencil"></i>', array('action' => 'edit', $product['Product']['id']), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$product['Product']['nameProduct'])); ?>
+			<?php echo $this->Form->postLink('<i class=" icon-remove"></i>', array('action' => 'delete', $product['Product']['id']), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$product['Product']['nameProduct']), __('Bạn có muốn xóa sản phẩm "%s?"', $product['Product']['nameProduct'])); ?>
+		</td>
+	</tr>
+<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div><!-- /.table-responsive -->
+			
+			<p><small>
+				<?php
+					echo $this->Paginator->counter(array(
+					'format' => __('Trang {:page}/{:pages} - hiển thị {:current}/{:count} - từ {:start}, đến {:end}')
+					));
+				?>
+			</small></p>
 
-<?php 
-	$content = "";
-	$i=1;
-	$enter=true;
-	$url_img="";
-	foreach ($list as $v){
-			if (strlen($v['Product']['url']) == 0){
-				$url_img = 'img/default_img.png';
-			}
-			else{
-				$url_img = $v['Product']['url'];
-			}
-
-			$content .= 
-				'<div class="span3" style="margin:15px auto auto 15px">
-					<div class="img_product">
-		         		<img class="img-circle" src="'.$url_img.'"class="img_content" />
-		         	</div>
-		         	<div class="detail_product">
-			        	<p><i class=" icon-th-large"></i>'.$v['Product']['name'].'</p>
-			        	<p><i class=" icon-shopping-cart"></i>'.$v['Product']['price'].'VND </p>
-		        	</div>
-			 	</div>';
-		
-		
-	}
-	echo $content;
-?>	
-
-<!-- <h2>'.$v['Product']['name'].'</h2> -->
-<!-- $content .= '<div class="row-fluid"><div class="span3" style="margin:15px auto auto 15px">
-	          
-	          <p><img src="'.$url_img.'"class="img_content" /></p>
-	          <p><i class=" icon-th-large"></i>'.$v['Product']['name'].'</p>
-	          <p><i class=" icon-shopping-cart"></i>'.$v['Product']['price'].'VND </p>
-			  </div>'; -->
-<!-- if ($enter==true) {
-				$content .= 
-			'<div class="row-fluid">
-				<div class="span3" style="margin:15px auto auto 15px">
-					<div class="img_product">
-		         		<p><img src="'.$url_img.'"class="img_content" /></p>
-		         	</div>
-		         	<div class="detail_product">
-			        	<p><i class=" icon-th-large"></i>'.$v['Product']['name'].'</p>
-			        	<p><i class=" icon-shopping-cart"></i>'.$v['Product']['price'].'VND </p>
-		        	</div>
-			 	</div>';
-			  	$enter = false;
-			}
-			else{
-				if ($i>2) {
-					$content .= 
-			 '<div class="span3" style="margin:15px auto auto 15px">
-	          
-	          	<div class="img_product">
-		          
-		          		<img src="'.$url_img.'"class="img_content" />
-		          
-	          	</div>
-	          	<div class="detail_product">
-	          		<p><i class=" icon-th-large"></i>'.$v['Product']['name'].'</p>
-	          		<p><i class=" icon-shopping-cart"></i>'.$v['Product']['price'].'VND </p>
-			  	</div>
-			  </div></div>';
-			  		$i=1;
-			  		$enter = true;
-				}
-				else{
-					$content .= 
-			'<div class="span3" style="margin:15px auto auto 15px">
-				<div class="img_product">
-		   			<p>
-		          		<img src="'.$url_img.'"class="img_content" />
-		          	</p>
-		        </div>
-		        <div class="detail_product">
-	          		<p><i class=" icon-th-large"></i>'.$v['Product']['name'].'</p>
-	          		<p><i class=" icon-shopping-cart"></i>'.$v['Product']['price'].'VND </p>
-	          	</div>
-			 </div>';
-			  		$i=$i+1;
-				}
-			} -->
-
-<!-- 	<div class="span3" style="margin-left:15px">
-	          <h2>Heading</h2>
-	          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	          <p><a class="btn" href="#">View details »</a></p>
-	</div>
-</div> -->
+			<ul class="pagination" style = 'list-style:none'>
+				<?php
+					echo $this->Paginator->prev('< ' . __('Previous'), array('tag' => 'li'), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a'));
+					echo $this->Paginator->numbers(array('separator' => '', 'currentTag' => 'a', 'tag' => 'li', 'currentClass' => 'disabled'));
+					echo $this->Paginator->next(__('Next') . ' >', array('tag' => 'li'), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a'));
+				?>
+			</ul><!-- /.pagination -->
+			
+		</div><!-- /.index -->
+        </div>
+</div>
+</div>
