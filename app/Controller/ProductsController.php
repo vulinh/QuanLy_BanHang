@@ -50,7 +50,7 @@ class ProductsController extends AppController {
         if ($this->request->is('post')) {
             $this->Product->create();
             if ($this->Product->save($this->request->data)) {
-                $this->Session->setFlash(__('Đã thêm sản phẩm '.$this->request->data['nameProduct'] ), 'flash/success');
+                $this->Session->setFlash(__('Đã thêm sản phẩm '.$this->request->data['Product']['nameProduct'] ), 'flash/success');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('Không thêm được dữ liệu. Vui lòng thử lại.'), 'flash/error');
@@ -119,7 +119,7 @@ class ProductsController extends AppController {
         }
         
         $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
-        $data =  $this->request->data = $this->Product->find('first', $options);
+        $data = $this->Product->find('first', $options);
         
         if ($this->Product->delete()) {
             $this->Session->setFlash(__('Đã xóa sản phẩm '.$data['Product']['nameProduct']), 'flash/success');

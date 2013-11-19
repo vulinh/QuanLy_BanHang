@@ -100,7 +100,7 @@ class UnitsController extends AppController {
 			throw new NotFoundException(__('Invalid unit'));
 		}
         $options = array('conditions' => array('Unit.' . $this->Unit->primaryKey => $id));
-        $data = $this->request->data = $this->Unit->find('first', $options);
+        $data = $this->Unit->find('first', $options);
 		if ($this->Unit->delete()) {
 			$this->Session->setFlash(__('Đã xóa thông tin của '.$data['Unit']['nameUnit']), 'flash/success');
 			$this->redirect(array('action' => 'index'));

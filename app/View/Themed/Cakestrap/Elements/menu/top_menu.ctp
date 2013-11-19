@@ -41,6 +41,15 @@
                 <li role="presentation"><?php echo $this->Html->link('Đơn vị',array('controller'=>'Units','action'=>'index'),array('role'=>'menuitem')) ?></li>
             </ul>
         </li>
+        
+        <li class="dropdown">
+            <?php echo $this->Html->link('Quản Lý Hóa Đơn <b class="caret"></b>',array('action'=>'#'),array('id'=>'drop1','role'=>'button','class'=>'dropdown-toggle','data-toggle'=>'dropdown','escape'=>false))?>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><?php echo $this->Html->link('Hóa đơn',array('controller'=>'Bills','action'=>'index'),array('role'=>'menuitem')) ?></li>
+                <li role="presentation"><?php echo $this->Html->link('Chi tiết hóa đơn',array('controller'=>'Detailbills','action'=>'index'),array('role'=>'menuitem')) ?></li>
+                <li role="presentation"><?php echo $this->Html->link('Loại hóa đơn',array('controller'=>'Typebills','action'=>'index'),array('role'=>'menuitem')) ?></li>
+            </ul>
+        </li>
                    
     </ul>
   </li>

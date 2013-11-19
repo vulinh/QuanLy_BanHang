@@ -101,7 +101,7 @@
                 throw new NotFoundException(__('Invalid manufacturer'));
             }
             $options = array('conditions' => array('Manufacturer.' . $this->Manufacturer->primaryKey => $id));
-            $data =  $this->request->data = $this->Manufacturer->find('first', $options);
+            $data = $this->Manufacturer->find('first', $options);
             if ($this->Manufacturer->delete()) {
                 $this->Session->setFlash(__('Đã xóa nhà sản xuất '.$data['Manufacturer']['nameManufacturer']), 'flash/success');
                 $this->redirect(array('action' => 'index'));

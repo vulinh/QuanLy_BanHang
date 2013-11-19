@@ -101,7 +101,7 @@ class ExchangeratesController extends AppController {
 		}
         
         $options = array('conditions' => array('Exchangerate.' . $this->Exchangerate->primaryKey => $id));
-        $data = $this->request->data = $this->Exchangerate->find('first', $options);
+        $data = $this->Exchangerate->find('first', $options);
         
 		if ($this->Exchangerate->delete()) {
 			$this->Session->setFlash(__('Đã xóa thông tin '.$data['Exchangerate']['nameExchangeRate']), 'flash/success');
