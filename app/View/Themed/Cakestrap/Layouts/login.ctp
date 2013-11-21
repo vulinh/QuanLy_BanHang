@@ -31,32 +31,48 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			
 			echo $this->fetch('meta');
 
-			echo $this->Html->css('bootstrap');
-			echo $this->Html->css('main');
-			echo $this->Html->css('signin');
+			echo $this->Html->css('bootstrap.min');
+			echo $this->Html->css('font-awesome');
+			echo $this->Html->css('style.min');
+			echo $this->Html->css('style_responsive');
+			echo $this->Html->css('style_default');
 
 			echo $this->fetch('css');
 			
-			echo $this->Html->script('libs/jquery-1.10.2.min');
+			echo $this->Html->script('jquery-1.8.3.min');
 			echo $this->Html->script('libs/bootstrap.min');
 			
 			echo $this->fetch('script');
 		?>
 </head>
-<body>
-	<div id="container">
-
-		<div id="content" class="container">
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-
-		</div>
-		<div id="footer">
-			
+<body id="login-body">
+	<div class="login-header">
+		<div id="logo" class="center">
+			<img src="<?php echo $this->webroot; ?>img/logo.png" alt="logo" class="center">
 		</div>
 	</div>
+	<?php echo $this->Session->flash(); ?>
+	<div id="login">
+		
+
+		<?php echo $this->fetch('content'); ?> 
+	
+	</div>
+	<!-- <div id="container"> -->
+
+<!-- 		<div id="content" class="container"> -->
+
+			
+
+		<!-- </div> -->
+		<!-- <div id="footer"> -->
+			
+		<!-- </div> -->
+	<!-- </div> -->
+
+<?php echo $this->Html->script('jquery.blockui');?>
+<?php echo $this->Html->script('scripts');?>
+<?php echo $this->fetch('script');?>
 
 </body>
 </html>

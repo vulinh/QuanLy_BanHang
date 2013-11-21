@@ -13,8 +13,9 @@ class UnitsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator','Session');
     public $theme = 'Cakestrap';
+    var  $helpers = array('Session');
 
 /**
  * index method
@@ -22,8 +23,14 @@ class UnitsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Unit->recursive = 0;
-		$this->set('units', $this->paginate());
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')){ 
+			$this->Unit->recursive = 0;
+			$this->set('units', $this->paginate());
+		}
+		else
+        {
+            $this->redirect(array('controller'=>'users','action'=>'login'));
+        }
 	}
 
 /**
@@ -34,11 +41,17 @@ class UnitsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if (!$this->Unit->exists($id)) {
-			throw new NotFoundException(__('Invalid unit'));
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')) { 
+			if (!$this->Unit->exists($id)) {
+				throw new NotFoundException(__('Invalid unit'));
+			}
+			$options = array('conditions' => array('Unit.' . $this->Unit->primaryKey => $id));
+			$this->set('unit', $this->Unit->find('first', $options));
 		}
-		$options = array('conditions' => array('Unit.' . $this->Unit->primaryKey => $id));
-		$this->set('unit', $this->Unit->find('first', $options));
+		else
+        {
+            $this->redirect(array('controller'=>'users','action'=>'add'));
+        }
 	}
 
 /**
@@ -47,15 +60,21 @@ class UnitsController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
-			$this->Unit->create();
-			if ($this->Unit->save($this->request->data)) {
-				$this->Session->setFlash(__('Đã thêm '. $this->request->data['Unit']['nameUnit']), 'flash/success');
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('Không thể thêm '.$this->request->data['Unit']['nameUnit'].'. Vui lòng thử lại'), 'flash/error');
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')){ 
+			if ($this->request->is('post')) {
+				$this->Unit->create();
+				if ($this->Unit->save($this->request->data)) {
+					$this->Session->setFlash(__('Đã thêm '. $this->request->data['Unit']['nameUnit']), 'flash/success');
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('Không thể thêm '.$this->request->data['Unit']['nameUnit'].'. Vui lòng thử lại'), 'flash/error');
+				}
 			}
 		}
+		else
+	    {
+	        $this->redirect(array('controller'=>'users','action'=>'login'));
+	    }
 	}
 
 /**
@@ -66,6 +85,7 @@ class UnitsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')){
         $this->Unit->id = $id;
 		if (!$this->Unit->exists($id)) {
 			throw new NotFoundException(__('Invalid unit'));
@@ -82,6 +102,11 @@ class UnitsController extends AppController {
 			$this->request->data = $this->Unit->find('first', $options);
 		}
 	}
+	else
+	    {
+	        $this->redirect(array('controller'=>'users','action'=>'login'));
+	    }
+	}
 
 /**
  * delete method
@@ -92,19 +117,27 @@ class UnitsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
-		$this->Unit->id = $id;
-		if (!$this->Unit->exists()) {
-			throw new NotFoundException(__('Invalid unit'));
-		}
-        $options = array('conditions' => array('Unit.' . $this->Unit->primaryKey => $id));
-        $data = $this->Unit->find('first', $options);
-		if ($this->Unit->delete()) {
-			$this->Session->setFlash(__('Đã xóa thông tin của '.$data['Unit']['nameUnit']), 'flash/success');
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')){
+			if (!$this->request->is('post')) {
+				throw new MethodNotAllowedException();
+			}
+			$this->Unit->id = $id;
+			if (!$this->Unit->exists()) {
+				throw new NotFoundException(__('Invalid unit'));
+			}
+	        $options = array('conditions' => array('Unit.' . $this->Unit->primaryKey => $id));
+	        $data = $this->request->data = $this->Unit->find('first', $options);
+			if ($this->Unit->delete()) {
+				$this->Session->setFlash(__('Đã xóa thông tin của '.$data['Unit']['nameUnit']), 'flash/success');
+				$this->redirect(array('action' => 'index'));
+			}
+			$this->Session->setFlash(__('Không thể xóa thông tin của '.$data['Unit']['nameUnit']), 'flash/error');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Không thể xóa thông tin của '.$data['Unit']['nameUnit']), 'flash/error');
-		$this->redirect(array('action' => 'index'));
-	}}
+	else
+	    {
+	        $this->redirect(array('controller'=>'users','action'=>'login'));
+	    }
+	
+	}
+}

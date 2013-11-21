@@ -22,8 +22,13 @@ class ProductsController extends AppController {
  * @return void
  */
     public function index() {
-        $this->Product->recursive = 0;
-        $this->set('products', $this->paginate());
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
+            $this->Product->recursive = 0;
+            $this->set('products', $this->paginate());
+        }
+        else{
+            $this->redirect(array('controller'=>'users','action'=>'login'));
+        }
     }
 
 /**
@@ -34,11 +39,16 @@ class ProductsController extends AppController {
  * @return void
  */
     public function view($id = null) {
-        if (!$this->Product->exists($id)) {
-            throw new NotFoundException(__('Invalid product'));
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
+            if (!$this->Product->exists($id)) {
+                throw new NotFoundException(__('Invalid product'));
+            }
+            $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
+            $this->set('product', $this->Product->find('first', $options));
         }
-        $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
-        $this->set('product', $this->Product->find('first', $options));
+        else{
+            $this->redirect(array('controller'=>'users','action'=>'login'));
+        }
     }
 
 /**
@@ -47,24 +57,29 @@ class ProductsController extends AppController {
  * @return void
  */
     public function add() {
-        if ($this->request->is('post')) {
-            $this->Product->create();
-            if ($this->Product->save($this->request->data)) {
-                $this->Session->setFlash(__('Đã thêm sản phẩm '.$this->request->data['Product']['nameProduct'] ), 'flash/success');
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('Không thêm được dữ liệu. Vui lòng thử lại.'), 'flash/error');
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
+            if ($this->request->is('post')) {
+                $this->Product->create();
+                if ($this->Product->save($this->request->data)) {
+                    $this->Session->setFlash(__('Đã thêm sản phẩm '.$this->request->data['nameProduct'] ), 'flash/success');
+                    $this->redirect(array('action' => 'index'));
+                } else {
+                    $this->Session->setFlash(__('Không thêm được dữ liệu. Vui lòng thử lại.'), 'flash/error');
+                }
             }
+                    $this->loadModel('Categoryproduct');
+                    $this->loadModel('Supplier');
+                    $this->loadModel('Unit');
+                    $this->loadModel('Exchangerate');
+            $categoryproducts = $this->Categoryproduct->find('list', array('fields' => array('nameCategoryProduct')));
+            $suppliers = $this->Supplier->find('list',array('fields' => array('nameSupplier')));
+            $units = $this->Unit->find('list', array('fields' => array('nameUnit')));
+            $exchangerates = $this->Exchangerate->find('list', array('fields' => array('nameExchangeRate')));
+            $this->set(compact('categoryproducts', 'suppliers', 'units', 'exchangerates'));
         }
-                $this->loadModel('Categoryproduct');
-                $this->loadModel('Supplier');
-                $this->loadModel('Unit');
-                $this->loadModel('Exchangerate');
-        $categoryproducts = $this->Categoryproduct->find('list', array('fields' => array('nameCategoryProduct')));
-        $suppliers = $this->Supplier->find('list',array('fields' => array('nameSupplier')));
-        $units = $this->Unit->find('list', array('fields' => array('nameUnit')));
-        $exchangerates = $this->Exchangerate->find('list', array('fields' => array('nameExchangeRate')));
-        $this->set(compact('categoryproducts', 'suppliers', 'units', 'exchangerates'));
+        else{
+            $this->redirect(array('controller'=>'users','action'=>'login'));
+        }
     }
 
 /**
@@ -75,6 +90,7 @@ class ProductsController extends AppController {
  * @return void
  */
     public function edit($id = null) {
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
         $this->Product->id = $id;
         if (!$this->Product->exists($id)) {
             throw new NotFoundException(__('Invalid product'));
@@ -100,6 +116,10 @@ class ProductsController extends AppController {
         $exchangerates = $this->Exchangerate->find('list', array('fields' => array('nameExchangeRate')));
         $this->set(compact('categoryproducts', 'suppliers', 'units', 'exchangerates'));
     }
+     else{
+            $this->redirect(array('controller'=>'users','action'=>'login'));
+        }
+}
 
 /**
  * delete method
@@ -110,6 +130,7 @@ class ProductsController extends AppController {
  * @return void
  */
     public function delete($id = null) {
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
@@ -119,7 +140,7 @@ class ProductsController extends AppController {
         }
         
         $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
-        $data = $this->Product->find('first', $options);
+        $data =  $this->request->data = $this->Product->find('first', $options);
         
         if ($this->Product->delete()) {
             $this->Session->setFlash(__('Đã xóa sản phẩm '.$data['Product']['nameProduct']), 'flash/success');
@@ -127,4 +148,10 @@ class ProductsController extends AppController {
         }
         $this->Session->setFlash(__('Không xóa được sản phẩm '.$data['Product']['nameProduct']), 'flash/error');
         $this->redirect(array('action' => 'index'));
-    }}
+    }
+     else{
+            $this->redirect(array('controller'=>'users','action'=>'login'));
+        }
+}
+
+}

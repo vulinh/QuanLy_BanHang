@@ -4,15 +4,9 @@
            CẬP NHẬT PHÂN QUYỀN TÀI KHOẢN
         </div>
     </div>
-    <div class="span3">
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Chức Năng</li>
-              <li><?php echo $this->Html->link('Danh sách người dùng',array('controller'=>'stocks','action'=>'add')) ?></li>
-            </ul>
-        </div>
-    </div>
-<div class="span8">
+</div>
+<div class="row-fluid">   
+<div class="span11 offset1">
 <?php
 // foreach ($dataUserNotGivePosition as $userNotGivePosition) {
 //     echo $userNotGivePosition['User']['username'];
@@ -27,7 +21,10 @@
      echo 'Thuộc Bộ Phận';
     echo $this->Form->select('idDeparment',$dataDepartment,array('class'=>'span2'));
     echo '</fieldset>';
-    echo $this->Form->end('Xác Nhận Phân Quyền');
+    echo $this->Html->link('Quay Lại',array('controller'=>'users','action'=>'index'),array('class'=>'btn btn-success pull-right'));
+    
+    echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px'));
+    echo $this->Form->end();
 // }
 ?>
 </div>

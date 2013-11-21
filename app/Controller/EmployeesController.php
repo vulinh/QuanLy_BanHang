@@ -29,16 +29,23 @@ class EmployeesController extends AppController{
 	}
 
 	function index(){
-		$dataUser1 = $this->_listEmployeeNotGivePosition();
-		$dataUser2 = $this->_listEmployeeGavePosition();
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
+    		$dataUser1 = $this->_listEmployeeNotGivePosition();
+    		$dataUser2 = $this->_listEmployeeGavePosition();
 
-		$this->loadModel('Department');
-            $data = $this->Department->find('list',array('fields' =>array('Department.nameDepartment'))); 
-            $this->set('dataDepartment',$data);
+    		$this->loadModel('Department');
+                $data = $this->Department->find('list',array('fields' =>array('Department.nameDepartment'))); 
+                $this->set('dataDepartment',$data);
 
-		$this->set('dataUserNotGivePosition',$dataUser1);
+    		$this->set('dataUserNotGivePosition',$dataUser1);
 
-		$this->set('dataUserGavePosition',$dataUser2);
+    		
+            $this->set('dataUserGavePosition',$dataUser2);
+        }
+        else{
+            $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+
 	}
 
 	function givePosition(){
@@ -76,7 +83,7 @@ class EmployeesController extends AppController{
                 (array
                     ('Employee.isManagerSale' =>$this->request->data['Employee']['isManagerSale'],'Employee.isManagerFinance' =>$this->request->data['Employee']['isManagerFinance'],'Employee.isManagerStock' =>$this->request->data['Employee']['isManagerStock'],'Employee.idDeparment' =>$this->request->data['Employee']['idDeparment']), array('Employee.id' => $this->request->data['Employee']['id']));
                 // if ($this->Employee->save($this->request->data)) {
-                //     $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
+                    $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
                 //     $this->redirect(array('action' => 'add'));
                 // } 
                 // else 

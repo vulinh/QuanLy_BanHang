@@ -1,40 +1,36 @@
 
-<div id="page-container" class="row">
+<div class="row-fluid">
+	<div class="span12">
+		<div class="well" style="text-align:center;font-size:30px">
+			THÊM ĐƠN VỊ TÍNH MỚI
+		</div>
+	</div>
+</div>
+			<?php echo $this->Form->create('Unit', array('action' => 'add')); ?>
+			<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered table-advance table-hover">
+			
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Tên Đơn Vị Tính'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('nameUnit', array('type' => 'text', 'label' => 'Tên đơn vị','class' => 'form-control')); ?>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="3">
+					<?php echo $this->Html->link('Quay Lại',array('controller'=>'units','action'=>'index'),array('class'=>'btn btn-success pull-right'));
+            echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px'));?>
+				</td>
+				
+			</tr>
 
-	<div id="sidebar" class="col-sm-3">
-		
-		<div class="actions">
-		
-			<ul class="list-group" style = 'list-style:none'>
-				<li class="list-group-item"><?php echo $this->Html->link(__('Danh sách đơn vị'), array('action' => 'index')); ?></li>
-			</ul><!-- /.list-group -->
-		
-		</div><!-- /.actions -->
-		
-	</div><!-- /#sidebar .col-sm-3 -->
-	
-	<div id="page-content" class="col-sm-9">
-
-		<h2><?php echo __('Thêm đơn vị'); ?></h2>
-
-		<div class="units form">
-		
-			<?php echo $this->Form->create('Unit', array('role' => 'form')); ?>
-
-				<fieldset>
-
-					<div class="form-group">
-						<?php echo $this->Form->input('nameUnit', array('type' => 'text', 'label' => 'Tên đơn vị','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-
-					<?php echo $this->Form->submit('Thêm mới', array('class' => 'btn btn-large btn-primary')); ?>
-
-				</fieldset>
-
+			</table>
 			<?php echo $this->Form->end(); ?>
 
-		</div><!-- /.form -->
-			
-	</div><!-- /#page-content .col-sm-9 -->
 
-</div><!-- /#page-container .row-fluid -->
+			
+	</div>
+
+</div>

@@ -20,8 +20,13 @@
         * @return void
         */
         public function index() {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             $this->Manufacturer->recursive = 0;
             $this->set('manufacturers', $this->paginate());
+        }
+        else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
         }
 
         /**
@@ -32,11 +37,16 @@
         * @return void
         */
         public function view($id = null) {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             if (!$this->Manufacturer->exists($id)) {
                 throw new NotFoundException(__('Invalid manufacturer'));
             }
             $options = array('conditions' => array('Manufacturer.' . $this->Manufacturer->primaryKey => $id));
             $this->set('manufacturer', $this->Manufacturer->find('first', $options));
+        }
+          else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
         }
 
         /**
@@ -45,6 +55,7 @@
         * @return void
         */
         public function add() {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             if ($this->request->is('post')) {
                 $this->Manufacturer->create();
                 if ($this->Manufacturer->save($this->request->data)) {
@@ -57,6 +68,10 @@
                 }
             }
         }
+        else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+        }
 
         /**
         * edit method
@@ -66,6 +81,7 @@
         * @return void
         */
         public function edit($id = null) {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             $this->Manufacturer->id = $id;
             if (!$this->Manufacturer->exists($id)) {
                 throw new NotFoundException(__('Invalid manufacturer'));
@@ -83,6 +99,10 @@
                 $this->request->data = $this->Manufacturer->find('first', $options);
             }
         }
+        else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+        }
 
         /**
         * delete method
@@ -93,6 +113,7 @@
         * @return void
         */
         public function delete($id = null) {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             if (!$this->request->is('post')) {
                 throw new MethodNotAllowedException();
             }
@@ -101,7 +122,7 @@
                 throw new NotFoundException(__('Invalid manufacturer'));
             }
             $options = array('conditions' => array('Manufacturer.' . $this->Manufacturer->primaryKey => $id));
-            $data = $this->Manufacturer->find('first', $options);
+            $data =  $this->request->data = $this->Manufacturer->find('first', $options);
             if ($this->Manufacturer->delete()) {
                 $this->Session->setFlash(__('Đã xóa nhà sản xuất '.$data['Manufacturer']['nameManufacturer']), 'flash/success');
                 $this->redirect(array('action' => 'index'));
@@ -110,5 +131,9 @@
             $this->redirect(array('action' => 'index'));
 
         }
+            else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+    }
     }
 ?>

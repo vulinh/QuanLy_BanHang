@@ -1,9 +1,21 @@
 <?php
 foreach ($dataUser as $valueUser) {
-	echo '<span style="font-size:26px">Thông Tin Của '.$valueUser['users']['username'].'</span>';
+    echo '<div class="row-fluid"><div class="span12">
+    <div class="well" style="text-align:center;font-size:30px">Thông Tin Của '.$valueUser['users']['username'].'</div></div>';
+    
+     echo '<div class="span3">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Chức Năng</li>
+              <li>'.$this->Html->link('Thêm người dùng mới',array('controller'=>'users','action'=>'add')).'</li>
+              <li>'.$this->Html->link('Quay lại',array('controller'=>'users','action'=>'index')).'</li>
+            </ul>
+        </div>
+    </div>';
+    echo ' <div class="span8"><div class="well">';
 		echo '<br/><span class="label label-inverse">Tên Đăng Nhập</span>  '.'<span class="label label-info">'.$valueUser['users']['username'].'</span>';
 
-		echo '<br/><span class="label label-inverse">Mật Khẩu</span>  '.'<span class="label label-info hide_password">******</span>'.'<span class="label label-info is_password">'.$valueUser['users']['pword'].'</span>'.'<span id="show_password" style="margin-right:5px;" class="label label-important">'.'<i class="icon-eye-open"></i>'.'</span>';
+		echo '<br/><span class="label label-inverse">Mật Khẩu</span>  '.'<span class="label label-info hide_password">******</span>'.'<span class="label label-info is_password">'.$valueUser['users']['pword'].'</span>'.'<span id="show_password" style="margin-left:10px;" class="label label-important">'.'<i class="icon-eye-open"></i>'.'</span>';
         
         echo '<br/><span class="label label-inverse">Họ Tên</span>  '.'<span class="label label-info">'.$valueUser['users']['name'].'</span>';
 
@@ -48,9 +60,16 @@ foreach ($dataUser as $valueUser) {
      				}
      			}
      		}
-
-     	
-
-  
+            echo '</div></div>';
 }
 ?>
+<script type="text/javascript">
+    $('#show_password').hover(function() {
+        /* Stuff to do when the mouse enters the element */
+         $('.hide_password').hide('fast');
+         $('.is_password').show('fast');
+    }, function() {
+        $('.hide_password').show('fast');
+         $('.is_password').hide('fast');
+    });
+</script>

@@ -1,26 +1,20 @@
+<div class="row-fluid">
+	<div class="span12">
+		<div class="well" style="text-align:center;font-size:30px">
+			ĐƠN VỊ TÍNH
+		</div>
+	</div>
+</div>
 
-<div id="page-container" class="row">
+<div class="row-fluid">
+  <div class="span2 pull-right">
+    <?php echo $this->Html->link('Tạo Mới   ',array('controller'=>'units','action'=>'add'),array('class'=>'btn btn-success')) ?>
+  </div>
+</div>
 
-	<div id="sidebar" class="col-sm-3">
-		
-		<div class="actions">
-		
-			<ul class="list-group" style = 'list-style:none'>
-				<li class="list-group-item"><?php echo $this->Html->link(__('Thêm đơn vị'), array('action' => 'add'), array('class' => 'btn btn-default pull-right','style' => 'margin-top: 5px')); ?></li>
-			</ul><!-- /.list-group -->
-			
-		</div><!-- /.actions -->
-		
-	</div><!-- /#sidebar .col-sm-3 -->
-	
-	<div id="page-content" class="col-sm-9">
-
-		<div class="units index">
-		
-			<h2><?php echo __('Danh sách đơn vị'); ?></h2>
-			
-			<div class="table-responsive">
-				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
+<div class="row-fluid">
+	<div class="span12">
+				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered table-advance table-hover">
 					<thead>
 						<tr>
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -60,8 +54,8 @@
 				?>
 			</ul><!-- /.pagination -->
 			
-		</div><!-- /.index -->
 	
-	</div><!-- /#page-content .col-sm-9 -->
+	
+	</div>
 
-</div><!-- /#page-container .row-fluid -->
+</div>

@@ -24,7 +24,7 @@ class UsersController extends AppController{
                 }
                 else
                 {
-                    $this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Đăng nhập thất bại, vui lòng kiểm tra tên đăng nhập hoặc mật khẩu</h4></div>'));
+                    $this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4 style="text-align:center">(T_T) Đăng nhập thất bại, vui lòng kiểm tra tên đăng nhập hoặc mật khẩu</h4></div>'));
                     $this->redirect(array('controller'=>'users','action'=>'login'));
 
                 }  
@@ -39,6 +39,7 @@ class UsersController extends AppController{
 
     function logout(){
         $this->Session->destroy();
+        $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4 style="text-align:center">Bạn Đã Đăng Xuất</h4></div>'));
         $this->redirect(array('controller'=>'users','action'=>'login'));
     }
 
@@ -94,7 +95,7 @@ class UsersController extends AppController{
             {
                 if ($this->User->save($this->request->data)) {
                     $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
-                    $this->redirect(array('action' => 'add'));
+                    $this->redirect(array('action' => 'edit'));
                 } 
                 else 
                 {
@@ -176,21 +177,21 @@ class UsersController extends AppController{
         $dataEmployee['Employee']['isManagerStock'] ==1)
         {
             $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Chào mừng admin</h4></div>'));
-            $this->redirect(array('controller'=>'users','action'=>'add'));
+            $this->redirect(array('controller'=>'users','action'=>'index'));
         }
         else
         {
             if($dataEmployee['Employee']['isManagerSale'] ==1 )
             {
                 $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Chào mừng nhân viên quản lý bán hàng</h4></div>'));
-                $this->redirect(array('controller'=>'users','action'=>'add'));
+                $this->redirect(array('controller'=>'users','action'=>'index'));
             }
             else
             {
                 if($dataEmployee['Employee']['isManagerFinance'] ==1 )
                 {
                     $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Chào mừng nhân viên quản lý tài chính</h4></div>'));
-                    $this->redirect(array('controller'=>'users','action'=>'add'));
+                    $this->redirect(array('controller'=>'users','action'=>'index'));
                 }
             
                 else
@@ -198,7 +199,7 @@ class UsersController extends AppController{
                     if($dataEmployee['Employee']['isManagerStock'] ==1 )
                     {
                         $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Chào mừng nhân viên quản lý kho</h4></div>'));
-                        $this->redirect(array('controller'=>'users','action'=>'add'));
+                        $this->redirect(array('controller'=>'users','action'=>'index'));
                     } 
                 }
             }

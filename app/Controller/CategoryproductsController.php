@@ -20,8 +20,13 @@
         * @return void
         */
         public function index() {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             $this->Categoryproduct->recursive = 0;
             $this->set('categoryproducts', $this->paginate());
+            }
+            else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
         }
 
         /**
@@ -32,11 +37,16 @@
         * @return void
         */
         public function view($id = null) {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             if (!$this->Categoryproduct->exists($id)) {
                 throw new NotFoundException(__('Invalid categoryproduct'));
             }
             $options = array('conditions' => array('Categoryproduct.' . $this->Categoryproduct->primaryKey => $id));
             $this->set('categoryproduct', $this->Categoryproduct->find('first', $options));
+        }
+         else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
         }
 
         /**
@@ -62,6 +72,7 @@
 //            else{
 //                $this->redirect(array('controller'=>'users','action'=>'login'));
 //            }
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             $this->loadModel('Manufacturer');
             $Manufacturer = $this->Manufacturer->find('list', array('fields' => array('Manufacturer.nameManufacturer')));
             $this->set('dataManufacturer', $Manufacturer);
@@ -69,12 +80,16 @@
             if ($this->request->is('post')) {
                 $this->Categoryproduct->create();
                 if ($this->Categoryproduct->save($this->request->data)) {
-                    $this->Session->setFlash(__('Đã thêm loại sản phẩm '.$this->request->data['Categoryproduct']['nameCategoryProduct']), 'flash/success');
+                    $this->Session->setFlash(__('Đã thêm loại sản phẩm '.$this->request->data['nameCategoryproduct']), 'flash/success');
                     $this->redirect(array('action' => 'index'));
                 } else {
                     $this->Session->setFlash(__('Không thêm được dữ liệu, vui lòng thử lại'), 'flash/error');
                 }
             }
+        }
+         else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
         }
 
         /**
@@ -85,6 +100,7 @@
         * @return void
         */
         public function edit($id = null) {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             $this->loadModel('Manufacturer');
             $Manufacturer = $this->Manufacturer->find('list', array('fields' => array('Manufacturer.nameManufacturer')));
             $this->set('dataManufacturer', $Manufacturer);
@@ -104,6 +120,10 @@
                 $this->request->data = $this->Categoryproduct->find('first', $options);
             }
         }
+        else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+        }
 
         /**
         * delete method
@@ -114,6 +134,7 @@
         * @return void
         */
         public function delete($id = null) {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             if (!$this->request->is('post')) {
                 throw new MethodNotAllowedException();
             }
@@ -122,14 +143,18 @@
                 throw new NotFoundException(__('Invalid categoryproduct'));
             }
             $options = array('conditions' => array('Categoryproduct.' . $this->Categoryproduct->primaryKey => $id));
-            $data = $this->Categoryproduct->find('first', $options);
+            $data =  $this->request->data = $this->Categoryproduct->find('first', $options);
             if ($this->Categoryproduct->delete()) {
-                $this->Session->setFlash(__('Đã xóa loại sản phẩm '.$data['Categoryproduct']['nameCategoryProduct']), 'flash/success');
+                $this->Session->setFlash(__('Đã xóa loại sản phẩm '.$data['Categoryproduct']['nameCategoryproduct']), 'flash/success');
                 $this->redirect(array('action' => 'index'));
             }
-            $this->Session->setFlash(__('Không xóa được loại sản phẩm '.$data['Categoryproduct']['nameCategoryProduct']), 'flash/error');
+            $this->Session->setFlash(__('Không xóa được loại sản phẩm '.$data['Categoryproduct']['nameCategoryproduct']), 'flash/error');
             $this->redirect(array('action' => 'index'));
         }
+         else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+    }
 
     }
 ?>

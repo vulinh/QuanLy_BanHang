@@ -1,85 +1,165 @@
 <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
-            <?php echo __('Thêm sản phẩm'); ?>
+            <?php echo __('THÊM SẢN PHẨM'); ?>
         </div>
     </div>
-<div class="span3">
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Chức Năng</li>
-              <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách sản phẩm'), array('action' => 'index')); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách loại sản phẩm'), array('controller' => 'categoryproducts', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm loại sản phẩm'), array('controller' => 'categoryproducts', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danhs sách nhà cung cấp'), array('controller' => 'suppliers', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm nhà cung cấp'), array('controller' => 'suppliers', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách đơn vị'), array('controller' => 'units', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm đơn vị'), array('controller' => 'units', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách tiền tệ'), array('controller' => 'exchangerates', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm tiền tệ'), array('controller' => 'exchangerates', 'action' => 'add')); ?> </li>
-            </ul>
-        </div>
-    </div>
-    
-	<div class="span8">	
-			<?php echo $this->Form->create('Product', array('role' => 'form')); ?>
+</div> 
 
-				<fieldset>
+<div class="row-fluid">    
+	<div class="span12">	
+		<?php echo $this->Form->create('Product', array('action' => 'add')); ?>
+		<table class="table table-striped table-bordered table-advance table-hover">
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Tên Sản Phẩm'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('nameProduct', array('type' => 'text','div'=>false , 'label' => false,'class' => 'form-control','placeholder'=>'Tên Sản Phẩm')); ?>
+					&nbsp;
+				</td>
+			</tr>
+			
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Giá'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('price', array('type' => 'number','div'=>false, 'label'=>false , 'placeholder' => 'Giá','class' => 'form-control')); ?>
+					&nbsp;
+				</td>
+			</tr>
+				
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Giá Bán Lẻ'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('retail', array('type' => 'number','div'=>false,'label'=>false,'placeholder' => 'Giá bán lẻ','class' => 'form-control')); ?>
+					&nbsp;
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Giá Bán Sỉ'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('wholesale', array('type' => 'number','div'=>false,'label'=>false, 'placeholder' => 'Giá bán sỉ','class' => 'form-control')); ?>
+					&nbsp;
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Ngày Nhập'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('import_time', array('label'=>false, 'placeholder' => 'Ngày nhập','div'=>false,'class' => 'span2')); ?>
+					&nbsp;
+				</td>
+			</tr>
+	
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Xuất Xứ'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo '<br/>'. $this->Form->input('made_in', array('type' => 'text','label'=>false, 'div'=>false,'placeholder' => 'Xuất xứ','class' => 'form-control')); ?>
+					&nbsp;
+				</td>
+			</tr>
+			
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Thời Gian Bảo Hành'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('warranty_time', array('type' => 'text','label'=>false, 'div'=>false,'placeholder' => 'Thời gian bảo hành','class' => 'form-control')); ?>
+					&nbsp;
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Tag'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('tag', array('type' => 'text','label'=> false, 'div'=>false,'placeholder' => 'Tag','class' => 'form-control')); ?>
+					&nbsp;
+				</td>
+			</tr>
+		
+	
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Khuyến Mãi'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('promotion', array('type' => 'text','div'=>false,'label'=>false, 'placeholder' => 'Khuyến Mãi','class' => 'form-control')); ?>
+					&nbsp;
+				</td>
+			</tr>
+	
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Nhà Cung Cấp'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->select('idSupplier', $suppliers , array('class' => 'span2')); ?>
+					&nbsp;
+				</td>
+			</tr>
+         	
+         	<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Loại Sản Phẩm'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->select('idCategoryProduct', $categoryproducts, array('class' => 'span2')); ?>
+					&nbsp;
+				</td>
+			</tr>
+			
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Tiền Tệ'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->select('idExchangeRate', $exchangerates , array('class' => 'span2')); ?>
+					&nbsp;
+				</td>
+			</tr>
 
-					<div class="form-group">
-						<?php echo $this->Form->input('nameProduct', array('type' => 'text','label' => 'Tên sản phẩm','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-                                                <label for="ProductIdCategoryProduct">Loại sản phẩm</label>
-						<?php echo $this->Form->select('idCategoryProduct', $categoryproducts , array('class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-                                                <label for="ProductidExchangeRate">id ExchangeRate</label>
-                                                <?php echo $this->Form->select('idExchangeRate', $exchangerates , array('class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-                                            <label for="ProductidUnit">id Unit</label>
-                                                <?php echo $this->Form->select('idUnit', $units , array('class' => 'form-control')); ?>
-						
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('price', array('type' => 'text','label' => 'Giá','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('retail', array('type' => 'text','label' => 'Giá bán lẻ','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('wholesale', array('type' => 'text','label' => 'Giá bán sỉ','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('made_in', array('type' => 'text','label' => 'Xuất xứ','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-                                                <label for="ProductidSupplier">Nhà cung cấp</label>
-                                                <?php echo $this->Form->select('idSupplier', $suppliers , array('class' => 'form-control')); ?>
-						
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('import_time', array('label' => 'Ngày nhập','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-        
-					<div class="form-group">
-						<?php echo $this->Form->input('warranty_time', array('type' => 'text','label' => 'Thời gian bảo hành','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('tag', array('type' => 'text','label' => 'Tag','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('promotion', array('type' => 'text','label' => 'Xúc tiến','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('enable', array('type' => 'checkbox','checked'=>true,'label' => 'Hiển thị', 'value'=>'1', 'class' => 'form-control')); ?>
-					</div><!-- .form-group -->
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Đơn Vị Tính'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->select('idUnit', $units, array('class' => 'span2')); ?>
+					&nbsp;
+				</td>
+			</tr>
+       		
+       		<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Hiển Thị'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo '<br/>'.$this->Form->input('enable', array('type' => 'checkbox','div'=>false,'checked'=>true,'label' => false)); ?>
+					&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Html->link('Quay Lại',array('controller'=>'products','action'=>'index'),array('class'=>'btn btn-success pull-right','style'=>'margin-top:30px;'));
+            echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px;margin-top:30px;')); ?>
+					&nbsp;
+				</td>
+			</tr>
 
-					<?php echo $this->Form->submit('Thêm mới', array('class' => 'btn btn-large btn-primary')); ?>
-
-				</fieldset>
-
-			<?php echo $this->Form->end(); ?>
-</div>
+		
+		</table>
+		<?php echo $this->Form->end(); ?>
+	</div>
 </div>

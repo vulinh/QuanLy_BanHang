@@ -5,17 +5,19 @@
         </div>
     </div>
 
-    
+ </div>   
 
-    <div class="span3">
+    <!-- <div class="span3">
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Chức Năng</li>
-              <li class="active"><?php echo $this->Html->link('Thêm một loại kho mới',array('controller'=>'typestocks','action'=>'add')) ?></li>
+              <li><?php echo $this->Html->link('Thêm người dùng mới',array('controller'=>'users','action'=>'add')) ?></li>
+              <li><?php echo $this->Html->link('Quay lại',array('controller'=>'users','action'=>'index')) ?></li>
             </ul>
         </div>
-    </div>
-<div class="span8">
+    </div> -->
+     <div class="row-fluid">
+<div class="span11 offset1">
 <?php 
     echo $this->Form->create('User', array('action' => 'edit','class' => 'form-horizontal'));
     echo '<fieldset><legend>Thông Tin Người Dùng</legend>';
@@ -54,10 +56,16 @@
             echo $this->Form->checkbox('isPartner');echo 'Đại Lý';
             echo $this->Form->checkbox('isEmployee');echo 'Nhân Viên';
             echo '</fieldset>';
-            // echo $this->Form->text('image_name');
-            echo $this->Form->input('Nhập Lại',array('type'=>'button','class'=>'btn btn-primary pull-right','label'=>false,'div'=>false));
-            echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px'));
+            echo $this->Html->link('Quay Lại',array('controller'=>'users','action'=>'index'),array('class'=>'btn btn-success pull-right'));
+            echo $this->Form->input('Chấp Nhận',array('type'=>'submit','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px'));
+            
             echo $this->Form->end();	
 ?>
 </div>
 </div>
+</div>
+<!--<script type="text/javascript">
+    $('.retype').submit(function(event) {
+        location.reload();
+    });
+</script>-->

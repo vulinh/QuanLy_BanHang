@@ -1,31 +1,25 @@
+<div class="row-fluid">
+	<div class="span12">
+		<div class="well" style="text-align:center;font-size:30px">
+			TIỀN TỆ
+		</div>
+	</div>
+</div>
 
-<div id="page-container" class="row">
+<div class="row-fluid">
+  <div class="span2 pull-right">
+    <?php echo $this->Html->link('Tạo Mới   ',array('controller'=>'exchangerates','action'=>'add'),array('class'=>'btn btn-success')) ?>
+  </div>
+</div>
 
-	<div id="sidebar" class="col-sm-3">
-		
-		<div class="actions">
-		
-			<ul class="list-group" style = "list-style:none" >
-				<li class="list-group-item"><?php echo $this->Html->link(__('Thêm ngoại tệ'), array('action' => 'add'), array('class' => 'btn btn-default pull-right','style' => 'margin-top: 5px')); ?></li>
-			</ul><!-- /.list-group -->
-			
-		</div><!-- /.actions -->
-		
-	</div><!-- /#sidebar .col-sm-3 -->
-	
-	<div id="page-content" class="col-sm-9">
-
-		<div class="exchangerates index">
-		
-			<h2><?php echo __('Ngoại tệ'); ?></h2>
-			
-			<div class="table-responsive">
-				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
+<div class="row-fluid">
+	<div class="span12">
+				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered table-advance table-hover">
 					<thead>
 						<tr>
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('Tên ngoại tệ'); ?></th>
-							<th class="actions"><?php echo __('Tác vụ'); ?></th>
+							<th colspan=3><?php echo __('Tác vụ'); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -33,16 +27,16 @@
 	<tr>
 		<td><?php echo h($exchangerate['Exchangerate']['id']); ?>&nbsp;</td>
 		<td><?php echo h($exchangerate['Exchangerate']['nameExchangeRate']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('Xem'), array('action' => 'view', $exchangerate['Exchangerate']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-			<?php echo $this->Html->link(__('Sửa'), array('action' => 'edit', $exchangerate['Exchangerate']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-			<?php echo $this->Form->postLink(__('Xóa'), array('action' => 'delete', $exchangerate['Exchangerate']['id']), array('class' => 'btn btn-default btn-xs'), __('Bạn có muốn xóa thông tin của "%s"?', $exchangerate['Exchangerate']['nameExchangeRate'])); ?>
-		</td>
+
+		<?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'exchangerates','action'=>'view/'.$exchangerate['Exchangerate']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$exchangerate['Exchangerate']['nameExchangeRate'])).'</td>' ;?>
+
+		<?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-pencil"></i>',array('controller'=>'exchangerates','action'=>'edit/'.$exchangerate['Exchangerate']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Cập Nhập '.$exchangerate['Exchangerate']['nameExchangeRate'])).'</td>' ;?>
+
+		<?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-remove"></i>',array('controller'=>'exchangerates','action'=>'delete/'.$exchangerate['Exchangerate']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$exchangerate['Exchangerate']['nameExchangeRate'], __('Bạn có muốn xóa thông tin của "%s"?', $exchangerate['Exchangerate']['nameExchangeRate']))).'</td>' ;?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>
 				</table>
-			</div><!-- /.table-responsive -->
 			
 			<p><small>
 				<?php
@@ -59,9 +53,6 @@
 					echo $this->Paginator->next(__('Next') . ' >', array('tag' => 'li'), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a'));
 				?>
 			</ul><!-- /.pagination -->
-			
-		</div><!-- /.index -->
-	
-	</div><!-- /#page-content .col-sm-9 -->
+	</div>
 
-</div><!-- /#page-container .row-fluid -->
+</div>

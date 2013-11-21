@@ -4,28 +4,20 @@
            Sản Phẩm
         </div>
     </div>
-    <div class="span3">
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Chức Năng</li>
-              <li class="list-group-item"><?php echo $this->Html->link(__('Thêm sản phẩm'), array('action' => 'add'), array('class' => '')); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách loại sản phẩm'), array('controller' => 'categoryproducts', 'action' => 'index'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm loại sản phẩm'), array('controller' => 'categoryproducts', 'action' => 'add'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách nhà cung cấp'), array('controller' => 'suppliers', 'action' => 'index'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm nhà cung cấp'), array('controller' => 'suppliers', 'action' => 'add'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách đơn vị'), array('controller' => 'units', 'action' => 'index'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm đơn vị'), array('controller' => 'units', 'action' => 'add'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danhs sách tiền tệ'), array('controller' => 'exchangerates', 'action' => 'index'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm tiền tệ'), array('controller' => 'exchangerates', 'action' => 'add'), array('class' => '')); ?></li> 
-            </ul>
-        </div>
-    </div>
- <div class="span8">
+</div>
+<div class="row-fluid">
+<div class="span2 pull-right">
+	<?php echo $this->Html->link('Tạo Sản Phẩm Mới',array('controller'=>'products','action'=>'add'),array('class'=>'btn btn-success')) ?>
+</div>
+</div>
+
+<div class="row-fluid">
+ 	<div class="span12">
         <div class="well">
 		<div class="products index">
 			
 			<div class="table-responsive">
-				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
+				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered table-advance table-hover">
 					<thead>
 						<tr>
 							<?php 
@@ -93,13 +85,14 @@
 
 			<ul class="pagination" style = 'list-style:none'>
 				<?php
-					echo $this->Paginator->prev('< ' . __('Previous'), array('tag' => 'li'), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a'));
+					// echo $this->Paginator->prev('< ' . __('Previous'), array('tag' => 'li'), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a'));
 					echo $this->Paginator->numbers(array('separator' => '', 'currentTag' => 'a', 'tag' => 'li', 'currentClass' => 'disabled'));
-					echo $this->Paginator->next(__('Next') . ' >', array('tag' => 'li'), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a'));
+					// echo $this->Paginator->next(__('Next') . ' >', array('tag' => 'li'), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a'));
 				?>
 			</ul><!-- /.pagination -->
 			
 		</div><!-- /.index -->
         </div>
 </div>
+
 </div>

@@ -22,8 +22,13 @@ class ExchangeratesController extends AppController {
  * @return void
  */
 	public function index() {
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
 		$this->Exchangerate->recursive = 0;
 		$this->set('exchangerates', $this->paginate());
+	}
+	else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
 	}
 
 /**
@@ -34,11 +39,16 @@ class ExchangeratesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
 		if (!$this->Exchangerate->exists($id)) {
 			throw new NotFoundException(__('Invalid exchangerate'));
 		}
 		$options = array('conditions' => array('Exchangerate.' . $this->Exchangerate->primaryKey => $id));
 		$this->set('exchangerate', $this->Exchangerate->find('first', $options));
+	}
+	else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
 	}
 
 /**
@@ -47,6 +57,7 @@ class ExchangeratesController extends AppController {
  * @return void
  */
 	public function add() {
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
 		if ($this->request->is('post')) {
 			$this->Exchangerate->create();
 			if ($this->Exchangerate->save($this->request->data)) {
@@ -57,6 +68,10 @@ class ExchangeratesController extends AppController {
 			}
 		}
 	}
+	else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+	}
 
 /**
  * edit method
@@ -66,6 +81,7 @@ class ExchangeratesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
         $this->Exchangerate->id = $id;
 		if (!$this->Exchangerate->exists($id)) {
 			throw new NotFoundException(__('Invalid exchangerate'));
@@ -82,6 +98,10 @@ class ExchangeratesController extends AppController {
 			$this->request->data = $this->Exchangerate->find('first', $options);
 		}
 	}
+	else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+	}
 
 /**
  * delete method
@@ -92,6 +112,7 @@ class ExchangeratesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -101,7 +122,7 @@ class ExchangeratesController extends AppController {
 		}
         
         $options = array('conditions' => array('Exchangerate.' . $this->Exchangerate->primaryKey => $id));
-        $data = $this->Exchangerate->find('first', $options);
+        $data = $this->request->data = $this->Exchangerate->find('first', $options);
         
 		if ($this->Exchangerate->delete()) {
 			$this->Session->setFlash(__('Đã xóa thông tin '.$data['Exchangerate']['nameExchangeRate']), 'flash/success');
@@ -109,4 +130,9 @@ class ExchangeratesController extends AppController {
 		}
 		$this->Session->setFlash(__('Không thể xóa thông tin '.$data['Exchangerate']['nameExchangeRate']), 'flash/error');
 		$this->redirect(array('action' => 'index'));
-	}}
+	}
+	else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+}
+}

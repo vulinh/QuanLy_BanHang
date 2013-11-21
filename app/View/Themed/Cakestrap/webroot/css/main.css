@@ -1,4 +1,4 @@
-#header{margin-top:20px}#page-container{margin-bottom:20px}#url-rewriting-warning{display:none}
+/*#header{margin-top:20px}#page-container{margin-bottom:20px}#url-rewriting-warning{display:none}*/
 #EmployeeGivePositionForm input, 
 #EmployeeGivePositionForm select,
 #UserAddForm input,
@@ -10,7 +10,9 @@
 #StockAddForm input,
 #StockAddForm select,
 #StockEditForm input,
-#StockEditForm select{
+#StockEditForm select,
+#ProductAddForm input,
+#ProductAddForm select{
 	margin: 5px;
 }
 

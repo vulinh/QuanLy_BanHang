@@ -1,44 +1,38 @@
+<div class="row-fluid">
+    <div class="span12">
+        <div class="well" style="text-align:center;font-size:30px">
+           CẬP NHẬT ĐƠN VỊ TÍNH
+        </div>
+    </div>
+</div>
+<div class="row-fluid">
+     <div class="span12">
+     	<?php echo $this->Form->create('Unit', array('action' => 'edit')); ?>
+		  <table class="table table-striped table-bordered table-advance table-hover">
+		  	<tr>
+                <td style="width:40%; text-align:center;font-size:15px">
+                    <strong><?php echo __('Tên Đơn Vị Tính'); ?></strong>
+                </td>
+                <td style="width:40%; text-align:center;font-size:15px">
+                    
+                    <?php echo $this->Form->input('nameUnit', array('type' => 'text', 'label' =>false)); ?>
+                </td>
+            </tr>
 
-<div id="page-container" class="row">
-
-	<div id="sidebar" class="col-sm-3">
-		
-		<div class="actions">
-		
-			<ul class="list-group" style = 'list-style:none'>
-				<li class="list-group-item"><?php echo $this->Form->postLink(__('Xóa'), array('action' => 'delete', $this->Form->value('Unit.id')), null, __('Bạn có muốn xóa thông tin của "%s"?', $this->Form->value('Unit.nameUnit'))); ?></li>
-				<li class="list-group-item"><?php echo $this->Html->link(__('Danh sách đơn vị'), array('action' => 'index')); ?></li>
-			</ul><!-- /.list-group -->
-		
-		</div><!-- /.actions -->
-		
-	</div><!-- /#sidebar .col-sm-3 -->
-	
-	<div id="page-content" class="col-sm-9">
-
-		<h2><?php echo __('Cập nhật đơn vị'); ?></h2>
-
-		<div class="units form">
-		
-			<?php echo $this->Form->create('Unit', array('role' => 'form')); ?>
-
-				<fieldset>
-
-					<div class="form-group">
-						<?php echo $this->Form->input('id', array('class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('nameUnit', array('type' => 'text', 'label' => 'Tên đơn vị','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-
-					<?php echo $this->Form->submit('Cập nhật', array('class' => 'btn btn-large btn-primary')); ?>
-
-				</fieldset>
-
-			<?php echo $this->Form->end(); ?>
-
-		</div><!-- /.form -->
+            <tr>
+                <td colspan="2">
+                    <?php echo $this->Html->link('Quay Lại',array('controller'=>'units','action'=>'index'),array('class'=>'btn btn-success pull-right'));
+            echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px'));?>
+                </td>
+                
+            </tr>
 			
-	</div><!-- /#page-content .col-sm-9 -->
 
-</div><!-- /#page-container .row-fluid -->
+			
+			
+			
+			
+			</table>
+			<?php echo $this->Form->end(); ?>
+	</div>
+</div>
