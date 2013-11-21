@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2013 at 07:52 AM
+-- Generation Time: Nov 21, 2013 at 12:10 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.1
 
@@ -58,7 +58,14 @@ CREATE TABLE IF NOT EXISTS `bills` (
   `status` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `idTypeBill` (`idTypeBill`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `bills`
+--
+
+INSERT INTO `bills` (`id`, `idTypeBill`, `time`, `total`, `idUser`, `status`) VALUES
+(1, 2, '2013-11-21 11:20:06', 10, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -73,7 +80,14 @@ CREATE TABLE IF NOT EXISTS `categoryproducts` (
   `enable` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `idManufacture` (`idManufacture`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `categoryproducts`
+--
+
+INSERT INTO `categoryproducts` (`id`, `nameCategoryProduct`, `idManufacture`, `enable`) VALUES
+(1, 'abc', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -91,10 +105,10 @@ CREATE TABLE IF NOT EXISTS `categoryservices` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `debit`
+-- Table structure for table `debits`
 --
 
-CREATE TABLE IF NOT EXISTS `debit` (
+CREATE TABLE IF NOT EXISTS `debits` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idBill` int(10) unsigned NOT NULL,
   `moneyDebit` double unsigned NOT NULL,
@@ -153,8 +167,8 @@ CREATE TABLE IF NOT EXISTS `detailbill` (
 CREATE TABLE IF NOT EXISTS `detailstocks` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idProduct` int(10) unsigned DEFAULT NULL,
-  `quatity` int(10) unsigned DEFAULT NULL,
-  `quatityExport` int(10) unsigned DEFAULT NULL,
+  `quatity` int(10) unsigned DEFAULT '0',
+  `quatityExport` int(10) unsigned DEFAULT '0',
   `idStock` int(10) unsigned NOT NULL,
   `idBill` int(10) unsigned NOT NULL,
   `timeImport` datetime NOT NULL,
@@ -163,7 +177,26 @@ CREATE TABLE IF NOT EXISTS `detailstocks` (
   KEY `idProduct` (`idProduct`),
   KEY `idStock` (`idStock`),
   KEY `idBill` (`idBill`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `detailstocks`
+--
+
+INSERT INTO `detailstocks` (`id`, `idProduct`, `quatity`, `quatityExport`, `idStock`, `idBill`, `timeImport`, `timeExport`) VALUES
+(1, 1, 12, 0, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 1, 12, 0, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 1, 14, 0, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 1, 123, 0, 1, 1, '2013-11-21 07:41:00', '2013-11-21 07:41:00'),
+(5, 1, 0, 21, 1, 1, '0000-00-00 00:00:00', '2013-11-21 15:05:40'),
+(6, 1, 0, 212, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 1, 0, 78, 1, 1, '0000-00-00 00:00:00', '2013-11-21 15:13:29'),
+(8, 3, 0, 11, 1, 1, '0000-00-00 00:00:00', '2013-11-21 17:51:01'),
+(9, 3, 0, 10, 1, 1, '0000-00-00 00:00:00', '2013-11-21 17:52:29'),
+(10, 3, 0, 6, 1, 1, '0000-00-00 00:00:00', '2013-11-21 17:57:08'),
+(11, 3, 0, 6, 1, 1, '0000-00-00 00:00:00', '2013-11-21 17:57:09'),
+(12, 3, 0, 6, 1, 1, '0000-00-00 00:00:00', '2013-11-21 17:57:51'),
+(13, 3, 0, 4, 1, 1, '0000-00-00 00:00:00', '2013-11-21 17:58:47');
 
 -- --------------------------------------------------------
 
@@ -203,7 +236,14 @@ CREATE TABLE IF NOT EXISTS `exchangerates` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nameExchangeRate` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `exchangerates`
+--
+
+INSERT INTO `exchangerates` (`id`, `nameExchangeRate`) VALUES
+(1, 'USD');
 
 -- --------------------------------------------------------
 
@@ -307,9 +347,10 @@ CREATE TABLE IF NOT EXISTS `products` (
   `idCategoryProduct` int(10) unsigned NOT NULL,
   `idExchangeRate` int(10) unsigned DEFAULT NULL,
   `idUnit` int(10) unsigned DEFAULT NULL,
+  `retail` double unsigned DEFAULT NULL,
+  `wholesale` double unsigned DEFAULT NULL,
   `price` double NOT NULL,
-  `retail` double NOT NULL,
-  `wholesale` double NOT NULL,
+  `quantity` int(11) DEFAULT '0',
   `made_in` varchar(50) NOT NULL,
   `idSupplier` int(10) unsigned NOT NULL,
   `import_time` datetime NOT NULL,
@@ -317,12 +358,23 @@ CREATE TABLE IF NOT EXISTS `products` (
   `tag` varchar(400) DEFAULT NULL,
   `promotion` varchar(255) DEFAULT NULL,
   `enable` tinyint(4) DEFAULT NULL,
+  `idProductManufacturer` int(10) unsigned DEFAULT NULL,
+  `idSite` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idUnit` (`idUnit`),
   KEY `idExchangeRate` (`idExchangeRate`),
   KEY `idSupplier` (`idSupplier`),
   KEY `idCategoryProduct` (`idCategoryProduct`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `nameProduct`, `idCategoryProduct`, `idExchangeRate`, `idUnit`, `retail`, `wholesale`, `price`, `quantity`, `made_in`, `idSupplier`, `import_time`, `warranty_time`, `tag`, `promotion`, `enable`, `idProductManufacturer`, `idSite`) VALUES
+(1, 'abc', 1, 1, 1, NULL, NULL, 1000000, 0, 'Việt Nam', 1, '2013-11-21 06:13:00', '12 tháng', 'abc', '', 1, NULL, NULL),
+(2, 'xyz', 1, 1, 1, 1099, 1098, 1000, 0, 'Hàn Quốc', 2, '0000-00-00 00:00:00', '12 tháng', 'xyz', '', 1, NULL, NULL),
+(3, 'khà khà', 1, 1, 1, 22000, 22500, 21000, 0, 'Hàn Quốc', 2, '0000-00-00 00:00:00', '12 tháng', 'abc', '', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -411,7 +463,15 @@ CREATE TABLE IF NOT EXISTS `suppliers` (
   `nickSkype` varchar(255) DEFAULT NULL,
   `fax` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`id`, `nameSupplier`, `phone`, `mobile`, `email`, `accountBank`, `bank`, `website`, `nickYahoo`, `nickSkype`, `fax`) VALUES
+(1, 'abc', '12345678910', '12345678910', 'abc123@yahoo.com', '12345678910', 'abc', 'abc.com', 'abc', 'abc', '12345678910'),
+(2, 'xyz', '10987654321', '10987654321', 'xyz@yahoo.com', '10987654321', 'tèo', 'xyz.com', 'xyz', 'xyz', '10987654321');
 
 -- --------------------------------------------------------
 
@@ -423,7 +483,15 @@ CREATE TABLE IF NOT EXISTS `typebills` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nameTypeBill` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `typebills`
+--
+
+INSERT INTO `typebills` (`id`, `nameTypeBill`) VALUES
+(1, 'Xuất'),
+(2, 'Nhập');
 
 -- --------------------------------------------------------
 
@@ -455,7 +523,14 @@ CREATE TABLE IF NOT EXISTS `units` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nameUnit` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `units`
+--
+
+INSERT INTO `units` (`id`, `nameUnit`) VALUES
+(1, 'cái');
 
 -- --------------------------------------------------------
 
@@ -495,7 +570,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `pword`, `name`, `address`, `phone`, `mobile`, `idArea`, `taxID`, `accountBank`, `bank`, `website`, `debtLimit`, `debtCurrent`, `discount`, `nickYahoo`, `nickSkype`, `fax`, `isCustomer`, `isPartner`, `isEmployee`, `isGavePosition`) VALUES
-(1, 'admin', 'admin', 'admin', NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1),
+(1, 'admin', 'admin', 'admin', '', '01698616831', '', 1, '', '', '', '', NULL, NULL, NULL, '', '', '', 0, 0, 1, 1),
 (2, 'nv1', 'abc', 'nv1', '', '', '', 1, '', '', '', '', NULL, NULL, NULL, '', '', '', 0, 0, 1, 1),
 (3, 'nv2', 'abc', 'nv2', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1),
 (4, 'nv3', 'abc', 'nv3', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 0);
@@ -517,11 +592,11 @@ ALTER TABLE `categoryproducts`
   ADD CONSTRAINT `categoryproducts_ibfk_1` FOREIGN KEY (`idManufacture`) REFERENCES `manufacturers` (`id`);
 
 --
--- Constraints for table `debit`
+-- Constraints for table `debits`
 --
-ALTER TABLE `debit`
-  ADD CONSTRAINT `debit_ibfk_1` FOREIGN KEY (`idBill`) REFERENCES `bills` (`id`),
-  ADD CONSTRAINT `debit_ibfk_2` FOREIGN KEY (`idSupplier`) REFERENCES `suppliers` (`id`);
+ALTER TABLE `debits`
+  ADD CONSTRAINT `debits_ibfk_1` FOREIGN KEY (`idBill`) REFERENCES `bills` (`id`),
+  ADD CONSTRAINT `debits_ibfk_2` FOREIGN KEY (`idSupplier`) REFERENCES `suppliers` (`id`);
 
 --
 -- Constraints for table `detailbill`
