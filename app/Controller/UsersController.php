@@ -13,9 +13,17 @@ class UsersController extends AppController{
             if (!empty($this->request->data)){
                 $user = $this->request->data['User']['username'];
                 $pword = $this->request->data['User']['pword'];
+
                 if ($this->_checkUserAndPass($user,$pword)) 
                 {
+
                     if($this->_checkEmployee()){
+                        $getID = $this->User->find
+                        ('first',
+                        array(
+                            'conditions'=>array('User.username'=> $user,'User.pword'=>$pword)));
+
+                        $this->Session->write('idSS',$getID['User']['id']);
                         $this->Session->write('userSS',$user);
                         $this->Session->write('passSS',$pword);
                         // $this->redirect(array('controller'=>'users','action'=>'add'));
@@ -47,6 +55,7 @@ class UsersController extends AppController{
        if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
 
         $this->set('dataUser',$this->User->find('all'));
+        $this->set('idUser',$this->Session->read('idSS'));
        
        }
        else{

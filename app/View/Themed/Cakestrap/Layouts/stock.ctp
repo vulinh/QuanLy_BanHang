@@ -18,19 +18,19 @@
 			echo $this->Html->css('style.min');
 			echo $this->Html->css('style_responsive');
 			echo $this->Html->css('style_default');
-			echo $this->Html->css('fancybox');
-			echo $this->Html->css('uniform');
-			echo $this->Html->css('css-bootstrap-fullcalendar');
-			echo $this->Html->css('css-jqvmap');
-			// echo $this->Html->css('bootstrap-fullcalendar');
-			echo $this->Html->css('main_web');
+			echo $this->Html->css('jquery.fancybox');
+			echo $this->Html->css('uniform.default');
+			echo $this->Html->css('bootstrap-fullcalendar');
+			echo $this->Html->css('jqvmap');
+			echo $this->Html->css('bootstrap-fullcalendar');
+			echo $this->Html->css('main');
 
-			// echo $this->fetch('css');
+			echo $this->fetch('css');
 			
-			echo $this->Html->script('jquery.min');
+			echo $this->Html->script('jquery-1.8.3.min');
 			echo $this->Html->script('libs/bootstrap.min');
 			
-			// echo $this->fetch('script');
+			echo $this->fetch('script');
 		?>
 	</head>
 	<body class="fixed-top">
@@ -288,31 +288,6 @@
 						
 					</ul>
 				</li>
-
-				<li class="has-sub">
-					<a href="javascript:;" class="">
-						<span class="icon-box">
-							<i class="icon-home"></i>
-						</span> Quản Lý Kho 
-						<span class="arrow"></span>
-					</a>
-					<ul class="sub">
-						<li>
-							<?php echo $this->Html->link('Kho',array('controller'=>'stocks','action'=>'index')) ?>
-						</li>
-						<li>
-							<?php echo $this->Html->link('Loại Kho',array('controller'=>'typestocks','action'=>'index')) ?>
-						</li>
-
-						<li>
-							<?php echo $this->Html->link('Nhập Hàng',array('controller'=>'detailstocks','action'=>'import')) ?>
-						</li>
-
-						<li>
-							<?php echo $this->Html->link('Xuất Hàng',array('controller'=>'detailstocks','action'=>'export')) ?>
-						</li>
-					</ul>
-				</li>
 				
 			</ul>
 		</div>
@@ -329,8 +304,8 @@
 		<?php echo $this->Html->script('jquery-ui-1.9.2.custom.min'); ?>
 		<?php echo $this->Html->script('jquery.slimscroll.min'); ?> 
 		<?php echo $this->Html->script('fullcalendar.min'); ?> 
-		<?php echo $this->Html->script('jquery.blockui'); ?> 
-		<?php echo $this->Html->script('jquery.cookie'); ?> 
+		<?php echo $this->Html->script('blockui'); ?> 
+		<?php echo $this->Html->script('cookie'); ?> 
 		<?php echo $this->Html->script('jquery.vmap'); ?> 
 		<?php echo $this->Html->script('jquery.vmap.russia'); ?> 
 		<?php echo $this->Html->script('jquery.vmap.world'); ?>
@@ -338,17 +313,17 @@
 		<?php echo $this->Html->script('jquery.vmap.germany'); ?>
 		<?php echo $this->Html->script('jquery.vmap.usa'); ?>
 		<?php echo $this->Html->script('jquery.vmap.sampledata'); ?>
-		<?php echo $this->Html->script('knob'); ?> 
-		<?php echo $this->Html->script('flot'); ?> 
-		<?php echo $this->Html->script('flot.resize'); ?> 
+		<?php echo $this->Html->script('jquery.knob'); ?> 
+		<?php echo $this->Html->script('jquery.flot'); ?> 
+		<?php echo $this->Html->script('jquery.flot.resize'); ?> 
 		<?php echo $this->Html->script('jquery.flot.pie'); ?> 
 		<?php echo $this->Html->script('jquery.flot.stack'); ?> 
 		<?php echo $this->Html->script('jquery.flot.crosshair'); ?> 
-		<?php echo $this->Html->script('peity.min'); ?> 
+		<?php echo $this->Html->script('jquery.peity.min'); ?> 
 		<?php echo $this->Html->script('jquery.uniform.min'); ?> 
-		<?php echo $this->Html->script('dataTables'); ?> 
+		<?php echo $this->Html->script('jquery.dataTables'); ?> 
 		<?php echo $this->Html->script('DT_bootstrap'); ?> 
-		<?php echo $this->Html->script('jquery.scripts'); 
+		<?php echo $this->Html->script('scripts'); 
 		echo $this->Html->script('libs/bootstrap-tooltip');
  		?> 
 		<script>jQuery(document).ready(
@@ -367,6 +342,6 @@
 		});
 	
 		</script>
-		<!-- <?php echo $this->fetch('script');?> -->
+		<?php echo $this->fetch('script');?>
 	</body>
 </html>

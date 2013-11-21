@@ -1,0 +1,18 @@
+
+#EmployeeGivePositionForm input, 
+#EmployeeGivePositionForm select,
+#UserAddForm input,
+#UserAddForm select,
+#UserEditForm input,
+#UserEditForm select,
+#EmployeeUpdatePositionForm input,
+#EmployeeUpdatePositionForm select,
+#StockAddForm input,
+#StockAddForm select,
+#StockEditForm input,
+#StockEditForm select,
+#ProductAddForm input,
+#ProductAddForm select{
+	margin: 5px;
+}
+

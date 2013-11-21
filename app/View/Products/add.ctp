@@ -49,8 +49,18 @@
 					&nbsp;
 				</td>
 			</tr>
-		
+
 			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Số Lượng'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('quantity', array('type' => 'number','div'=>false,'label'=>false, 'placeholder' => 'Số Lượng','class' => 'form-control')); ?>
+					&nbsp;
+				</td>
+			</tr>
+		
+			<!-- <tr>
 				<td style="width:50%; text-align:center;font-size:15px">
 					<strong><?php echo __('Ngày Nhập'); ?></strong>
 				</td>
@@ -58,14 +68,14 @@
 					<?php echo $this->Form->input('import_time', array('label'=>false, 'placeholder' => 'Ngày nhập','div'=>false,'class' => 'span2')); ?>
 					&nbsp;
 				</td>
-			</tr>
+			</tr> -->
 	
 			<tr>
 				<td style="width:50%; text-align:center;font-size:15px">
 					<strong><?php echo __('Xuất Xứ'); ?></strong>
 				</td>
 				<td style="width:50%; text-align:center;font-size:15px">
-					<?php echo '<br/>'. $this->Form->input('made_in', array('type' => 'text','label'=>false, 'div'=>false,'placeholder' => 'Xuất xứ','class' => 'form-control')); ?>
+					<?php echo $this->Form->input('made_in', array('type' => 'text','label'=>false, 'div'=>false,'placeholder' => 'Xuất xứ','class' => 'form-control')); ?>
 					&nbsp;
 				</td>
 			</tr>
