@@ -8,8 +8,30 @@
 
 <div class="row-fluid">    
 	<div class="span12">	
-		<?php echo $this->Form->create('Product', array('action' => 'add')); ?>
+		<?php echo $this->Form->create('Product', array('controller'=>'products','action' => 'add')); ?>
 		<table class="table table-striped table-bordered table-advance table-hover">
+
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('ID Sản Phẩm'); ?></strong>
+				</td>
+				
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('idProductManufacturer', array('type' => 'text','div'=>false , 'label' => false,'class' => 'form-control','placeholder'=>'ID Sản Phẩm')); ?>
+					&nbsp;
+				</td>
+			</tr>
+
+			<!-- <tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('ID Site'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('idSite', array('type' => 'text','div'=>false , 'label' => false,'class' => 'form-control','placeholder'=>'ID Site')); ?>
+					&nbsp;
+				</td>
+			</tr> -->
+
 			<tr>
 				<td style="width:50%; text-align:center;font-size:15px">
 					<strong><?php echo __('Tên Sản Phẩm'); ?></strong>

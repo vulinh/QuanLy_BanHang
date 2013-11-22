@@ -2,6 +2,7 @@
 class DetailstocksController extends AppController
 {
 	var $name = 'Detailstocks';
+
 	var  $helpers = array('Session');
     var  $components = array('Session');
 	public $theme = 'Cakestrap';
@@ -26,17 +27,35 @@ class DetailstocksController extends AppController
 		{
 			if (!empty($this->request->data))
 	        {
-	            if ($this->Detailstock->save($this->request->data))
-	            {
-	            	$this->Detailstock->updateAll(array('Detailstock.timeImportport' =>"'".date('Y-m-d H:i:s')."'"), array('Detailstock.id' => $this->Detailstock->getLastInsertID()));
-	            	$this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
-	            	$this->redirect(array('controller'=>'detailstocks','action'=>'import'));
-	            }
-	            else
-	            {
-	                $this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thất Bại</h4></div>'));
-	            }
-			}
+	        	
+		        	$this->loadModel('Product');
+		        	for ($i=1; $i <= 2 ; $i++) 
+		        	{ 	        	
+			        	
+			        	$getProduct = $this->Product->find('first',array('conditions'=>array('Product.id'=>$this->request->data['Detailstock'][$i]['idProduct'])));
+			        	$quantityImport = $this->request->data['Detailstock'][$i]['quatity'];
+			        	$currentQuantity = $getProduct['Product']['quantity'];
+			        	$quantityRemaining = $currentQuantity + $quantityImport;
+			        	
+			        		// $this->Detailstock->create();
+				        if ($this->Detailstock->saveAll($this->request->data['Detailstock']))
+				        {
+			        		
+				            $this->Detailstock->updateAll(array('Detailstock.timeImport' =>"'".date('Y-m-d H:i:s')."'"), array('Detailstock.idBill' => $this->request->data['Detailstock'][$i]['idBill']));
+
+				            $this->Product->updateAll(array('Product.quantity' =>$quantityRemaining), array('Product.id' => $this->request->data['Detailstock'][$i]['idProduct']));
+
+				            $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
+				            	$this->redirect(array('controller'=>'detailstocks','action'=>'import'));
+				        }
+				        else
+				        {
+				            $this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thất Bại</h4></div>'));
+				        }
+			        	
+			        }
+				}
+			
 		}
 		else
 		{

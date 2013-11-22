@@ -61,6 +61,12 @@ class ProductsController extends AppController {
             if ($this->request->is('post')) {
                 $this->Product->create();
                 if ($this->Product->save($this->request->data)) {
+
+                    $this->Product->updateAll(
+                        array('Product.idSite' =>"'".'SP_'.$this->Product->getLastInsertID()."'"), 
+                        array('Product.id' => $this->Product->getLastInsertID())
+                    );
+
                     $this->Session->setFlash(__('Đã thêm sản phẩm '.$this->request->data['nameProduct'] ), 'flash/success');
                     $this->redirect(array('action' => 'index'));
                 } else {

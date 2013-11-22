@@ -22,16 +22,21 @@
 			echo $this->Html->css('uniform');
 			echo $this->Html->css('css-bootstrap-fullcalendar');
 			echo $this->Html->css('css-jqvmap');
+			echo $this->Html->css('jquery.appendGrid-1.2.0');
 			// echo $this->Html->css('bootstrap-fullcalendar');
+
+
 			echo $this->Html->css('main_web');
 
 			// echo $this->fetch('css');
 			
 			echo $this->Html->script('jquery.min');
 			echo $this->Html->script('libs/bootstrap.min');
+			echo $this->Html->script('jquery.appendGrid-1.2.0');
 			
 			// echo $this->fetch('script');
 		?>
+
 	</head>
 	<body class="fixed-top">
 		<div id="header" class="navbar navbar-inverse navbar-fixed-top">
@@ -348,7 +353,9 @@
 		<?php echo $this->Html->script('jquery.uniform.min'); ?> 
 		<?php echo $this->Html->script('dataTables'); ?> 
 		<?php echo $this->Html->script('DT_bootstrap'); ?> 
-		<?php echo $this->Html->script('jquery.scripts'); 
+		<?php echo $this->Html->script('jquery.scripts'); ?>
+		
+		<?php
 		echo $this->Html->script('libs/bootstrap-tooltip');
  		?> 
 		<script>jQuery(document).ready(
@@ -367,6 +374,7 @@
 		});
 	
 		</script>
+
 		<!-- <?php echo $this->fetch('script');?> -->
 	</body>
 </html>
