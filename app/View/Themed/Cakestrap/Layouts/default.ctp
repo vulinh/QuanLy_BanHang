@@ -318,6 +318,27 @@
 						</li>
 					</ul>
 				</li>
+                
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                        <span class="icon-box">
+                            <i class="icon-file-alt"></i>
+                        </span> Quản Lý Hóa Đơn 
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <?php echo $this->Html->link('Hóa đơn',array('controller'=>'bills','action'=>'index')) ?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('Loại Hóa Đơn',array('controller'=>'typebills','action'=>'index')) ?>
+                        </li>
+
+                        <li>
+                            <?php echo $this->Html->link('Chi tiết hóa đơn',array('controller'=>'detailbills','action'=>'index')) ?>
+                        </li>
+                    </ul>
+                </li>
 				
 			</ul>
 		</div>

@@ -31,7 +31,7 @@
 			//				    echo '<th>'.$this->Paginator->sort('wholesale').'</th>'; 
 			//				    echo '<th>'.$this->Paginator->sort('Xuất xứ').'</th>'; 
 							    echo '<th>'.$this->Paginator->sort('Nhà cung cấp').'</th>';
-							    echo '<th>'.$this->Paginator->sort('Số Lượng').'</th>'; 
+			//				    echo '<th>'.$this->Paginator->sort('Số Lượng').'</th>'; 
 			//				    echo '<th>'.$this->Paginator->sort('warranty_time').'</th>'; 
 			//				    echo '<th>'.$this->Paginator->sort('tag').'</th>'; 
 			//				    echo '<th>'.$this->Paginator->sort('promotion').'</th>'; 
@@ -54,7 +54,7 @@
 	//	    echo '<td>'.h($product['Product']['wholesale']).'</td>'; 
 	//	    echo '<td>'.h($product['Product']['made_in']).'</td>';
 		    echo '<td>'.$this->Html->link($product['Suppliers']['nameSupplier'], array('controller' => 'suppliers', 'action' => 'view', $product['Suppliers']['id'])).'</td>';
-		    echo '<td>'.h($product['Product']['quantity']).'</td>';
+	//	    echo '<td>'.h($product['Product']['import_time']).'</td>';
 	//	    echo '<td>'.h($product['Product']['warranty_time']).'</td>';
 	//	    echo '<td>'.h($product['Product']['tag']).'</td>';
 	//	    echo '<td>'.h($product['Product']['promotion']).'</td>';
