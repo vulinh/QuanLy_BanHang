@@ -51,81 +51,24 @@
 						<span class="icon-bar"></span>
 						<span class="arrow"></span>
 					</a>
-					<!--<div id="top_menu" class="nav notify-row">
+					<div id="top_menu" class="nav notify-row">
 						<ul class="nav top-menu">
-							<li class="dropdown">
+						<!--	<li class="dropdown">
 								<a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Settings">
 									<i class="icon-cog"></i>
 								</a>
-							</li>
+							</li>   -->
 							<li class="dropdown" id="header_inbox_bar">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="icon-envelope-alt"></i>
-									<span class="badge badge-important">5</span>
-								</a>
-								<ul class="dropdown-menu extended inbox">
-									<li>
-										<p>You have 5 new messages</p>
-									</li>
-									<li>
-										<a href="#">
-											<span class="photo"><img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="avatar">
-											</span>
-											<span class="subject">
-												<span class="from">Dulal Khan
-												</span>
-												<span class="time">Just now</span>
-											</span>
-											<span class="message"> Hello, this is an example messages please check 
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="photo">
-												<img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="avatar">
-											</span>
-											<span class="subject">
-												<span class="from">Rafiqul Islam
-												</span>
-												<span class="time">10 mins</span>
-											</span>
-											<span class="message"> Hi, Mosaddek Bhai how are you ? 
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="photo">
-												<img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="avatar">
-											</span>
-											<span class="subject">
-												<span class="from">Sumon Ahmed
-												</span>
-												<span class="time">3 hrs
-												</span>
-											</span>
-											<span class="message"> This is awesome dashboard templates </span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="photo">
-												<img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="avatar">
-											</span>
-											<span class="subject">
-												<span class="from">Dulal Khan</span>
-												<span class="time">Just now</span>
-											</span>
-											<span class="message"> Hello, this is an example messages please check </span>
-										</a>
-									</li>
-									<li>
-										<a href="#">See all messages</a>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown" id="header_notification_bar">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-envelope-alt"></i>
+                                    <span class="badge badge-important messageNumber"></span>
+                                </a>
+                                <ul class="dropdown-menu extended inbox" id='newmessage'>
+                                    
+                                </ul>
+                            </li>
+                            
+						<!--	<li class="dropdown" id="header_notification_bar">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<i class="icon-bell-alt"></i>
 									<span class="badge badge-warning">7</span>
@@ -184,9 +127,9 @@
 										</a>
 									</li>
 								</ul>
-							</li>
+							</li> -->
 						</ul>
-					</div>-->
+					</div>
 					<div class="top-nav ">
 						<ul class="nav pull-right top-menu">
 							<!--<li class="dropdown mtop5">
