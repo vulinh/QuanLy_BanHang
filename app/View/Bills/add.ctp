@@ -1,7 +1,7 @@
 <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
-            <?php echo __('Thêm Hóa Đơn'); ?>
+            <?php echo __('TẠO HÓA ĐƠN'); ?>
         </div>
     </div>
 <div class="span3">

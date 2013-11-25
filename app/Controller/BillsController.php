@@ -47,12 +47,25 @@ class BillsController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
+		if (!empty($this->request->data))
+		{
 			$this->Bill->create();
-			if ($this->Bill->save($this->request->data)) {
+			if ($this->Bill->save($this->request->data)) 
+			{
 				$this->Session->setFlash(__('Đã thêm hóa đơn'), 'flash/success');
-				$this->redirect(array('action' => 'index'));
-			} else {
+				if($this->request->data['Bill']['idTypeBill']==1){
+					$this->redirect(array('controller'=>'detailstocks','action' => 'export'));
+				}
+				else{
+					if($this->request->data['Bill']['idTypeBill']==2)
+					{
+						$this->Session->write('idBillSS',$this->Bill->getLastInsertID());
+						$this->redirect(array('controller'=>'detailstocks','action' => 'import'));
+					}
+				}
+				
+			} else 
+			{
 				$this->Session->setFlash(__('Không thể thêm hóa đơn, vui lòng kiểm tra lại'), 'flash/error');
 			}
 		}

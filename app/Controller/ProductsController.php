@@ -67,6 +67,8 @@ class ProductsController extends AppController {
                         array('Product.id' => $this->Product->getLastInsertID())
                     );
 
+                    $this->Product->updateAll(array('Product.import_time' =>"'".date('Y-m-d H:i:s')."'"), array('Product.id' => $this->Product->getLastInsertID()));
+
                     $this->Session->setFlash(__('Đã thêm sản phẩm '.$this->request->data['nameProduct'] ), 'flash/success');
                     $this->redirect(array('action' => 'index'));
                 } else {
