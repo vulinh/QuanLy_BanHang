@@ -19,8 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `quanlybanhang`
 --
-CREATE DATABASE IF NOT EXISTS `quanlybanhang` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `quanlybanhang`;
+CREATE DATABASE IF NOT EXISTS `vulinh_quanly` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `vulinh_quanly`;
 
 -- --------------------------------------------------------
 
