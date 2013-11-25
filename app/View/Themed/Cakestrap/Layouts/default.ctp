@@ -33,7 +33,7 @@
 			echo $this->Html->script('jquery.min');
 			echo $this->Html->script('libs/bootstrap.min');
 			echo $this->Html->script('jquery.appendGrid-1.2.0');
-			
+			echo  $this->Html->script('message');
 			// echo $this->fetch('script');
 		?>
 
@@ -371,6 +371,8 @@
 		$(document).ready(function() {
 			$('.is_password').hide();
 			$('.tt').tooltip();
+            
+            loadnewmessage('<?php echo $this->webroot; ?>');
 		});
 	
 		</script>
