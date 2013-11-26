@@ -26,7 +26,7 @@
 				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<?php echo '<th>'.$this->Paginator->sort('#').'</th>'; 
+							<?php echo '<th>#</th>'; 
 							echo '<th>'.$this->Paginator->sort('Loại hóa đơn').'</th>';
 							echo '<th>'.$this->Paginator->sort('Ngày lập').'</th>'; 
 							echo '<th>'.$this->Paginator->sort('Tổng tiền').'</th>'; 

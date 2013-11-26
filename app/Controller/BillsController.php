@@ -22,7 +22,14 @@ class BillsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Bill->recursive = 0;
+		// $this->Bill->recursive = 0;
+		$this->paginate = array(
+        'limit' => 9,
+        'order' => array(
+            'Bill.id' => 'asc',
+
+        )
+    );
 		$this->set('bills', $this->paginate());
 	}
 
@@ -54,6 +61,7 @@ class BillsController extends AppController {
 			{
 				$this->Session->setFlash(__('Đã thêm hóa đơn'), 'flash/success');
 				if($this->request->data['Bill']['idTypeBill']==1){
+					$this->Session->write('idBillExportSS',$this->Bill->getLastInsertID());
 					$this->redirect(array('controller'=>'detailstocks','action' => 'export'));
 				}
 				else{

@@ -26,9 +26,9 @@
 					<strong><?php echo __('Kho'); ?></strong>
 				</td>
 
-				<td style="width:50%; text-align:center;font-size:15px">
+				<!-- <td style="width:50%; text-align:center;font-size:15px">
 					<strong><?php echo __('Bill'); ?></strong>
-				</td>
+				</td> -->
 
 				
 			</tr>
@@ -39,7 +39,7 @@
 				</td>
 				
 				<td style="width:50%; text-align:center;font-size:15px">
-					<?php echo $this->Form->input('Detailstock.1.quatityExport', array('class'=>'product_quatity', 'label'=>false,'div'=>false, 'placeholder' => 'Số Lượng Xuất')); ?>
+					<?php echo $this->Form->input('Detailstock.1.quantityExport', array('class'=>'product_quatity', 'label'=>false,'div'=>false, 'placeholder' => 'Số Lượng Xuất')); ?>
 				</td>
 
 				<td style="width:50%; text-align:center;font-size:15px">
@@ -47,11 +47,13 @@
 					&nbsp;
 				</td>
 
-				<td style="width:50%; text-align:center;font-size:15px">
-					<?php echo $this->Form->text('Detailstock.1.idBill',array('value'=>'1','class'=>'bill')); ?>
-				</td>
+		
 
-			
+			<td style="width:50%; text-align:center;font-size:15px">
+	<?php 
+		// $this->loadModel('Bill');
+			echo $this->Form->hidden('Detailstock.1.idBill',array('value'=>$this->Session->read('idBillExportSS'),'class'=>'bill')); ?>
+				</td>
 					
 				
 			</tr>
@@ -62,7 +64,7 @@
 		<span class="btn btn-success" id="test">Xóa Sản Phẩm</span>
     		
 			
-					<?php echo $this->Html->link('Quay Lại',array('controller'=>'detailstocks','action'=>'index'),array('class'=>'btn btn-success pull-right'));
+					<?php echo $this->Html->link('Quay Lại',array('controller'=>'detailstocks','action'=>'deletebillexport'),array('class'=>'btn btn-success pull-right'));
             echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px'));?>
 		
 	
@@ -80,7 +82,7 @@
 		$('#DetailstockExportForm table').append($('.control').last().clone());
 	    
 	    setElementName($('.product_name').last(),'data[Detailstock]['+$i+'][idProduct]');
-	    setElementName($('.product_quatity').last(),'data[Detailstock]['+$i+'][quatityExport]');
+	    setElementName($('.product_quatity').last(),'data[Detailstock]['+$i+'][quantityExport]');
 	    setElementName($('.stock').last(),'data[Detailstock]['+$i+'][idStock]');
 	    setElementName($('.bill').last(),'data[Detailstock]['+$i+'][idBill]');
 	    $('#numberRow').val($i);
@@ -91,7 +93,7 @@
 		$i = $i-1;
 		$('.control').last().remove();
 		setElementName($('.product_name').last(),'data[Detailstock]['+$i+'][idProduct]');
-		setElementName($('.product_quatity').last(),'data[Detailstock]['+$i+'][quatityExport]');
+		setElementName($('.product_quatity').last(),'data[Detailstock]['+$i+'][quantityExport]');
 	    setElementName($('.stock').last(),'data[Detailstock]['+$i+'][idStock]');
 	    setElementName($('.bill').last(),'data[Detailstock]['+$i+'][idBill]');
 		$('#numberRow').val($i);

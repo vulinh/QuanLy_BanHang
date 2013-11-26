@@ -26,9 +26,9 @@
 					<strong><?php echo __('Kho'); ?></strong>
 				</td>
 
-				<td style="width:50%; text-align:center;font-size:15px">
+				<!--<td style="width:50%; text-align:center;font-size:15px">
 					<strong><?php echo __('Bill'); ?></strong>
-				</td>
+				</td>-->
 
 				
 			</tr>
@@ -50,7 +50,7 @@
 				<td style="width:50%; text-align:center;font-size:15px">
 	<?php 
 		// $this->loadModel('Bill');
-			echo $this->Form->text('Detailstock.1.idBill',array('value'=>$this->Session->read('idBillSS'),'class'=>'bill')); ?>
+			echo $this->Form->hidden('Detailstock.1.idBill',array('value'=>$this->Session->read('idBillSS'),'class'=>'bill')); ?>
 				</td>
 
 			
@@ -64,7 +64,7 @@
 		<span class="btn btn-success" id="test">Xóa Sản Phẩm</span>
     		
 			
-					<?php echo $this->Html->link('Quay Lại',array('controller'=>'detailstocks','action'=>'index'),array('class'=>'btn btn-success pull-right'));
+					<?php echo $this->Html->link('Quay Lại',array('controller'=>'detailstocks','action'=>'deletebillimport'),array('class'=>'btn btn-success pull-right'));
             echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px'));?>
 		
 	

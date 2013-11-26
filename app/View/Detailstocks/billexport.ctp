@@ -1,7 +1,7 @@
 <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
-            <?php echo __('XÁC NHẬN TẠO HÓA ĐƠN NHẬP HÀNG'); ?>
+            <?php echo __('XÁC NHẬN TẠO HÓA ĐƠN XUẤT HÀNG'); ?>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
             </tr>
 
           
-                    <?php echo $this->Form->hidden('idTypeBill',array('value'=>2))?>
+                    <?php echo $this->Form->hidden('idTypeBill',array('value'=>1))?>
         
                     <?php echo $this->Form->hidden('idUser',array('value'=>$this->Session->read('idSS')))?>
 

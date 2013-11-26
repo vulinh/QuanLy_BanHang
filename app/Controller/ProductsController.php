@@ -79,11 +79,14 @@ class ProductsController extends AppController {
                     $this->loadModel('Supplier');
                     $this->loadModel('Unit');
                     $this->loadModel('Exchangerate');
+                    $this->loadModel('Manufacturer');
             $categoryproducts = $this->Categoryproduct->find('list', array('fields' => array('nameCategoryProduct')));
             $suppliers = $this->Supplier->find('list',array('fields' => array('nameSupplier')));
             $units = $this->Unit->find('list', array('fields' => array('nameUnit')));
             $exchangerates = $this->Exchangerate->find('list', array('fields' => array('nameExchangeRate')));
-            $this->set(compact('categoryproducts', 'suppliers', 'units', 'exchangerates'));
+            $manufacturers = $this->Manufacturer->find('list', array('fields' => array('nameManufacturer')));
+
+            $this->set(compact('categoryproducts', 'suppliers', 'units', 'exchangerates', 'manufacturers'));
         }
         else{
             $this->redirect(array('controller'=>'users','action'=>'login'));
@@ -118,11 +121,13 @@ class ProductsController extends AppController {
         $this->loadModel('Supplier');
         $this->loadModel('Unit');
         $this->loadModel('Exchangerate');
+        $this->loadModel('Manufacturer');
         $categoryproducts = $this->Categoryproduct->find('list', array('fields' => array('nameCategoryProduct')));
         $suppliers = $this->Supplier->find('list',array('fields' => array('nameSupplier')));
         $units = $this->Unit->find('list', array('fields' => array('nameUnit')));
         $exchangerates = $this->Exchangerate->find('list', array('fields' => array('nameExchangeRate')));
-        $this->set(compact('categoryproducts', 'suppliers', 'units', 'exchangerates'));
+        $manufacturers = $this->Manufacturer->find('list', array('fields' => array('nameManufacturer')));
+        $this->set(compact('categoryproducts', 'suppliers', 'units', 'exchangerates', 'manufacturers'));
     }
      else{
             $this->redirect(array('controller'=>'users','action'=>'login'));

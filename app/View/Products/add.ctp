@@ -152,6 +152,16 @@
 					&nbsp;
 				</td>
 			</tr>
+
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Nhà Sản Xuất'); ?></strong>
+				</td>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->select('idManufacturer', $manufacturers, array('class' => 'span2')); ?>
+					&nbsp;
+				</td>
+			</tr>
 			
 			<tr>
 				<td style="width:50%; text-align:center;font-size:15px">
