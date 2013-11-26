@@ -199,6 +199,12 @@
 						<li>
 							<?php echo $this->Html->link('Người Dùng',array('controller'=>'users','action'=>'index')) ?>
 						</li>
+                         <li>
+                            <?php echo $this->Html->link('Tính lương',array('controller'=>'users','action'=>'salaries')) ?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('Bậc lương',array('controller'=>'salaries','action'=>'index')) ?>
+                        </li>
 						<li>
 							<?php echo $this->Html->link('Phân Quyền',array('controller'=>'employees','action'=>'index')) ?>
 						</li>
