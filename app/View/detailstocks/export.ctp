@@ -59,9 +59,21 @@
 			</tr>
 	
 		</table>
-		<input type="hidden" id="numberRow" name="numberRow" />
 		<span class="btn btn-success" id="btnAddRecord">Thêm Sản Phẩm</span>
 		<span class="btn btn-success" id="test">Xóa Sản Phẩm</span>
+		<hr/>
+		<div style="margin:7px;font-size:15px" ><span class="label label-info"> Thanh Toán?</span>
+			<input type="checkbox" name ="status" /><br/>
+			<span class="label label-info">Khách Hàng</span>
+			<select name="user">
+				<?php 
+				foreach ($dataUser as $vUser){ 
+					echo "<option value=".$vUser['User']['id'].">".$vUser['User']['name']."</option>";
+				 } ?>
+				
+			</select>
+		</div>
+		<input type="hidden" id="numberRow" name="numberRow" />
     		
 			
 					<?php echo $this->Html->link('Quay Lại',array('controller'=>'detailstocks','action'=>'deletebillexport'),array('class'=>'btn btn-success pull-right'));

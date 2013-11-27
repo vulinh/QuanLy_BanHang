@@ -26,10 +26,6 @@
 					<strong><?php echo __('Kho'); ?></strong>
 				</td>
 
-				<!--<td style="width:50%; text-align:center;font-size:15px">
-					<strong><?php echo __('Bill'); ?></strong>
-				</td>-->
-
 				
 			</tr>
 
@@ -52,16 +48,25 @@
 		// $this->loadModel('Bill');
 			echo $this->Form->hidden('Detailstock.1.idBill',array('value'=>$this->Session->read('idBillSS'),'class'=>'bill')); ?>
 				</td>
-
-			
-					
-				
 			</tr>
 	
 		</table>
-		<input type="hidden" id="numberRow" name="numberRow" />
 		<span class="btn btn-success" id="btnAddRecord">Thêm Sản Phẩm</span>
 		<span class="btn btn-success" id="test">Xóa Sản Phẩm</span>
+		<hr/>
+		<div style="margin:7px;font-size:15px" ><span class="label label-info"> Thanh Toán?</span>
+			<input type="checkbox" name ="status" /><br/>
+			<span class="label label-info">Nhà Cung Cấp</span>
+			<select name="supplier">
+				<?php 
+				foreach ($dataSupplier as $vSupplier){ 
+					echo "<option value=".$vSupplier['Supplier']['id'].">".$vSupplier['Supplier']['nameSupplier']."</option>";
+				 } ?>
+				
+			</select>
+		</div>
+		<input type="hidden" id="numberRow" name="numberRow" />
+		
     		
 			
 					<?php echo $this->Html->link('Quay Lại',array('controller'=>'detailstocks','action'=>'deletebillimport'),array('class'=>'btn btn-success pull-right'));

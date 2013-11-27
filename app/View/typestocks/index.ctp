@@ -4,15 +4,14 @@
            LOẠI KHO
         </div>
     </div>
-    <div class="span3">
-    	<div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Chức Năng</li>
-              <li><?php echo $this->Html->link('Thêm một loại kho mới',array('controller'=>'typestocks','action'=>'add')) ?></li>
-            </ul>
-    	</div>
-    </div>
-     <div class="span8">
+</div>
+<div class="row-fluid">
+  <div class="span2 pull-right">
+    <?php echo $this->Html->link('Tạo Loại Kho Mới',array('controller'=>'typestocks','action'=>'add'),array('class'=>'btn btn-success')) ?>
+  </div>
+</div>
+<div class="row-fluid">
+     <div class="span12">
     	<div class="well">
     		<table class="table table-hover">
 	    		<thead>
@@ -33,7 +32,7 @@
 				// echo '<td style="width:65px">'.$this->Html->link('Cập Nhật',array('controller'=>'typestocks','action'=>'edit/'.$valueTypestock['Typestock']['id'])).'</td>';
 				// echo '<td>'.$this->Html->link('Xóa',array('controller'=>'typestocks','action'=>'delete/'.$valueTypestock['Typestock']['id'])).'</td>';
 
-        echo '<td style="width:20px">'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'typestocks','action'=>'view/'.$valueTypestock['Typestock']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$valueTypestock['Typestock']['nameTypeStock'])).'</td>';
+        // echo '<td style="width:20px">'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'typestocks','action'=>'view/'.$valueTypestock['Typestock']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$valueTypestock['Typestock']['nameTypeStock'])).'</td>';
 
         echo '<td style="width:20px">'.$this->Html->link('<i class=" icon-pencil"></i>',array('controller'=>'typestocks','action'=>'edit/'.$valueTypestock['Typestock']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$valueTypestock['Typestock']['nameTypeStock'])).'</td>';
 
@@ -46,4 +45,5 @@
     			</tbody>
     		</table>
         </div>
+</div>
 </div>

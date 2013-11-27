@@ -26,6 +26,8 @@ class DetailstocksController extends AppController
 
 		if ($this->Session->check('userSS') && $this->Session->check('passSS')) 
 		{
+			$this->loadModel('Supplier');
+			$this->set('dataSupplier',$this->Supplier->find('all'));
 
 			if(!$this->Session->check('idBillSS'))
 			{
@@ -38,6 +40,8 @@ class DetailstocksController extends AppController
 				if (!empty($this->request->data))
 	        	{
 	        		$numberRow = $_POST['numberRow'];
+	        		$status = $_POST['status'];
+	        		$supplier = $_POST['supplier'];
 	        		$total = 0;
 	        	
 		        	$this->loadModel('Product');
@@ -59,6 +63,31 @@ class DetailstocksController extends AppController
             				$this->Bill->updateAll(array('Bill.total' =>$total), array('Bill.id' => $this->request->data['Detailstock'][1]['idBill']));
 
 				            $this->Product->updateAll(array('Product.quantity' =>$quantityRemaining), array('Product.id' => $this->request->data['Detailstock'][1]['idProduct']));
+				            if($status){
+				            	$this->Bill->updateAll(array('Bill.status' =>1), array('Bill.id' => $this->request->data['Detailstock'][1]['idBill']));
+				            	$this->loadModel('Expense');
+				            	$this->Expense->save( 
+    								array(
+        								'money' => $total,
+        								'idBill' =>$this->request->data['Detailstock'][1]['idBill'],
+        								'time' =>date('Y-m-d H:i:s'),
+    								)
+								);
+
+				            }
+				            else{
+				            	$this->loadModel('Debit');
+				            	$this->Debit->save( 
+    								array(
+        								'moneyDebit' => $total,
+        								'idBill' =>$this->request->data['Detailstock'][1]['idBill'],
+        								'time' =>date('Y-m-d H:i:s'),
+        								'idSupplier'=>$supplier,
+    								)
+								);
+				            	
+				            }
+				            
             				$this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
             			}
             			else
@@ -87,7 +116,9 @@ class DetailstocksController extends AppController
 				            	$this->Detailstock->updateAll(array('Detailstock.timeImport' =>"'".date('Y-m-d H:i:s')."'"), array('Detailstock.idBill' => $this->request->data['Detailstock'][$i]['idBill']));
 				            	$this->Bill->updateAll(array('Bill.total' =>$total), array('Bill.id' => $this->request->data['Detailstock'][$i]['idBill']));
 				            	$this->Product->updateAll(array('Product.quantity' =>$quantityRemaining), array('Product.id' => $this->request->data['Detailstock'][$i]['idProduct']));
-
+				            	if($status){
+				            		$this->Bill->updateAll(array('Bill.status' =>1), array('Bill.id' => $this->request->data['Detailstock'][$i]['idBill']));
+				            	}
 				            	$this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
 				            	
 				        	}
@@ -101,10 +132,36 @@ class DetailstocksController extends AppController
 				        	$this->Detailstock->updateAll(array('Detailstock.timeImport' =>"'".date('Y-m-d H:i:s')."'"), array('Detailstock.idBill' => $this->request->data['Detailstock'][$i]['idBill']));
 				        	$this->Bill->updateAll(array('Bill.total' =>$total), array('Bill.id' => $this->request->data['Detailstock'][$i]['idBill']));
 				            $this->Product->updateAll(array('Product.quantity' =>$quantityRemaining), array('Product.id' => $this->request->data['Detailstock'][$i]['idProduct']));
+				            if($status){
+				            	$this->Bill->updateAll(array('Bill.status' =>1), array('Bill.id' => $this->request->data['Detailstock'][$i]['idBill']));
+				            }
 				        }
-				        }
+				    }
+				    $this->loadModel('Expense');
+				    if($status){
+				        $this->Expense->save( 
+    					array(
+        					'money' => $total,
+        					'idBill' =>$this->request->data['Detailstock'][1]['idBill'],
+        					'time' =>date('Y-m-d H:i:s'),
+    					)
+						);
+				    }
+
+				    else{
+				            	$this->loadModel('Debit');
+				            	$this->Debit->save( 
+    								array(
+        								'moneyDebit' => $total,
+        								'idBill' =>$this->request->data['Detailstock'][1]['idBill'],
+        								'time' =>date('Y-m-d H:i:s'),
+        								'idSupplier'=>$supplier,
+    								)
+								);
+				            	
+				            }
 			        	
-			        }
+			    }
 
 			        $this->Session->delete('idBillSS');	
 			        $this->redirect(array('controller'=>'detailstocks','action'=>'billimport'));
@@ -132,7 +189,14 @@ class DetailstocksController extends AppController
 	{
 		if ($this->Session->check('userSS') && $this->Session->check('passSS')) 
 		{
+			$this->loadModel('User');
+			$dataUser = $this->User->find('all',array('conditions'=>
+							array('OR'=>
+								array('User.isCustomer'=>1),
+								array('User.isPartner'=>1)
+					)));
 
+			$this->set('dataUser',$dataUser);
 			if(!$this->Session->check('idBillExportSS'))
 			{
 
@@ -143,8 +207,11 @@ class DetailstocksController extends AppController
 		
 				if (!empty($this->request->data))
 	        	{
+	        		
+	        		$user = $_POST['user'];
 	        		$numberRow = $_POST['numberRow'];
-	        		$total = 0;
+	        		$status = $_POST['status'];
+					$total = 0;
 		        	$this->loadModel('Product');
 		        	$this->loadModel('Bill');
 		        	if($numberRow ==1 || empty($numberRow))
@@ -154,7 +221,7 @@ class DetailstocksController extends AppController
 		        		$price = $getProduct['Product']['price'];
 			        	$quantityExport = $this->request->data['Detailstock'][1]['quantityExport'];
 
-		$currentQuantity = $getProduct['Product']['quantity'];
+						$currentQuantity = $getProduct['Product']['quantity'];
 
 			        	$quantityRemaining = $currentQuantity - $quantityExport;
 
@@ -167,6 +234,31 @@ class DetailstocksController extends AppController
 	            				$this->Bill->updateAll(array('Bill.total' =>$total), array('Bill.id' => $this->request->data['Detailstock'][1]['idBill']));
 
 					            $this->Product->updateAll(array('Product.quantity' =>$quantityRemaining), array('Product.id' => $this->request->data['Detailstock'][1]['idProduct']));
+
+					            if($status){
+					            	$this->Bill->updateAll(array('Bill.status' =>1), array('Bill.id' => $this->request->data['Detailstock'][1]['idBill']));
+					            	$this->loadModel('Receipt');
+					            	$this->Receipt->save( 
+	    								array(
+	        								'money' => $total,
+	        								'idBill' =>$this->request->data['Detailstock'][1]['idBill'],
+	        								'time' =>date('Y-m-d H:i:s'),
+	    								)
+									);
+
+				            	}
+				            	else{
+				            	$this->loadModel('Debited');
+				            	$this->Debited->save( 
+    								array(
+        								'moneyDebit' => $total,
+        								'idBill' =>$this->request->data['Detailstock'][1]['idBill'],
+        								'time' =>date('Y-m-d H:i:s'),
+        								'idUser'=>$user,
+    								)
+								);
+				            	
+				            }
 	            				$this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
 	            			}
 	            			else
@@ -223,6 +315,31 @@ class DetailstocksController extends AppController
             					$this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thất Bại, Không Đủ Số Lượng Để Xuất Hàng</h4></div>'));
             				}
 					    }
+
+					    if($status){
+				            	$this->Bill->updateAll(array('Bill.status' =>1), array('Bill.id' => $this->request->data['Detailstock'][1]['idBill']));
+				            	$this->loadModel('Receipt');
+				            	$this->Receipt->save( 
+    								array(
+        								'money' => $total,
+        								'idBill' =>$this->request->data['Detailstock'][1]['idBill'],
+        								'time' =>date('Y-m-d H:i:s'),
+    								)
+								);
+
+				            }
+				        else{
+				            	$this->loadModel('Debited');
+				            	$this->Debited->save( 
+    								array(
+        								'moneyDebit' => $total,
+        								'idBill' =>$this->request->data['Detailstock'][1]['idBill'],
+        								'time' =>date('Y-m-d H:i:s'),
+        								'idUser'=>$user,
+    								)
+								);
+				            	
+				            }
 			        	
 			    	}
 
