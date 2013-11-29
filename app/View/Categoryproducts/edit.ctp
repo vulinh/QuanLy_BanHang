@@ -20,14 +20,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td style="width:50%; text-align:center;font-size:15px">
-                    <strong><?php echo __('Hãng Sản Xuất'); ?></strong>
-                </td>
-                <td style="width:50%; text-align:center;font-size:15px">
-                    <?php echo $this->Form->select('idManufacture', $dataManufacturer , array('class'=>'span3')); ?>
-                </td>
-            </tr>
         
             <tr>
                 <td style="width:50%; text-align:center;font-size:15px">

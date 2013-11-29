@@ -21,7 +21,7 @@
         */
         public function index() {
             if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
-            $this->Categoryproduct->recursive = 0;
+            $this->Categoryproduct->recursive = -1;
             $this->set('categoryproducts', $this->paginate());
             }
             else{
@@ -101,9 +101,7 @@
         */
         public function edit($id = null) {
             if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
-            $this->loadModel('Manufacturer');
-            $Manufacturer = $this->Manufacturer->find('list', array('fields' => array('Manufacturer.nameManufacturer')));
-            $this->set('dataManufacturer', $Manufacturer);
+             $this->Categoryproduct->recursive = -1;
             $this->Categoryproduct->id = $id;
             if (!$this->Categoryproduct->exists($id)) {
                 throw new NotFoundException(__('Invalid categoryproduct'));

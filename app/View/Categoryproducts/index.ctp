@@ -12,7 +12,7 @@
                         <tr>
                             <th><?php echo $this->Paginator->sort('#'); ?></th>
                             <th><?php echo $this->Paginator->sort('Tên loại sản phẩm'); ?></th>
-                            <th><?php echo $this->Paginator->sort('Nhà sản xuất'); ?></th>
+                            
                             <th><?php echo $this->Paginator->sort('Hiển thị'); ?></th>
                             <th colspan=3><?php echo __('Tác vụ'); ?></th>
                         </tr>
@@ -22,7 +22,7 @@
                             <tr>
                                 <td><?php echo h($categoryproduct['Categoryproduct']['id']); ?>&nbsp;</td>
                                 <td><?php echo h($categoryproduct['Categoryproduct']['nameCategoryProduct']); ?>&nbsp;</td>
-                                <td><?php echo h($categoryproduct['Manufacturer']['nameManufacturer']); ?>&nbsp;</td>
+                                
                                 <td><?php
                                     if ($categoryproduct['Categoryproduct']['enable'] == 1) {
                                         $result = 'True';

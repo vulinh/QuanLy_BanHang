@@ -52,12 +52,12 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'test',
-		'password' => 'toor',
+		'login' => 'root',
+		'password' => '',
 		'database' => 'quanlybanhang',
 		'prefix' => '',
 		'encoding' => 'utf8',
-        'mysqlpath' => 'C:\xampp\mysql\bin',
+        // 'mysqlpath' => 'C:\xampp\mysql\bin',
 	);
 
 	public $test = array(

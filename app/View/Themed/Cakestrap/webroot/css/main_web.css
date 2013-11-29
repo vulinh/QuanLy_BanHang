@@ -14,5 +14,9 @@
 #ProductAddForm input,
 #ProductAddForm select{
 	margin: 5px;
+
+}
+input:hover{
+	cursor: pointer;
 }
 
