@@ -92,7 +92,7 @@
 				</div>
 				<div class="details" >
 					<div class="number" style="color:transparent;font-weight:bolder">
-						<?php echo $totalDebit .' VND';  ?>
+						<?php echo $totalDebited .' VND';  ?>
 					</div>
 					<div class="title" style="color:transparent;font-weight:bolder">
 						Khách Hàng Nợ

@@ -45,7 +45,7 @@ class ReportsController extends AppController {
             }
             $this->set(compact('totalExpense'));
 
-        	////////////////////Nợ/////////////////////////////
+        	////////////////////Nợ NCC/////////////////////////////
             $this->loadModel("Debit");
             $totalDebit = 0;
             $dataAllDebit = $this->Debit->find('all',
@@ -54,6 +54,15 @@ class ReportsController extends AppController {
                 $totalDebit = $totalDebit + $vdataAllDebit['Debit']['moneyDebit'];
             }
             $this->set(compact('totalDebit'));
+            ////////////////////KH Nợ/////////////////////////////
+            $this->loadModel("Debited");
+            $totalDebited = 0;
+            $dataAllDebited = $this->Debited->find('all',
+                array('fields'=>array('Debited.moneyDebit')));
+            foreach ($dataAllDebited as $vdataAllDebited) {
+                $totalDebited = $totalDebited + $vdataAllDebited['Debited']['moneyDebit'];
+            }
+            $this->set(compact('totalDebited'));
 
         	////////////////////Sản Phẩm/////////////////////////////
             $this->loadModel("Product");
@@ -70,6 +79,17 @@ class ReportsController extends AppController {
         {
             $this->redirect(array('controller'=>'users','action'=>'login'));
         }
+    }
+
+    function debit(){
+        $this->loadModel('Debit');
+        $this->loadModel('Supplier');
+        $this->layout = 'default2';
+        
+        $this->paginate = array('limit'=>10,'recursive'=>0);
+        $this->set('dataDebit',$this->paginate('Debit'));
+        // $dataDebit = $this->Debit->find('all');
+        // $this->set('dataDebit',$dataDebit);
     }
 }
 
