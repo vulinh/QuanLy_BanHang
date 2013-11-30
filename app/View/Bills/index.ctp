@@ -4,20 +4,14 @@
            Hóa Đơn
         </div>
     </div>
-    <div class="span3">
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Chức Năng</li>
-                          <li class="list-group-item"><?php echo $this->Html->link(__('Thêm mới hóa đơn'), array('action' => 'add'), array('class' => '')); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách loại hóa đơn'), array('controller' => 'typebills', 'action' => 'index'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm mới loại hóa đơn'), array('controller' => 'typebills', 'action' => 'add'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách người dùng'), array('controller' => 'users', 'action' => 'index'), array('class' => '')); ?></li> 
-               
-            </ul>
-        </div>
-    </div>
-    
-<div class="span8">
+</div>
+<div class="row-fluid">
+<div class="span2 pull-right">
+    <?php echo $this->Html->link(__('Thêm mới hóa đơn'), array('action' => 'add'), array('class'=>'btn btn-success')); ?>
+</div>
+</div>
+<div class="row-fluid">    
+<div class="span12">
         <div class="well">
 
 		<div class="bills index">
@@ -50,7 +44,7 @@
         <td class="actions"> 
             <?php echo $this->Html->link('<i class="icon-list"></i>', array('action' => 'view', $bill['Bill']['id']), array('class'=>'tt', 'escape'=>false, 'data-toggle'=>'tooltip', 'data-original-title'=> 'Xem Chi Tiết '.$bill['Bill']['id'])); ?>
             <?php echo $this->Html->link('<i class=" icon-pencil"></i>', array('action' => 'edit', $bill['Bill']['id']), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$bill['Bill']['id'])); ?>
-            <?php echo $this->Form->postLink('<i class=" icon-remove"></i>', array('action' => 'delete', $bill['Bill']['id']), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$bill['Bill']['id']), __('Bạn có muốn xóa hóa đơn "%s?"', $bill['Bill']['id'])); ?>
+            <?php // echo $this->Form->postLink('<i class=" icon-remove"></i>', array('action' => 'delete', $bill['Bill']['id']), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$bill['Bill']['id']), __('Bạn có muốn xóa hóa đơn "%s?"', $bill['Bill']['id'])); ?>
         </td>
 	</tr>
 <?php endforeach; ?>

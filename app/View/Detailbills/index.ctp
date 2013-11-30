@@ -4,21 +4,15 @@
            Chi Tiết Hóa Đơn
         </div>
     </div>
-    <div class="span3">
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Chức Năng</li>
-              <li class="list-group-item"><?php echo $this->Html->link(__('Thêm chi tiết hóa đơn'), array('action' => 'add'), array('class' => '')); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách chi tiết hóa đơn'), array('controller' => 'bills', 'action' => 'index'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm hóa đơn'), array('controller' => 'bills', 'action' => 'add'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách hóa đơn'), array('controller' => 'products', 'action' => 'index'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm sản phẩm'), array('controller' => 'products', 'action' => 'add'), array('class' => '')); ?></li> 
-               
-            </ul>
-        </div>
-    </div>
-    
-<div class="span8">
+</div>
+
+<div class="row-fluid">
+<div class="span2 pull-right">
+    <?php echo $this->Html->link(__('Thêm chi tiết hóa đơn'), array('action' => 'add'), array('class' => 'btn btn-success')); ?>
+</div>
+</div>
+<div class="row-fluid">    
+<div class="span12">
         <div class="well">
 
         <div class="detailbills index">

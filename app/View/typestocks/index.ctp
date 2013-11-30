@@ -18,7 +18,7 @@
 	                <tr>
 	                <th>#</th>
 	                <th>Tên Loại Kho</th>
-	                <th colspan="3" style="text-align: center;">Chức Năng</th>
+	                <th colspan="3" style="text-align: center;">Tác vụ</th>
 	                </tr>
 	            </thead>
               	<tbody>
@@ -32,11 +32,11 @@
 				// echo '<td style="width:65px">'.$this->Html->link('Cập Nhật',array('controller'=>'typestocks','action'=>'edit/'.$valueTypestock['Typestock']['id'])).'</td>';
 				// echo '<td>'.$this->Html->link('Xóa',array('controller'=>'typestocks','action'=>'delete/'.$valueTypestock['Typestock']['id'])).'</td>';
 
-        // echo '<td style="width:20px">'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'typestocks','action'=>'view/'.$valueTypestock['Typestock']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$valueTypestock['Typestock']['nameTypeStock'])).'</td>';
+        // echo '<td>'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'typestocks','action'=>'view/'.$valueTypestock['Typestock']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$valueTypestock['Typestock']['nameTypeStock']));
 
-        echo '<td style="width:20px">'.$this->Html->link('<i class=" icon-pencil"></i>',array('controller'=>'typestocks','action'=>'edit/'.$valueTypestock['Typestock']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$valueTypestock['Typestock']['nameTypeStock'])).'</td>';
+        echo '<td>'.$this->Html->link('<i class=" icon-pencil"></i>',array('controller'=>'typestocks','action'=>'edit/'.$valueTypestock['Typestock']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$valueTypestock['Typestock']['nameTypeStock']));
 
-        echo '<td style="width:20px">'.$this->Html->link('<i class=" icon-remove"></i>',array('controller'=>'typestocks','action'=>'delete/'.$valueTypestock['Typestock']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$valueTypestock['Typestock']['nameTypeStock'])).'</td>';
+        echo '&nbsp;'.$this->Html->link('<i class=" icon-remove"></i>',array('controller'=>'typestocks','action'=>'delete/'.$valueTypestock['Typestock']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$valueTypestock['Typestock']['nameTypeStock'])).'</td>';
 
 				echo '</tr>';
 	    		
