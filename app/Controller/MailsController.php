@@ -22,7 +22,7 @@
         * @return void
         */
         public function index() {
-            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {    
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
                 $this->Mail->recursive = 0;
                 $whitelist = array($this->Mail->getDataSource()->expression('Mail.idUserReceipt = '.$this->Session->read('idSS').' Order by Mail.date desc'));        
                 $this->set('mails', $this->paginate($whitelist)); 
@@ -79,7 +79,7 @@
             }
         }
 
-        public function listsent() {
+        public function listSend() {
             if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
                 $this->Mail->recursive = 0;
                 $whitelist = array($this->Mail->getDataSource()->expression('Mail.idUserSent = '.$this->Session->read('idSS').' Order by Mail.date desc'));  

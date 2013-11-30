@@ -25,14 +25,12 @@
 							<th><?php echo $this->Paginator->sort('Di động'); ?></th>
 							<th><?php echo $this->Paginator->sort('Email'); ?></th>
 							<th><?php echo $this->Paginator->sort('Tài khoản ngân hàng'); ?></th>
-						<!--
-                        	<th style="display:none"><?php echo $this->Paginator->sort('Ngân hàng'); ?></th>
+							<th style="display:none"><?php echo $this->Paginator->sort('Ngân hàng'); ?></th>
 							<th style="display:none"><?php echo $this->Paginator->sort('Website'); ?></th>
 							<th style="display:none"><?php echo $this->Paginator->sort('Nick Yahoo'); ?></th>
 							<th style="display:none"><?php echo $this->Paginator->sort('Nick Skype'); ?></th>
 							<th style="display:none"><?php echo $this->Paginator->sort('Fax'); ?></th>
-						-->
-                        	<th colspan="3"><?php echo __('Tác vụ'); ?></th>
+							<th colspan="3"><?php echo __('Tác vụ'); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,11 +47,11 @@
 		<td style="display:none"><?php echo h($supplier['Supplier']['nickYahoo']); ?>&nbsp;</td>
 		<td style="display:none"><?php echo h($supplier['Supplier']['nickSkype']); ?>&nbsp;</td>
 		<td style="display:none"><?php echo h($supplier['Supplier']['fax']); ?>&nbsp;</td>
-		<?php echo '<td>'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'suppliers','action'=>'view/'.$supplier['Supplier']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$supplier['Supplier']['nameSupplier'])) ;?>
+		<?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'suppliers','action'=>'view/'.$supplier['Supplier']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$supplier['Supplier']['nameSupplier'])).'</td>' ;?>
 
-		<?php echo '&nbsp;'.$this->Html->link('<i class="icon-pencil"></i>',array('controller'=>'suppliers','action'=>'edit/'.$supplier['Supplier']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Cập Nhập '.$supplier['Supplier']['nameSupplier'])) ;?>
+		<?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-pencil"></i>',array('controller'=>'suppliers','action'=>'edit/'.$supplier['Supplier']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Cập Nhập '.$supplier['Supplier']['nameSupplier'])).'</td>' ;?>
 
-		<?php echo '&nbsp;'.$this->Html->link('<i class="icon-remove"></i>',array('controller'=>'suppliers','action'=>'delete/'.$supplier['Supplier']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$supplier['Supplier']['nameSupplier'], __('Bạn có muốn xóa thông tin của "%s"?', $supplier['Supplier']['nameSupplier']))).'</td>' ;?>
+		<?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-remove"></i>',array('controller'=>'suppliers','action'=>'delete/'.$supplier['Supplier']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$supplier['Supplier']['nameSupplier'], __('Bạn có muốn xóa thông tin của "%s"?', $supplier['Supplier']['nameSupplier']))).'</td>' ;?>
 
 		<!-- 	<?php echo $this->Html->link(__('Sửa'), array('action' => 'edit', $supplier['Supplier']['id']), array('class' => 'btn btn-default btn-xs')); ?>
 			<?php echo $this->Form->postLink(__('Xóa'), array('action' => 'delete', $supplier['Supplier']['id']), array('class' => 'btn btn-default btn-xs')); ?> -->

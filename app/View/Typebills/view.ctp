@@ -1,15 +1,25 @@
-<div class="row-fluid">
+ <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
-            Hóa Đơn
+           Loại Hóa Đơn
         </div>
     </div>
-</div>
-<div class="row-fluid">
-     <div class="span12">
-         <div class="well">
-                <div class="table-responsive">
-               <table class="table table-striped table-bordered">
+    <div class="span3">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Chức Năng</li>
+              <li class="list-group-item"><?php echo $this->Html->link(__('Sửa'), array('action' => 'edit', $typebill['Typebill']['id']), array('class' => '')); ?> </li>
+        <li class="list-group-item"><?php echo $this->Form->postLink(__('Xóa'), array('action' => 'delete', $typebill['Typebill']['id']), array('class' => ''), __('Bạn có muốn xóa loại hóa đơn "%s?"', $typebill['Typebill']['nameTypeBill'])); ?> </li>
+        <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách'), array('action' => 'index'), array('class' => '')); ?> </li>
+        <li class="list-group-item"><?php echo $this->Html->link(__('Thêm mới'), array('action' => 'add'), array('class' => '')); ?> </li>
+                
+            </ul>
+        </div>
+    </div>
+<div class="span8">
+       
+         <div class="table-responsive">
+                <table class="table table-striped table-bordered">
                     <tbody>
                         <tr>        
                             <td><strong><?php echo __('Tên loại hóa đơn'); ?></strong></td>
@@ -21,7 +31,7 @@
                         </tbody>
                 </table><!-- /.table table-striped table-bordered -->
             </div>
-            </div>
-     </div>
- </div>
- <?php echo $this->Html->link('Quay Lại',array('controller'=>'typebills','action'=>'index'),array('class'=>'btn btn-success pull-right'));?>  
+    
+</div>
+
+</div>

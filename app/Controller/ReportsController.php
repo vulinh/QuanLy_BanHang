@@ -101,9 +101,9 @@
                         //     'alias' => 'Sector',
                         'type' => 'left',
                         'foreignKey' => 'idArea',
-                        'conditions' => array('User.idArea=areas.id')),
+                        'conditions' => array('user.idArea=areas.id')),
 
-                ),'fields' => 'User.*,areas.id,areas.nameArea','limit'=>10,'recursive'=>0);
+                ),'fields' => 'user.*,areas.id,areas.nameArea','limit'=>10,'recursive'=>0);
             $this->set('dataUser',$this->paginate('User'));
         }
 
@@ -116,7 +116,7 @@
                         //     'alias' => 'Sector',
                         'type' => 'left',
                         'foreignKey' => 'idBill',
-                        'conditions' => array('Receipt.idBill=bills.id')),
+                        'conditions' => array('receipt.idBill=bills.id')),
                     array(
                         'table' => 'typebills',
                         //     'alias' => 'Sector',
@@ -129,7 +129,7 @@
                         'type' => 'left',
                    //     'foreignKey' => 'idBill',
                         'conditions' => array('bills.idUser=users.id')),
-                ),'fields' => 'Receipt.time,Receipt.money,bills.status,typebills.nameTypeBill,users.name',
+                ),'fields' => 'receipt.time,receipt.money,bills.status,typebills.nameTypeBill,users.name',
                 'limit'=>10,'recursive'=>0);
             $this->set('dataReceipt',$this->paginate('Receipt'));
         }
@@ -143,7 +143,7 @@
                         //     'alias' => 'Sector',
                         'type' => 'left',
                         'foreignKey' => 'idBill',
-                        'conditions' => array('Expense.idBill=bills.id')),
+                        'conditions' => array('expense.idBill=bills.id')),
                     array(
                         'table' => 'typebills',
                         //     'alias' => 'Sector',
@@ -156,7 +156,7 @@
                         'type' => 'left',
                    //     'foreignKey' => 'idBill',
                         'conditions' => array('bills.idUser=users.id')),
-                ),'fields' => 'Expense.time,Expense.money,bills.status,typebills.nameTypeBill,users.name',
+                ),'fields' => 'expense.time,expense.money,bills.status,typebills.nameTypeBill,users.name',
                 'limit'=>10,'recursive'=>0);
             $this->set('dataExpense',$this->paginate('Expense'));
         }

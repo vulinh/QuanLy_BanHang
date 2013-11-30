@@ -14,7 +14,6 @@
 
 <div class="row-fluid">
 	<div class="span12">
-        <div class="well">
 				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered table-advance table-hover">
 					<thead>
 						<tr>
@@ -29,11 +28,11 @@
 		<td><?php echo h($exchangerate['Exchangerate']['id']); ?>&nbsp;</td>
 		<td><?php echo h($exchangerate['Exchangerate']['nameExchangeRate']); ?>&nbsp;</td>
 
-		<?php echo '<td>'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'exchangerates','action'=>'view/'.$exchangerate['Exchangerate']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$exchangerate['Exchangerate']['nameExchangeRate']));?>
+		<?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'exchangerates','action'=>'view/'.$exchangerate['Exchangerate']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$exchangerate['Exchangerate']['nameExchangeRate'])).'</td>' ;?>
 
-		<?php echo '&nbsp;'.$this->Html->link('<i class="icon-pencil"></i>',array('controller'=>'exchangerates','action'=>'edit/'.$exchangerate['Exchangerate']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Cập Nhập '.$exchangerate['Exchangerate']['nameExchangeRate'])) ;?>
+		<?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-pencil"></i>',array('controller'=>'exchangerates','action'=>'edit/'.$exchangerate['Exchangerate']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Cập Nhập '.$exchangerate['Exchangerate']['nameExchangeRate'])).'</td>' ;?>
 
-		<?php echo '&nbsp;'.$this->Html->link('<i class="icon-remove"></i>',array('controller'=>'exchangerates','action'=>'delete/'.$exchangerate['Exchangerate']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$exchangerate['Exchangerate']['nameExchangeRate'], __('Bạn có muốn xóa thông tin của "%s"?', $exchangerate['Exchangerate']['nameExchangeRate']))).'</td>' ;?>
+		<?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-remove"></i>',array('controller'=>'exchangerates','action'=>'delete/'.$exchangerate['Exchangerate']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$exchangerate['Exchangerate']['nameExchangeRate'], __('Bạn có muốn xóa thông tin của "%s"?', $exchangerate['Exchangerate']['nameExchangeRate']))).'</td>' ;?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>
@@ -54,7 +53,6 @@
 					echo $this->Paginator->next(__('Next') . ' >', array('tag' => 'li'), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a'));
 				?>
 			</ul><!-- /.pagination -->
-            </div>
 	</div>
 
 </div>

@@ -4,15 +4,15 @@
            Loại Hóa Đơn
         </div>
     </div>
-</div>
-
-<div class="row-fluid">
-<div class="span2 pull-right">
-    <?php echo $this->Html->link(__('Thêm loại hóa đơn'), array('action' => 'add'), array('class' => 'btn btn-success')); ?>
-</div>
-</div>
-<div class="row-fluid">
-<div class="span12">
+    <div class="span3">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Chức Năng</li>
+              <li class="list-group-item"><?php echo $this->Html->link(__('Thêm loại hóa đơn'), array('action' => 'add'), array('class' => '')); ?></li>
+            </ul>
+        </div>
+    </div>
+<div class="span8">
         <div class="well">
         
 		<div class="typebills index">

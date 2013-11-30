@@ -8,8 +8,7 @@
 </div>
 
 <div class="row-fluid">
-	<div class="span12">	
-        <div class="well">		
+	<div class="span12">			
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-advance table-hover">
 					<tbody>
@@ -22,7 +21,7 @@
 				</table><!-- /.table table-striped table-bordered -->
 	
 			
-		</div>	
+			
 	</div>
 
 </div>

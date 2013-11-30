@@ -4,36 +4,32 @@
             <?php echo __('Cập nhật Loại Hóa Đơn'); ?>
         </div>
     </div>
-</div> 
+<div class="span3">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Chức Năng</li>
+              <li class="list-group-item"><?php echo $this->Form->postLink(__('Xóa'), array('action' => 'delete', $this->Form->value('Typebill.id')), null, __('Bạn có muốn xóa loại hóa đơn "%s?"', $this->Form->value('Typebill.nameTypeBill'))); ?></li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách'), array('action' => 'index')); ?></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="span8">    
+            <?php echo $this->Form->create('Typebill', array('role' => 'form')); ?>
 
-<div class="row-fluid">    
-    <div class="span12">    
-       <?php echo $this->Form->create('Typebill', array('role' => 'form')); ?>
-             <table class="table table-striped table-bordered table-advance table-hover">
+                <fieldset>
 
-            <tr>
-                <td style="width:50%; text-align:center;font-size:15px">
-                    <strong><?php echo __('Tên loại hóa đơn'); ?></strong>
-                </td>
-                
-                <td style="width:50%; text-align:center;font-size:15px">
-                    <?php echo $this->Form->input('nameTypeBill', array('type' => 'text','label' => false,'class' => 'form-control')); ?>
-                    &nbsp;
-                </td>
-            </tr>
-            
-           
-            <tr>
-                <td colspan=2 style="width:50%; text-align:center;font-size:15px">
-                    <?php echo $this->Html->link('Quay Lại',array('controller'=>'typebills','action'=>'index'),array('class'=>'btn btn-success pull-right','style'=>'margin-top:30px;'));
-            echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px;margin-top:30px;')); ?>
-                    &nbsp;
-                </td>
-            </tr>
+                    <div class="form-group">
+                        <?php echo $this->Form->input('id', array('class' => 'form-control')); ?>
+                    </div><!-- .form-group -->
+                    <div class="form-group">
+                        <?php echo $this->Form->input('nameTypeBill', array('type' => 'text', 'label' => 'Tên loại hóa đơn','class' => 'form-control')); ?>
+                    </div><!-- .form-group -->
 
-        
-        </table>    
+                    <?php echo $this->Form->submit('Cập nhật', array('class' => 'btn btn-large btn-primary')); ?>
+
+                </fieldset>
 
             <?php echo $this->Form->end(); ?>
-    </div>
+</div>
 </div>
