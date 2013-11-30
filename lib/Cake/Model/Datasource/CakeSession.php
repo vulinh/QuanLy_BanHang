@@ -192,7 +192,7 @@ class CakeSession {
 		if (!$id && self::started()) {
 			self::_checkValid();
 		}
-
+ 
 		self::$error = false;
 		return self::started();
 	}

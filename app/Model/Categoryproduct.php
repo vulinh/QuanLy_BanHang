@@ -62,13 +62,4 @@ class Categoryproduct extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'Manufacturer' => array(
-			'className' => 'Manufacturer',
-			'foreignKey' => 'idManufacture',
-			'conditions' => '',
-			'fields' => 'nameManufacturer',
-			'order' => ''
-		)
-	);
 }
