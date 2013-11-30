@@ -14,10 +14,11 @@
 
 <div class="row-fluid">
 	<div class="span12">
+        <div class="well">
 				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered table-advance table-hover">
 					<thead>
 						<tr>
-							<th><?php echo $this->Paginator->sort('id'); ?></th>
+							<th><?php echo $this->Paginator->sort('#'); ?></th>
 							<th><?php echo $this->Paginator->sort('Tên đơn vị'); ?></th>
 							<th class="actions"><?php echo __('Tác vụ'); ?></th>
 						</tr>
@@ -27,11 +28,11 @@
 	<tr>
 		<td><?php echo h($unit['Unit']['id']); ?>&nbsp;</td>
 		<td><?php echo h($unit['Unit']['nameUnit']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('Xem'), array('action' => 'view', $unit['Unit']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-			<?php echo $this->Html->link(__('Sửa'), array('action' => 'edit', $unit['Unit']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-			<?php echo $this->Form->postLink(__('Xóa'), array('action' => 'delete', $unit['Unit']['id']), array('class' => 'btn btn-default btn-xs'), __('Bạn có muốn xóa thông tin của "%s"?', $unit['Unit']['nameUnit'])); ?>
-		</td>
+        <td class="actions"> 
+            <?php echo $this->Html->link('<i class="icon-list"></i>', array('action' => 'view', $unit['Unit']['id']), array('class'=>'tt', 'escape'=>false, 'data-toggle'=>'tooltip', 'data-original-title'=> 'Xem Chi Tiết '.$unit['Unit']['id'])); ?>
+            <?php echo $this->Html->link('<i class=" icon-pencil"></i>', array('action' => 'edit', $unit['Unit']['id']), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$unit['Unit']['id'])); ?>
+            <?php echo $this->Form->postLink('<i class=" icon-remove"></i>', array('action' => 'delete', $unit['Unit']['id']), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$unit['Unit']['id']), __('Bạn có muốn xóa thông tin của "%s"?', $unit['Unit']['id'])); ?>
+        </td>
 	</tr>
 <?php endforeach; ?>
 					</tbody>
@@ -55,7 +56,7 @@
 			</ul><!-- /.pagination -->
 			
 	
-	
+	     </div>
 	</div>
 
 </div>

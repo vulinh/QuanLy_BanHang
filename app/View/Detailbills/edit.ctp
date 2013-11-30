@@ -1,50 +1,71 @@
 <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
-            <?php echo __('Cập Nhật Chi Tiết Hóa Đơn'); ?>
+              <?php echo __('Cập Nhật Chi Tiết Hóa Đơn'); ?>
         </div>
     </div>
-<div class="span3">
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Chức Năng</li>
-           <li class="list-group-item"><?php echo $this->Form->postLink(__('Xóa chi tiết hóa đơn'), array('action' => 'delete', $this->Form->value('Detailbill.id')), null, __('Bạn có muốn xóa chi tiết hóa đơn "%s?"', $this->Form->value('Detailbill.id'))); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách chi tiết hóa đơn'), array('action' => 'index')); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách hóa đơn'), array('controller' => 'bills', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm hóa đơn'), array('controller' => 'bills', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Danh sách sản phẩm'), array('controller' => 'products', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Thêm sản phẩm'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="span8">    
-    
+</div> 
+
+<div class="row-fluid">    
+    <div class="span12"> 
             <?php echo $this->Form->create('Detailbill', array('role' => 'form')); ?>
+              <table class="table table-striped table-bordered table-advance table-hover">
 
-                <fieldset>
+            <tr>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <strong><?php echo __('Sản phẩm'); ?></strong>
+                </td>
+                
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <?php echo $this->Form->select('idProduct', $products , array('class' => 'form-control')); ?>
+                    &nbsp;
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <strong><?php echo __('Chất lượng'); ?></strong>
+                </td>
+                
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <?php echo $this->Form->input('quatity', array('type' => 'text', 'label' => false,'class' => 'form-control')); ?>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <strong><?php echo __('Giá'); ?></strong>
+                </td>
+                
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <?php echo $this->Form->input('price', array('type' => 'text', 'label' => 'Giá','class' => 'form-control')); ?>
+                    &nbsp;
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <strong><?php echo __('Hóa đơn'); ?></strong>
+                </td>
+                
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <?php echo $this->Form->select('idBill', $bills , array('class' => 'form-control')); ?>
+                    &nbsp;
+                </td>
+            </tr>
+           
+            <tr>
+                <td colspan=2 style="width:50%; text-align:center;font-size:15px">
+                    <?php echo $this->Html->link('Quay Lại',array('controller'=>'detailbills','action'=>'index'),array('class'=>'btn btn-success pull-right','style'=>'margin-top:30px;'));
+            echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px;margin-top:30px;')); ?>
+                    &nbsp;
+                </td>
+            </tr>
 
-                    <div class="form-group">
-                        <label for="DetailillsidProduct">Sản phẩm</label>
-                        <?php echo $this->Form->select('idProduct', $products , array('class' => 'form-control')); ?>
-                        
-                    </div><!-- .form-group -->
-                    <div class="form-group">
-                        <?php echo $this->Form->input('quatity', array('type' => 'text', 'label' => 'Chất lượng','class' => 'form-control')); ?>
-                    </div><!-- .form-group -->
-                    <div class="form-group">
-                        <?php echo $this->Form->input('price', array('type' => 'text', 'label' => 'Giá','class' => 'form-control')); ?>
-                    </div><!-- .form-group -->
-                    <div class="form-group">
-                        <label for="DetailillsidBill">Hóa đơn</label>
-                        <?php echo $this->Form->select('idBill', $bills , array('class' => 'form-control')); ?>
-                        <?php // echo $this->Form->input('idBill', array('class' => 'form-control')); ?>
-                    </div><!-- .form-group -->
-
-                    <?php echo $this->Form->submit('Cập nhật', array('class' => 'btn btn-large btn-primary')); ?>
-
-                </fieldset>
-
+        
+        </table>
+                
             <?php echo $this->Form->end(); ?>
-</div>
+           
+    </div>
 </div>

@@ -7,6 +7,7 @@
 </div>
 <div class="row-fluid">
     <div class="span12">
+        <div class="well">
             <table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -14,7 +15,7 @@
                             <th><?php echo $this->Paginator->sort('Tên loại sản phẩm'); ?></th>
                             
                             <th><?php echo $this->Paginator->sort('Hiển thị'); ?></th>
-                            <th colspan=3><?php echo __('Tác vụ'); ?></th>
+                            <th><?php echo __('Tác vụ'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,11 +32,13 @@
                                     }
                                     echo h($result);
                                     ?>&nbsp;</td>
-                                <?php echo '<td style="width:20px">'.$this->Html->link('<i class="icon-list"></i>',array('controller'=>'categoryproducts','action'=>'view/'.$categoryproduct['Categoryproduct']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$categoryproduct['Categoryproduct']['nameCategoryProduct'])).'</td>';
-        
-        echo '<td style="width:20px">'.$this->Html->link('<i class=" icon-pencil"></i>',array('controller'=>'categoryproducts','action'=>'edit/'.$categoryproduct['Categoryproduct']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$categoryproduct['Categoryproduct']['nameCategoryProduct'])).'</td>';
-                echo '<td style="width:20px">'.$this->Html->link('<i class=" icon-remove"></i>',array('controller'=>'categoryproducts','action'=>'delete/'.$categoryproduct['Categoryproduct']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$categoryproduct['Categoryproduct']['nameCategoryProduct'])).'</td>';?>
                                 
+                                <td class="actions">
+                               <?php echo $this->Html->link('<i class="icon-list"></i>',array('controller'=>'categoryproducts','action'=>'view/'.$categoryproduct['Categoryproduct']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xem Chi Tiết '.$categoryproduct['Categoryproduct']['nameCategoryProduct'])); ?>
+                               <?php echo $this->Html->link('<i class=" icon-pencil"></i>',array('controller'=>'categoryproducts','action'=>'edit/'.$categoryproduct['Categoryproduct']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$categoryproduct['Categoryproduct']['nameCategoryProduct'])); ?>
+                               <?php echo $this->Html->link('<i class=" icon-remove"></i>',array('controller'=>'categoryproducts','action'=>'delete/'.$categoryproduct['Categoryproduct']['id']),array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$categoryproduct['Categoryproduct']['nameCategoryProduct']));?>
+                                
+                                </td>
 
 
                             </tr>
@@ -59,7 +62,7 @@
                 echo $this->Paginator->next(__('Next') . ' >', array('tag' => 'li'), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a'));
                 ?>
             </ul><!-- /.pagination -->
-
+        </div>
     </div>
 
 </div>

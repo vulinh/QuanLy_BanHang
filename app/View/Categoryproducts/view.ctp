@@ -15,11 +15,6 @@
                                 <?php echo h($categoryproduct['Categoryproduct']['nameCategoryProduct']); ?>
                                 &nbsp;
                             </td>
-                        </tr><tr>		<td><strong><?php echo __('Nhà sản xuất'); ?></strong></td>
-                            <td>
-                                <?php echo h($categoryproduct['Manufacturer']['nameManufacturer']); ?>
-                                &nbsp;
-                            </td>
                         </tr><tr>		<td><strong><?php echo __('Hiển thị'); ?></strong></td>
                             <td>
                                 <?php
