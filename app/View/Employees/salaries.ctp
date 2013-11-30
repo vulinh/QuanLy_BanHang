@@ -16,7 +16,7 @@
  <div class="row-fluid">
 <div class="span11 offset1">
 <?php 
-    echo $this->Form->create('User', array('action' => 'salaries','class' => 'form-horizontal'));
+    echo $this->Form->create('Employee', array('action' => 'salaries','class' => 'form-horizontal'));
             echo '<fieldset>';
             echo $this->Form->label('Nhân viên');
             echo $this->Form->select('id',$dataUser,array('class'=>'span3', 'style' => 'margin-bottom:10px'));
@@ -45,10 +45,10 @@
 </div>
 <script type="text/javascript">
     function calculate(){
-        var salary = $('#UserIdSalary option:selected').text();
+        var salary = $('#EmployeeIdSalary option:selected').text();
         salary = parseInt(salary);
-        var seniority = parseInt($('#UserSeniority').val());
-        var bonus = parseInt($('#UserBonus').val()); 
+        var seniority = parseInt($('#EmployeeSeniority').val());
+        var bonus = parseInt($('#EmployeeBonus').val()); 
         var percentage = 0;
         var totalSalary = 0;
         if(salary > 0){
@@ -57,7 +57,7 @@
                totalSalary += (salary*seniority)/100;
             if(bonus > 0)
                totalSalary += bonus;  
-            $('#UserTotalSalary').val(totalSalary);
+            $('#EmployeeTotalSalary').val(totalSalary);
         }
         return false;
     }

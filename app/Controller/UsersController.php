@@ -52,6 +52,7 @@
         }
 
         function index(){
+            
             if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
 
                 $this->set('dataUser',$this->User->find('all'));
@@ -214,50 +215,6 @@
                 }
             }
         }
-
-        //thoai
-        function salaries() 
-        {
-            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
-                $this->loadModel('Salary');
-                if ($this->request->is('post') || $this->request->is('put') || !empty($this->request->data))
-                {
-                    $Salary = $this->Salary->find('first',array('conditions' => array('Salary.id' => $this->request->data['User']['idSalary']))); 
-                    //tính tổng
-                    $tong = $Salary['Salary']['amount'];
-                    if($this->request->data['User']['seniority'] > 0){
-                        $tong += ($tong*$this->request->data['User']['seniority'])/100; 
-                    }
-                    if($this->request->data['User']['bonus'] > 0){
-                        $tong += $this->request->data['User']['bonus'];
-                    }
-                    if($tong == $this->request->data['User']['totalSalary']){ // kiểm tra data ko thay đổi từ client
-
-                        if ($this->User->save($this->request->data)) {
-                            $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
-                            $this->redirect(array('action' => 'view/'.$this->request->data['User']['id']));
-                        } 
-                        else 
-                        {
-                            $this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thất Bại</h4></div>'));
-                        }
-
-                    }else{
-                        $this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Hãy tính lại trước khi lưu</h4></div>')); 
-                    }
-                } 
-                $dataUser = $this->User->find('list',array('fields' =>array('User.name'),
-                    'conditions' => array('User.isEmployee' => 1)
-                )); 
-                $dataSalary = $this->Salary->find('list',array('fields' =>array('Salary.amount'))); 
-                $this->set(compact('dataSalary','dataUser'));
-            }
-            else
-            {
-                $this->redirect(array('controller'=>'users','action'=>'login'));
-            }
-        }
-        //end
     }
 
 ?>

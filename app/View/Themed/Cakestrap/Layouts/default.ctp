@@ -206,7 +206,7 @@
 							<?php echo $this->Html->link('Người Dùng',array('controller'=>'users','action'=>'index')) ?>
 						</li>
                          <li>
-                            <?php echo $this->Html->link('Tính lương',array('controller'=>'users','action'=>'salaries')) ?>
+                            <?php echo $this->Html->link('Tính lương',array('controller'=>'employees','action'=>'salaries')) ?>
                         </li>
                         <li>
                             <?php echo $this->Html->link('Bậc lương',array('controller'=>'salaries','action'=>'index')) ?>
