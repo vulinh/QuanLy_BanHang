@@ -294,6 +294,20 @@
                         </li>
                     </ul>
                 </li>
+                
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                        <span class="icon-box">
+                            <i class="icon-file-alt"></i>
+                        </span> Quản Lý Tài Chính
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <?php echo $this->Html->link('Công nợ',array('controller'=>'bills','action'=>'congno')) ?>
+                        </li>
+                    </ul>
+                </li>
 				
 			</ul>
 		</div>

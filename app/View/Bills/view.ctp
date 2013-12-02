@@ -33,7 +33,13 @@
         </td>
 </tr><tr>        <td><strong><?php echo __('Trạng thái'); ?></strong></td>
         <td>
-            <?php echo h($bill['Bill']['status']); ?>
+            <?php 
+                if($bill['Bill']['status'] == 0){
+                    echo 'Chưa thanh toán'; 
+                }else{
+                    echo 'Đã thanh toán';
+                }
+            ?>
             &nbsp;
         </td>
 </tr>                    </tbody>
