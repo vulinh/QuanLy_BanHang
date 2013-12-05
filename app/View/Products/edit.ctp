@@ -13,16 +13,6 @@
 
             <tr>
                 <td style="width:50%; text-align:center;font-size:15px">
-                    <strong><?php echo __('ID Sản Phẩm'); ?></strong>
-                </td>
-                <td style="width:50%; text-align:center;font-size:15px">
-                    <?php echo $this->Form->input('idProductManufacturer', array('type' => 'text','div'=>false , 'label' => false,'class' => 'form-control','placeholder'=>'ID Sản Phẩm')); ?>
-                    &nbsp;
-                </td>
-            </tr>
-
-            <tr>
-                <td style="width:50%; text-align:center;font-size:15px">
                     <strong><?php echo __('ID Site'); ?></strong>
                 </td>
                 <td style="width:50%; text-align:center;font-size:15px">

@@ -61,7 +61,9 @@ class ProductsController extends AppController {
             if ($this->request->is('post')) {
                 $this->Product->create();
                 if ($this->Product->save($this->request->data)) {
-
+                    $this->loadModel('Detailcat');
+                    $this->Detailcat->add($this->request->data['Product']['idCategoryProduct'], $this->request->data['Product']['idManufacturer']);
+                    
                     $this->Product->updateAll(
                         array('Product.idSite' =>"'".'SP_'.$this->Product->getLastInsertID()."'"), 
                         array('Product.id' => $this->Product->getLastInsertID())
@@ -69,7 +71,7 @@ class ProductsController extends AppController {
 
                     $this->Product->updateAll(array('Product.import_time' =>"'".date('Y-m-d H:i:s')."'"), array('Product.id' => $this->Product->getLastInsertID()));
 
-                    $this->Session->setFlash(__('Đã thêm sản phẩm '.$this->request->data['nameProduct'] ), 'flash/success');
+                    $this->Session->setFlash(__('Đã thêm sản phẩm '.$this->request->data['Product']['nameProduct'] ), 'flash/success');
                     $this->redirect(array('action' => 'index'));
                 } else {
                     $this->Session->setFlash(__('Không thêm được dữ liệu. Vui lòng thử lại.'), 'flash/error');
@@ -106,16 +108,24 @@ class ProductsController extends AppController {
         if (!$this->Product->exists($id)) {
             throw new NotFoundException(__('Invalid product'));
         }
+        
+        $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
+        $data = $this->Product->find('first', $options);
+        
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Product->save($this->request->data)) {
+                
+                $this->loadModel('Detailcat');
+                $this->Detailcat->edit($data['Product']['idCategoryProduct'], $data['Product']['idManufacturer'],false);
+                $this->Detailcat->add($this->request->data['Product']['idCategoryProduct'], $this->request->data['Product']['idManufacturer']);
+                
                 $this->Session->setFlash(__('Cập nhật dữ liệu thành công'), 'flash/success');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('Không thể cập nhật thông tin, vui lòng thử lại.'), 'flash/error');
             }
         } else {
-            $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
-            $this->request->data = $this->Product->find('first', $options);
+            $this->request->data = $data;
         }
         $this->loadModel('Categoryproduct');
         $this->loadModel('Supplier');
@@ -156,6 +166,9 @@ class ProductsController extends AppController {
         $data =  $this->request->data = $this->Product->find('first', $options);
         
         if ($this->Product->delete()) {
+            $this->loadModel('Detailcat');
+            $this->Detailcat->edit($data['Product']['idCategoryProduct'], $data['Product']['idManufacturer'],false);
+                    
             $this->Session->setFlash(__('Đã xóa sản phẩm '.$data['Product']['nameProduct']), 'flash/success');
             $this->redirect(array('action' => 'index'));
         }
