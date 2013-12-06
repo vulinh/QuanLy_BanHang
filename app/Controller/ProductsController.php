@@ -24,7 +24,13 @@ class ProductsController extends AppController {
     public function index() {
         if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             $this->Product->recursive = 0;
-            $this->set('products', $this->paginate());
+            $products = $this->paginate();
+            $this->loadModel('Categoryproduct');
+            for($i=0; $i< count($products); $i++){
+                $parentCategory = $this->Categoryproduct->loadParentCategory($products[$i]['Product']['idCategoryProduct']);
+                $products[$i]['parentCategory'] = $parentCategory;
+            }
+            $this->set('products', $products);
         }
         else{
             $this->redirect(array('controller'=>'users','action'=>'login'));
@@ -43,8 +49,14 @@ class ProductsController extends AppController {
             if (!$this->Product->exists($id)) {
                 throw new NotFoundException(__('Invalid product'));
             }
-            $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
-            $this->set('product', $this->Product->find('first', $options));
+            $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id)); 
+            $product = $this->Product->find('first', $options);
+            $this->loadModel('Categoryproduct');
+            $parentCategory = $this->Categoryproduct->loadParentCategory($product['Product']['idCategoryProduct']);
+            $this->set(compact('product','parentCategory'));
+            //echo '<pre>';
+//            print_r($product);
+//            echo '</pre>'; exit;
         }
         else{
             $this->redirect(array('controller'=>'users','action'=>'login'));
@@ -82,7 +94,9 @@ class ProductsController extends AppController {
                     $this->loadModel('Unit');
                     $this->loadModel('Exchangerate');
                     $this->loadModel('Manufacturer');
-            $categoryproducts = $this->Categoryproduct->find('list', array('fields' => array('nameCategoryProduct')));
+ 
+            $categoryproducts = $this->Categoryproduct->find('all', array('conditions' => array('Categoryproduct.enable ' => 1)));
+             
             $suppliers = $this->Supplier->find('list',array('fields' => array('nameSupplier')));
             $units = $this->Unit->find('list', array('fields' => array('nameUnit')));
             $exchangerates = $this->Exchangerate->find('list', array('fields' => array('nameExchangeRate')));
@@ -111,7 +125,6 @@ class ProductsController extends AppController {
         
         $options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
         $data = $this->Product->find('first', $options);
-        
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Product->save($this->request->data)) {
                 
@@ -132,7 +145,7 @@ class ProductsController extends AppController {
         $this->loadModel('Unit');
         $this->loadModel('Exchangerate');
         $this->loadModel('Manufacturer');
-        $categoryproducts = $this->Categoryproduct->find('list', array('fields' => array('nameCategoryProduct')));
+        $categoryproducts = $this->Categoryproduct->find('all', array('conditions' => array('Categoryproduct.enable ' => 1)));
         $suppliers = $this->Supplier->find('list',array('fields' => array('nameSupplier')));
         $units = $this->Unit->find('list', array('fields' => array('nameUnit')));
         $exchangerates = $this->Exchangerate->find('list', array('fields' => array('nameExchangeRate')));

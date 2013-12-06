@@ -18,8 +18,19 @@
         </td>
 </tr><tr>        <td><strong><?php echo __('Loại sản phẩm'); ?></strong></td>
         <td>
-            <?php echo $this->Html->link($product['Categoryproducts']['nameCategoryProduct'], array('controller' => 'categoryproducts', 'action' => 'view', $product['Categoryproducts']['id']), array('class' => '')); ?>
-            &nbsp;
+            <?php
+            $n = count($parentCategory);
+            if($n>0){
+                for($i = $n-1; $i>=0 ;$i--){
+                   echo $this->Html->link($parentCategory[$i]['Categoryproduct']['nameCategoryProduct'], array('controller' => 'categoryproducts', 'action' => 'view', $parentCategory[$i]['Categoryproduct']['id']), array('class' => ''));
+                   echo '<br>';
+                   for($j=1; $j <= ($n-$i)*2 && $i!=0; $j++) echo '+';
+                   echo ' ';                   
+                } 
+            }else{
+                echo 'Không có';
+            }
+            ?>
         </td>
 </tr><tr>        <td><strong><?php echo __('Tiền tệ'); ?></strong></td>
         <td>

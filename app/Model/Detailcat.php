@@ -54,13 +54,14 @@ class Detailcat extends AppModel {
            return $this->delete($idCategory,$idManufacturer); 
         }
         $db = $this->getDataSource();
-        $fields = array('idCategoryProduct','idManufacturer','count');
+        $fields = array('count');
         if($fg){
-            $value = array($idCategory,$idManufacturer,$db->expression('count + 1'));
+            $value = array('count + 1');
         }else{
-            $value = array($idCategory,$idManufacturer,$db->expression('count - 1'));
+            $value = array('count - 1');
         }
-        if ((bool)$db->update($this,$fields,$value)) {
+        $conditions = array('Detailcat.idCategoryProduct' => $idCategory, 'Detailcat.idManufacturer' => $idManufacturer);
+        if ((bool)$db->update($this,$fields,$value,$conditions)) {
             return true;
         } else {
             return false;

@@ -1,3 +1,21 @@
+<?php
+    function printCategory($categorys,$id,$kitu,$idselect)
+        {  
+            foreach($categorys as $category)
+            {
+                if($category['Categoryproduct']['idParent'] == $id)
+                {
+                    $select = '';
+                    if($idselect == $category['Categoryproduct']['id']){
+                        $select = 'selected="selected"';
+                    }
+                    echo "<option value='".$category['Categoryproduct']['id']."' $select >".$kitu.' '.$category['Categoryproduct']['nameCategoryProduct']."</option>";
+                    printCategory($categorys,$category['Categoryproduct']['id'],$kitu.$kitu,$idselect);
+                   
+                }
+            }
+    }
+?>
 <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
@@ -143,15 +161,19 @@
 				</td>
 			</tr>
          	
-         	<tr>
-				<td style="width:50%; text-align:center;font-size:15px">
-					<strong><?php echo __('Loại Sản Phẩm'); ?></strong>
-				</td>
-				<td style="width:50%; text-align:center;font-size:15px">
-					<?php echo $this->Form->select('idCategoryProduct', $categoryproducts, array('class' => 'span2')); ?>
-					&nbsp;
-				</td>
-			</tr>
+            <tr>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <strong><?php echo __('Loại Sản Phẩm'); ?></strong>
+                </td>
+                <td style="width:50%; text-align:center;font-size:15px">
+                     <select name="data[Product][idCategoryProduct]">
+                        <option value='0'>Không có</option>
+                        <?php
+                           printCategory($categoryproducts,0, '++',0); 
+                        ?>
+                     </select>
+                </td>
+            </tr>
 
 			<tr>
 				<td style="width:50%; text-align:center;font-size:15px">

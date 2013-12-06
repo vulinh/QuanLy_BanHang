@@ -46,7 +46,20 @@
 		<?php 
             echo '<td>'.h($product['Product']['id']).'</td>';
 		    echo '<td>'.h($product['Product']['nameProduct']).'</td>';
-		    echo '<td>'.$this->Html->link($product['Categoryproducts']['nameCategoryProduct'], array('controller' => 'categoryproducts', 'action' => 'view', $product['Categoryproducts']['id'])).'</td>';
+            echo '<td>';
+            $n = count($product['parentCategory']);
+            if($n>0){
+                for($i = $n-1; $i>=0 ;$i--){
+                   echo $this->Html->link($product['parentCategory'][$i]['Categoryproduct']['nameCategoryProduct'], array('controller' => 'categoryproducts', 'action' => 'view', $product['parentCategory'][$i]['Categoryproduct']['id']), array('class' => ''));
+                   if($i>0){
+                    echo ' &larr; ';
+                   }                  
+                } 
+            }else{
+                echo 'Không có';
+            }
+            echo '</td>';
+	//	    echo '<td>'.$this->Html->link($product['Categoryproducts']['nameCategoryProduct'], array('controller' => 'categoryproducts', 'action' => 'view', $product['Categoryproducts']['id'])).'</td>';
 	//	    echo '<td>'.$this->Html->link($product['Exchangerates']['nameExchangeRate'], array('controller' => 'exchangerates', 'action' => 'view', $product['Exchangerates']['id'])).'</td>';
 	//	    echo '<td>'.$this->Html->link($product['Units']['nameUnit'], array('controller' => 'units', 'action' => 'view', $product['Units']['id'])).'</td>';
 		    echo '<td>'.h($product['Product']['price']).'</td>';

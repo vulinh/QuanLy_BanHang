@@ -1,3 +1,22 @@
+<?php
+    function printCategory($categorys,$id,$kitu,$idselect)
+        {  
+            foreach($categorys as $category)
+            {
+                if($category['Categoryproduct']['idParent'] == $id)
+                {
+                    $select = '';
+                    if($idselect == $category['Categoryproduct']['id']){
+                        $select = 'selected="selected"';
+                    }
+                    echo "<option value='".$category['Categoryproduct']['id']."' $select >".$kitu.' '.$category['Categoryproduct']['nameCategoryProduct']."</option>";
+                    
+                    printCategory($categorys,$category['Categoryproduct']['id'],$kitu.$kitu,$idselect);
+                   
+                }
+            }
+    }
+?>
 <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
@@ -20,6 +39,19 @@
                 </td>
             </tr>
 
+            <tr>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <strong><?php echo __('Cấp cha'); ?></strong>
+                </td>
+                <td style="width:50%; text-align:center;font-size:15px">
+                     <select name="data[Categoryproduct][idParent]">
+                        <option value='0'>Không có</option>
+                        <?php
+                           printCategory($categorys,0, '++',$this->request->data['Categoryproduct']['idParent']); 
+                        ?>
+                     </select>
+                </td>
+            </tr>
         
             <tr>
                 <td style="width:50%; text-align:center;font-size:15px">

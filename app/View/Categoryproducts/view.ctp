@@ -15,13 +15,33 @@
                                 <?php echo h($categoryproduct['Categoryproduct']['nameCategoryProduct']); ?>
                                 &nbsp;
                             </td>
-                        </tr><tr>		<td><strong><?php echo __('Hiển thị'); ?></strong></td>
+                        </tr>
+                        <tr>        
+                            <td><strong><?php echo __('Loại cha'); ?></strong></td>
+                            <td>
+                                <?php
+                                    $n = count($parentCategory);
+                                    if($n>0){
+                                        for($i = $n-1; $i>=0 ;$i--){
+                                           echo $this->Html->link($parentCategory[$i]['Categoryproduct']['nameCategoryProduct'], array('controller' => 'categoryproducts', 'action' => 'view', $parentCategory[$i]['Categoryproduct']['id']), array('class' => ''));
+                                           echo '<br>';
+                                           for($j=1; $j <= ($n-$i)*2 && $i!=0; $j++) echo '+';
+                                           echo ' ';                   
+                                        } 
+                                    }else{
+                                        echo 'Không có';
+                                    }
+                                    ?>
+                              
+                            </td>
+                        </tr>
+                        <tr>		<td><strong><?php echo __('Hiển thị'); ?></strong></td>
                             <td>
                                 <?php
                                 if ($categoryproduct['Categoryproduct']['enable'] == 1) {
-                                    $result = 'True';
+                                    $result = 'Có';
                                 } else {
-                                    $result = 'False';
+                                    $result = 'Không';
                                 }
                                 echo h($result);
                                 ?>

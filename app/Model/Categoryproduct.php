@@ -62,4 +62,44 @@ class Categoryproduct extends AppModel {
  *
  * @var array
  */
+ 
+    public function loadParentCategory($id){
+        $category = array();
+        while($id > 0){
+            $options = array('conditions' => array('Categoryproduct.' . $this->primaryKey => $id));
+            $item = $this->find('first', $options);
+
+            array_push($category,$item);
+            $id =  $item['Categoryproduct']['idParent'];  
+        };
+        return $category;
+    }
+    
+    public function loadChildCategory($id){
+        $options = array('conditions' => array('Categoryproduct.idParent' => $id));
+        $itemChild = $this->find('all');
+        $category = array();
+        $this->findChildCategory($itemChild,$id,&$category);
+    }
+    
+    function findChildCategory($categorys,$id,&$array)
+    {  
+        foreach($categorys as $category)
+        {
+            if($category['Categoryproduct']['idParent'] == $id)
+            {
+                $item = array('id' => $category['Categoryproduct']['id'],'name' => $category['Categoryproduct']['nameCategoryProduct']);                    
+                array_push($array,$item);
+                $this->findChildCategory($categorys,$category['Categoryproduct']['id'],&$array);
+            }
+        }
+    }
+    
+    public function printParentCategory($parentCategory,$url){
+        $n = count($parentCategory);
+        for($i = $n -1; $i>=0 ;$i--){
+           echo '<a href="/'.url.'/categoryproducts/view/'.$parentCategory[$i]['Categoryproduct']['id'].'" class="">'.$parentCategory[$i]['Categoryproduct']['nameCategoryProduct'].'</a>';
+           for($j=1; $j < $i*2; $j++) echo '<br>++ ';
+        }
+    }
 }

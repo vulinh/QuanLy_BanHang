@@ -6,6 +6,11 @@
     </div>
 </div>
 <div class="row-fluid">
+<div class="span2 pull-right">
+    <?php echo $this->Html->link('Thêm Loại Hàng Hóa',array('action'=>'add'),array('class'=>'btn btn-success')) ?>
+</div>
+</div>
+<div class="row-fluid">
     <div class="span12">
         <div class="well">
             <table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
@@ -22,13 +27,23 @@
                         <?php foreach ($categoryproducts as $categoryproduct): ?>
                             <tr>
                                 <td><?php echo h($categoryproduct['Categoryproduct']['id']); ?>&nbsp;</td>
-                                <td><?php echo h($categoryproduct['Categoryproduct']['nameCategoryProduct']); ?>&nbsp;</td>
+                                <td><?php
+                                    $n = count($categoryproduct['parentCategory']); 
+                                    if($n>0){
+                                        for($i = $n-1; $i>=0 ;$i--){
+                                           echo $categoryproduct['parentCategory'][$i]['Categoryproduct']['nameCategoryProduct'];
+                                           echo ' &larr; ';                   
+                                        } 
+                                    }
+                                echo h($categoryproduct['Categoryproduct']['nameCategoryProduct']); 
+                                
+                                ?>&nbsp;</td>
                                 
                                 <td><?php
                                     if ($categoryproduct['Categoryproduct']['enable'] == 1) {
-                                        $result = 'True';
+                                        $result = 'Có';
                                     } else {
-                                        $result = 'False';
+                                        $result = 'Không';
                                     }
                                     echo h($result);
                                     ?>&nbsp;</td>

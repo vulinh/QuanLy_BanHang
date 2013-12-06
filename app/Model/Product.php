@@ -146,13 +146,13 @@ class Product extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Categoryproducts' => array(
-			'className' => 'Categoryproducts',
-			'foreignKey' => 'idCategoryProduct',
-			'conditions' => '',
-			'fields' => 'id,nameCategoryProduct',
-			'order' => ''
-		),
+		//'Categoryproducts' => array(
+//			'className' => 'Categoryproducts',
+//			'foreignKey' => 'idCategoryProduct',
+//			'conditions' => '',
+//			'fields' => 'id,nameCategoryProduct',
+//			'order' => ''
+//		),
 		'Suppliers' => array(
 			'className' => 'Suppliers',
 			'foreignKey' => 'idSupplier',

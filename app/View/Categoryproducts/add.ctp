@@ -1,3 +1,18 @@
+<?php
+    function printCategory($categorys,$id, $kitu)
+        {  
+            foreach($categorys as $category)
+            {
+                if($category['Categoryproduct']['idParent'] == $id)
+                {
+                    echo "<option value='".$category['Categoryproduct']['id']."'>".$kitu.' '.$category['Categoryproduct']['nameCategoryProduct']."</option>";
+    
+                    printCategory($categorys,$category['Categoryproduct']['id'],$kitu.$kitu);
+                   
+                }
+            }
+    }
+?>
 <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
@@ -5,7 +20,6 @@
         </div>
     </div>
 </div>
-
 <div class="row-fluid">
     <div class="span12">
         <?php echo $this->Form->create('Categoryproduct', array('action' => 'add')); ?>
@@ -22,10 +36,15 @@
 
             <tr>
                 <td style="width:50%; text-align:center;font-size:15px">
-                    <strong><?php echo __('Hãng Sản Xuất'); ?></strong>
+                    <strong><?php echo __('Cấp cha'); ?></strong>
                 </td>
                 <td style="width:50%; text-align:center;font-size:15px">
-                    <?php echo $this->Form->select('idManufacture', $dataManufacturer , array('class'=>'span3')); ?>
+                     <select name="data[Categoryproduct][idParent]">
+                        <option value='0'>Không có</option>
+                        <?php
+                           printCategory($categorys,0, '++'); 
+                        ?>
+                     </select>
                 </td>
             </tr>
         
