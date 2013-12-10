@@ -144,5 +144,78 @@
             $Email->subject($subject);
             $Email->send($message);
         }
+        
+        public function export($id = null){
+            $this->Debited->id = $id;
+            if (!$this->Debited->exists($id)) {
+                throw new NotFoundException(__('Invalid bill'));
+            }
+            
+            $bill = $this->Debited->find('first', array(
+                'fields' => array('Debited.*, bills.*,users.name, users.id, 
+                customer.name, customer.id, customer.email, customer.address, customer.mobile, customer.isPartner, customer.isCustomer, customer.phone, customer.discount'), 
+                'conditions' => array('Debited.' . $this->Debited->primaryKey => $id),
+                'joins' => array(
+                    array(
+                        'table' => 'bills',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        'foreignKey' => 'idBill',
+                        'conditions' => array('Debited.idBill=bills.id')),
+                    array(
+                        'table' => 'users',
+                        'alias' => 'customer',
+                        'type' => 'left',
+                        //     'foreignKey' => 'idBill',
+                        'conditions' => array('Debited.idUser=customer.id')),
+                    array(
+                        'table' => 'users',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        //     'foreignKey' => 'idBill',
+                        'conditions' => array('bills.idUser=users.id')),
+                )
+            ));
+
+            $this->loadModel('Detailstock');           
+
+            $detailbills = $this->Detailstock->find('all', array(
+                'fields' => array('Detailstock.*, products.nameProduct, products.id, products.price, products.retail, products.wholesale, units.nameUnit'), 
+                'conditions' => array('Detailstock.idBill' => $bill['bills']['id']),
+                'joins' => array(
+                    array(
+                        'table' => 'products',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        //            'foreignKey' => 'idProduct',
+                        'conditions' => array('Detailstock.idProduct=products.id')),
+                    array(
+                        'table' => 'units',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        //     'foreignKey' => 'idBill',
+                        'conditions' => array('products.idUnit=units.id')),
+                )
+            ));
+            
+            $this->loadModel('Info');
+            $info = $this->Info->find('first',array('conditions' => array('Info.id=1')));
+            
+            $date = explode('-',$bill['Debited']['time']);
+            $bill['Debited']['time'] = $date[2].'/'.$date[1].'/'.$date[0]; 
+            if($bill['customer']['discount'] == '')
+                $bill['customer']['discount'] = 0;
+            if($bill['customer']['phone'] == '')
+                $bill['customer']['phone'] = $bill['customer']['mobile'];       
+            //echo '<pre>';
+//            print_r($detailbills); 
+//            echo '</pre>';exit;
+            $this->set(compact('bill','detailbills','id','info'));
+            
+            Configure::write('debug',0);
+            $this->layout = 'pdf'; //this will use the pdf.ctp layout 
+            $this->render();
+              
+        }
     }
 ?>

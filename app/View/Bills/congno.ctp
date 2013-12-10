@@ -58,6 +58,7 @@
                                     echo $this->Html->link('Thanh toán', array('controller' => 'debits','action' => 'xacnhanthanhtoan', $Debit['Debit']['id']), array('class'=>''));     
                                 }
                             ?>
+                            <?php echo $this->Html->link('Xuất', array('controller' => 'debits','action' => 'export', $Debit['Debit']['id']), array('class'=>'tt', 'escape'=>false, 'data-toggle'=>'tooltip', 'data-original-title'=> 'Xuất hóa đơn '.$Debit['Debit']['id'])); ?>
                         </td>
                         </tr>
                         <?php endforeach; ?>
@@ -107,6 +108,7 @@
                                     echo $this->Html->link('Thanh toán', array('controller' => 'debiteds','action' => 'xacnhanthanhtoan', $Debited['Debited']['id']), array('class'=>''));     
                                 }
                             ?>
+                            <?php echo $this->Html->link('Xuất', array('controller' => 'debiteds','action' => 'export', $Debited['Debited']['id']), array('class'=>'tt', 'escape'=>false, 'data-toggle'=>'tooltip', 'data-original-title'=> 'Xuất hóa đơn '.$Debited['Debited']['id'])); ?>
                         </td>
                         </tr>
                         <?php endforeach; ?>
