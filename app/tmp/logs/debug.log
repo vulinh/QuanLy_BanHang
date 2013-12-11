@@ -166,3 +166,59 @@ Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 187
 Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 162
 [main] - APP/webroot/index.php, line 110
 
+2013-12-11 16:33:17 Debug: Notice (8): Undefined index: Info in [C:\xampp\htdocs\QuanLy_BanHang\app\View\Debits\export.ctp, line 23]
+Trace:
+include - APP\View\Debits\export.ctp, line 23
+View::_evaluate() - CORE\Cake\View\View.php, line 931
+View::_render() - CORE\Cake\View\View.php, line 893
+View::render() - CORE\Cake\View\View.php, line 462
+Controller::render() - CORE\Cake\Controller\Controller.php, line 952
+DebitsController::export() - APP\Controller\DebitsController.php, line 259
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 187
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 162
+[main] - APP\webroot\index.php, line 110
+
+2013-12-11 16:33:17 Debug: Notice (8): Undefined index: Info in [C:\xampp\htdocs\QuanLy_BanHang\app\View\Debits\export.ctp, line 26]
+Trace:
+include - APP\View\Debits\export.ctp, line 26
+View::_evaluate() - CORE\Cake\View\View.php, line 931
+View::_render() - CORE\Cake\View\View.php, line 893
+View::render() - CORE\Cake\View\View.php, line 462
+Controller::render() - CORE\Cake\Controller\Controller.php, line 952
+DebitsController::export() - APP\Controller\DebitsController.php, line 259
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 187
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 162
+[main] - APP\webroot\index.php, line 110
+
+2013-12-11 16:33:17 Debug: Notice (8): Undefined index: Info in [C:\xampp\htdocs\QuanLy_BanHang\app\View\Debits\export.ctp, line 29]
+Trace:
+include - APP\View\Debits\export.ctp, line 29
+View::_evaluate() - CORE\Cake\View\View.php, line 931
+View::_render() - CORE\Cake\View\View.php, line 893
+View::render() - CORE\Cake\View\View.php, line 462
+Controller::render() - CORE\Cake\Controller\Controller.php, line 952
+DebitsController::export() - APP\Controller\DebitsController.php, line 259
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 187
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 162
+[main] - APP\webroot\index.php, line 110
+
+2013-12-11 16:33:17 Debug: Notice (8): Undefined index: Info in [C:\xampp\htdocs\QuanLy_BanHang\app\View\Debits\export.ctp, line 30]
+Trace:
+include - APP\View\Debits\export.ctp, line 30
+View::_evaluate() - CORE\Cake\View\View.php, line 931
+View::_render() - CORE\Cake\View\View.php, line 893
+View::render() - CORE\Cake\View\View.php, line 462
+Controller::render() - CORE\Cake\Controller\Controller.php, line 952
+DebitsController::export() - APP\Controller\DebitsController.php, line 259
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 187
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 162
+[main] - APP\webroot\index.php, line 110
+

@@ -44866,3 +44866,80 @@ Stack Trace:
 #3 C:\xampp\htdocs\QuanLy_BanHang\lib\Cake\Core\App.php(904): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2013-12-11 16:32:40 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /QuanLy_BanHang/js/jquery.tablesorter.pager.js
+Stack Trace:
+#0 C:\xampp\htdocs\QuanLy_BanHang\app\webroot\index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-12-11 16:32:57 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /QuanLy_BanHang/js/jquery.tablesorter.pager.js
+Stack Trace:
+#0 C:\xampp\htdocs\QuanLy_BanHang\app\webroot\index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-12-11 16:33:01 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [C:\xampp\htdocs\QuanLy_BanHang\app\Model\Categoryproduct.php, line 82]
+2013-12-11 16:33:02 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /QuanLy_BanHang/products
+Stack Trace:
+#0 C:\xampp\htdocs\QuanLy_BanHang\lib\Cake\Error\ErrorHandler.php(205): ErrorHandler::handleFatalError(64, 'Call-time pass-...', 'C:\xampp\htdocs...', 82)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', 'C:\xampp\htdocs...', 82, Array)
+#2 C:\xampp\htdocs\QuanLy_BanHang\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', 'C:\xampp\htdocs...', 82, Array)
+#3 C:\xampp\htdocs\QuanLy_BanHang\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-12-11 16:33:10 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /QuanLy_BanHang/js/jquery.tablesorter.pager.js
+Stack Trace:
+#0 C:\xampp\htdocs\QuanLy_BanHang\app\webroot\index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-12-11 16:33:15 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /QuanLy_BanHang/js/jquery.tablesorter.pager.js
+Stack Trace:
+#0 C:\xampp\htdocs\QuanLy_BanHang\app\webroot\index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-12-11 16:33:17 Warning: Warning (2): file_get_contents(data/utf8test.txt): failed to open stream: No such file or directory in [C:\xampp\htdocs\QuanLy_BanHang\app\View\Debits\export.ctp, line 6]
+Trace:
+file_get_contents - [internal], line ??
+include - APP\View\Debits\export.ctp, line 6
+View::_evaluate() - CORE\Cake\View\View.php, line 931
+View::_render() - CORE\Cake\View\View.php, line 893
+View::render() - CORE\Cake\View\View.php, line 462
+Controller::render() - CORE\Cake\Controller\Controller.php, line 952
+DebitsController::export() - APP\Controller\DebitsController.php, line 259
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 187
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 162
+[main] - APP\webroot\index.php, line 110
+
+2013-12-11 16:33:18 Warning: Warning (2): Cannot modify header information - headers already sent in [C:\xampp\htdocs\QuanLy_BanHang\app\View\Layouts\pdf.ctp, line 2]
+Trace:
+header - [internal], line ??
+include - APP\View\Layouts\pdf.ctp, line 2
+View::_evaluate() - CORE\Cake\View\View.php, line 931
+View::_render() - CORE\Cake\View\View.php, line 893
+View::renderLayout() - CORE\Cake\View\View.php, line 525
+View::render() - CORE\Cake\View\View.php, line 470
+Controller::render() - CORE\Cake\Controller\Controller.php, line 952
+DebitsController::export() - APP\Controller\DebitsController.php, line 259
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 187
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 162
+[main] - APP\webroot\index.php, line 110
+
