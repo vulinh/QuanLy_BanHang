@@ -15,6 +15,7 @@
     echo $this->Form->checkbox('isManagerSale');echo 'Nhân viên quản lý bán hàng';
     echo $this->Form->checkbox('isManagerFinance');echo 'Nhân viên quản lý tài chính';
     echo $this->Form->checkbox('isManagerStock');echo 'Nhân viên quản lý kho';
+    echo $this->Form->checkbox('isManagerHuman');echo 'Nhân viên quản lý nhân sự';
     echo '</fieldset>';
      echo $this->Form->hidden('id');
      echo '<fieldset><legend>Bộ Phận</legend>';

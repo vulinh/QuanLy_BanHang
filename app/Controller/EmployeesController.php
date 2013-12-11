@@ -19,12 +19,9 @@ class EmployeesController extends AppController{
 
 	function _listEmployeeGavePosition(){
 		$this->loadModel('User');
-		$dataUser2 = $this->User->find('all',
-			array('conditions'=>
-				array('AND'=>
-					array(
-						array('User.isEmployee'=>1),
-						array('User.isGavePosition'=>1)))));
+		$dataUser2 = $this->User->query('SELECT * FROM users INNER JOIN employees ON users.id = employees.id
+INNER JOIN departments ON employees.idDeparment = departments.id
+WHERE users.isEmployee =1 AND users.isGavePosition =1  ');
 		return $dataUser2;
 	}
 
@@ -55,7 +52,7 @@ class EmployeesController extends AppController{
             if ($this->Employee->save($this->request->data))
             {
             	$this->loadModel('User');
-            	$this->User->updateAll(array('User.isGavePosition' =>1), array('User.id' => $this->request->data['Employee']['idUser']));
+            	$this->User->updateAll(array('User.isGavePosition' =>1), array('User.id' => $this->request->data['Employee']['id']));
             	$this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
             	$this->redirect(array('controller'=>'employees','action'=>'list_employee'));
             }
@@ -81,7 +78,7 @@ class EmployeesController extends AppController{
             {
                 $this->Employee->updateAll
                 (array
-                    ('Employee.isManagerSale' =>$this->request->data['Employee']['isManagerSale'],'Employee.isManagerFinance' =>$this->request->data['Employee']['isManagerFinance'],'Employee.isManagerStock' =>$this->request->data['Employee']['isManagerStock'],'Employee.idDeparment' =>$this->request->data['Employee']['idDeparment']), array('Employee.id' => $this->request->data['Employee']['id']));
+                    ('Employee.isManagerSale' =>$this->request->data['Employee']['isManagerSale'],'Employee.isManagerFinance' =>$this->request->data['Employee']['isManagerFinance'],'Employee.isManagerStock' =>$this->request->data['Employee']['isManagerStock'],'Employee.isManagerHuman' =>$this->request->data['Employee']['isManagerHuman'],'Employee.idDeparment' =>$this->request->data['Employee']['idDeparment']), array('Employee.id' => $this->request->data['Employee']['id']));
                 // if ($this->Employee->save($this->request->data)) {
                     $this->Session->setFlash(__('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lưu Thành Công</h4></div>'));
                 //     $this->redirect(array('action' => 'add'));
@@ -106,6 +103,9 @@ class EmployeesController extends AppController{
      //thoai
         function salaries() 
         {
+           // echo '<pre>';
+//            print_r($this->request->data);
+//            echo '</pre>';
             if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
                 $this->loadModel('Salary');
                 $this->loadModel('User');

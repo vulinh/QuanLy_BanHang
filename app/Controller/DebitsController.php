@@ -118,7 +118,7 @@
                         'table' => 'products',
                         //     'alias' => 'Sector',
                         'type' => 'left',
-            //            'foreignKey' => 'idProduct',
+                        //            'foreignKey' => 'idProduct',
                         'conditions' => array('Detailstock.idProduct=products.id')),
                     array(
                         'table' => 'stocks',
@@ -129,8 +129,8 @@
                 )
             ));
             //echo '<pre>';
-//            print_r($detailbills);
-//            echo '</pre>';exit;
+            //            print_r($detailbills);
+            //            echo '</pre>';exit;
             $this->set(compact('bill','detailbills','id'));
         }
 
@@ -147,10 +147,10 @@
             if (!$this->Bill->exists($debit['Debit']['idBill'])) {
                 throw new NotFoundException(__('Invalid bill'));
             }
-            
+
             $dataSource = $this->Debit->getDataSource();
             $dataSource->begin();
-            
+
             $data = array('Debit' => array('id' => $id, 'status' => 1));
             if (!$this->Debit->save($data)) {
                 $dataSource->rollback();
@@ -158,7 +158,7 @@
                 $this->redirect(array('controller' => 'bills','action' => 'congno'));
                 exit;
             }
-            
+
             $data = array('Bill' => array('id' => $debit['Debit']['idBill'], 'status' => 1));
             if (!$this->Bill->save($data)) {
                 $dataSource->rollback();
@@ -168,11 +168,11 @@
             }
 
             $data = array('Expense' => array(
-                    'money' => $debit['Debit']['moneyDebit'],
-                    'idBill' =>$debit['Debit']['idBill'],
-                    'time' =>date('Y-m-d H:i:s'),
-                ));
-            
+                'money' => $debit['Debit']['moneyDebit'],
+                'idBill' =>$debit['Debit']['idBill'],
+                'time' =>date('Y-m-d H:i:s'),
+            ));
+
             $this->loadModel('Expense');
             if ($this->Expense->save($data)) {
                 $dataSource->commit();
@@ -184,6 +184,80 @@
                 $this->redirect(array('controller' => 'bills','action' => 'congno'));
                 exit;
             }
+        }
+
+        public function export($id = null){
+            if (!$this->Debit->exists($id)) {
+                throw new NotFoundException(__('Invalid bill'));
+            }
+            
+            $bill = $this->Debit->find('first', array(
+                'fields' => array('Debit.time,Debit.description, bills.*, typebills.nameTypeBill,
+                    typebills.id, suppliers.nameSupplier, suppliers.id,
+                users.name, users.id'), 
+                'conditions' => array('Debit.' . $this->Debit->primaryKey => $id),
+                'joins' => array(
+                    array(
+                        'table' => 'bills',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        'foreignKey' => 'idBill',
+                        'conditions' => array('Debit.idBill=bills.id')),
+                    array(
+                        'table' => 'typebills',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        //     'foreignKey' => 'idBill',
+                        'conditions' => array('bills.idTypeBill=typebills.id')),
+                    array(
+                        'table' => 'suppliers',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        //     'foreignKey' => 'idBill',
+                        'conditions' => array('Debit.idSupplier=suppliers.id')),
+                    array(
+                        'table' => 'users',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        //     'foreignKey' => 'idBill',
+                        'conditions' => array('bills.idUser=users.id')),
+                )
+            )); 
+
+            $this->loadModel('Detailstock');           
+
+            $detailbills = $this->Detailstock->find('all', array(
+                'fields' => array('Detailstock.*, products.nameProduct, products.id, products.price, units.nameUnit'), 
+                'conditions' => array('Detailstock.idBill' => $bill['bills']['id']),
+                'joins' => array(
+                    array(
+                        'table' => 'products',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        //            'foreignKey' => 'idProduct',
+                        'conditions' => array('Detailstock.idProduct=products.id')),
+                    array(
+                        'table' => 'units',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                        //     'foreignKey' => 'idBill',
+                        'conditions' => array('products.idUnit=units.id')),
+                )
+            ));
+            $this->loadModel('Info');
+            $info = $this->Info->find('first',array('conditions' => array('Info.id=1')));
+            
+            $date = explode('-',$bill['Debit']['time']);
+            $bill['Debit']['time'] = $date[2].'/'.$date[1].'/'.$date[0];         
+//            echo '<pre>';
+//            print_r($nowdate); 
+//            echo '</pre>';exit;
+            $this->set(compact('bill','detailbills','id','info'));
+            
+            Configure::write('debug',0);
+            $this->layout = 'pdf'; //this will use the pdf.ctp layout 
+            $this->render();
+              
         }
     }
 ?>

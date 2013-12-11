@@ -1,4 +1,29 @@
-
+<div class="row-fluid">
+	  <div class="span12">
+		<ul class="nav nav-tabs" id="tab_NV">
+		  <li class="active">
+		  	<a href="#" id='all'>Tất Cả</a>
+		  </li>
+		  <!--  -->
+		  <li>
+		  	<a href="#" id='today' data-filter-column="0" data-filter-text="<?php echo date('Y-m-d') ?>" >Hôm Nay
+		  	</a>
+		  </li>
+		  <li>
+		  	<a href="#" id='this_month' data-filter-column="0" data-filter-text="<?php echo date('Y-m') ?>">Tháng Này
+		  	</a>
+		  </li>
+		  <li>
+		  	<a href="#" id='this_year' data-filter-column="0" data-filter-text="<?php echo date('Y-') ?>">Năm Này
+		  	</a>
+		  </li>	
+		</ul>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span10 offset1">
+		<div class="tab-content">
+		  <div class="tab-pane active" id="not_yet">
 <table class="table table-bordered">
 	
 	<thead>
@@ -12,9 +37,9 @@
 	<?php
 		foreach ($dataDebit as $vdataDebit) {
 			echo "<tr><td>".$vdataDebit['Debit']['time']."</td>";
-			echo "<td>".$vdataDebit['Debit']['moneyDebit']."</td>";
+			echo "<td>".number_format($vdataDebit['Debit']['moneyDebit'])."</td>";
 			echo "<td>".$vdataDebit['Debit']['idBill']."</td>";
-			echo "<td>".$vdataDebit['Suppliers']['nameSupplier']."</td>		
+			echo "<td>".$vdataDebit['Supplier']['nameSupplier']."</td>		
 			</tr>";
 		}
 	 ?>
@@ -47,4 +72,23 @@
 	 	</tr>
 	 </tfoot>
 </table>
+</div></div></div></div>
+<?php echo $this->Html->script('libs/bootstrap-tab');
+echo $this->fetch('script');?>
+<script>
+	$('#tab_NV a').click(function (e) {
+  		e.preventDefault();
+  		$(this).tab('show');
+  		var filters = [],
+      	$t = $(this),
+      	col = $t.data('filter-column'),
+      	txt = $t.data('filter-text') || $t.text();
+      	filters[col] = txt;
+      	$.tablesorter.setFilters( $('table.hasFilters'), filters, true );
+      	return false;
+  	});
+</script>
 
+<script>
+	$('#tab_NV #all').tab('show');
+</script>

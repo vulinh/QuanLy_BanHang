@@ -57,7 +57,7 @@ class DATABASE_CONFIG {
 		'database' => 'quanlybanhang',
 		'prefix' => '',
 		'encoding' => 'utf8',
-        // 'mysqlpath' => 'C:\xampp\mysql\bin',
+                'mysqlpath' => '',
 	);
 
 	public $test = array(

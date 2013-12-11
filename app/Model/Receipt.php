@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  */
 class Receipt extends AppModel {
-	public $useTable = 'Receipt';
+	public $useTable = 'receipt';
 	var $name = 'Receipt';
 
 

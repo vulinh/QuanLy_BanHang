@@ -22,7 +22,9 @@
         * @return void
         */
         public function index() {
-            // $this->Bill->recursive = 0;
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) 
+            {
+            $this->_positionSS();
             $this->paginate = array(
                 'limit' => 9,
                 'order' => array(
@@ -31,6 +33,10 @@
                 )
             );
             $this->set('bills', $this->paginate());
+            }
+            else{
+                $this->redirect(array('controller'=>'users','action'=>'login'));
+            }
         }
 
         /**
@@ -41,11 +47,18 @@
         * @return void
         */
         public function view($id = null) {
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) 
+            {
+            $this->_positionSS();
             if (!$this->Bill->exists($id)) {
                 throw new NotFoundException(__('Invalid bill'));
             }
             $options = array('conditions' => array('Bill.' . $this->Bill->primaryKey => $id));
             $this->set('bill', $this->Bill->find('first', $options));
+            }
+            else{
+                $this->redirect(array('controller'=>'users','action'=>'login'));
+            }
         }
 
         /**
@@ -54,6 +67,9 @@
         * @return void
         */
         public function add() {
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) 
+            {
+		$this->_positionSS();
             if (!empty($this->request->data))
             {
                 $this->Bill->create();
@@ -80,9 +96,13 @@
                     $this->Session->setFlash(__('Không thể thêm hóa đơn, vui lòng kiểm tra lại'), 'flash/error');
                 }
             }
-            $this->loadModel('TypeBill');
+            }
+            else{
+                $this->redirect(array('controller'=>'users','action'=>'login'));
+            }
+            $this->loadModel('Typebill');
             // $this->loadModel('User');
-            $typeBills = $this->TypeBill->find('list', array('fields' => array('nameTypeBill')));
+            $typeBills = $this->Typebill->find('list', array('fields' => array('nameTypeBill')));
             //$users = $this->Bill->User->find('list');
             $this->set(compact('typeBills'));
         }
@@ -95,6 +115,9 @@
         * @return void
         */
         public function edit($id = null) {
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) 
+            {
+		$this->_positionSS();
             $this->Bill->id = $id;
             if (!$this->Bill->exists($id)) {
                 throw new NotFoundException(__('Invalid bill'));
@@ -109,6 +132,10 @@
             } else {
                 $options = array('conditions' => array('Bill.' . $this->Bill->primaryKey => $id));
                 $this->request->data = $this->Bill->find('first', $options);
+            }
+            }
+            else{
+                $this->redirect(array('controller'=>'users','action'=>'login'));
             }
             $this->loadModel('TypeBill');
             // $this->loadModel('User');
@@ -126,6 +153,9 @@
         * @return void
         */
         public function delete($id = null) {
+        if ($this->Session->check('userSS') && $this->Session->check('passSS')) 
+            {
+		$this->_positionSS();
             if (!$this->request->is('post')) {
                 throw new MethodNotAllowedException();
             }
@@ -139,9 +169,17 @@
             }
             $this->Session->setFlash(__('Không thể xóa hóa đơn '.$id), 'flash/error');
             $this->redirect(array('action' => 'index'));
+            }
+            else{
+                $this->redirect(array('controller'=>'users','action'=>'login'));
+            }
         }
         //Thoại
         public function congno() { 
+     
+if ($this->Session->check('userSS') && $this->Session->check('passSS')) 
+            {
+		$this->_positionSS();
             $this->loadModel('Debit');
             
             $listDebit = $this->Debit->find('all', array(
@@ -195,6 +233,51 @@
                         )
                 ));      
             $this->set(compact('listDebit','listDebited'));
+            }
+            else{
+                $this->redirect(array('controller'=>'users','action'=>'login'));
+            }
+        }
+        
+        public function _positionSS(){
+            if($this->Session->read('positionSS')== 1){
+                   $this->layout = 'default';
+                   // $this->redirect(array('controller'=>'users','action'=>'index'));
+                }
+                else
+                {
+
+                        if ($this->Session->read('positionSS')== 2) 
+                        {
+                            $this->layout = 'sale';
+                            $this->redirect(array('controller'=>'detailstocks','action'=>'export'));
+                        }
+                        else
+                        {
+                            if ($this->Session->read('positionSS')== 3)
+                            {
+                                $this->layout = 'finance';
+                                // $this->redirect(array('controller'=>'bills','action'=>'index'));
+                            }
+                            else
+                            {
+                                if ($this->Session->read('positionSS')== 4)
+                                {
+                                    $this->layout = 'stock';
+                                    // $this->redirect(array('controller'=>'stocks','action'=>'index'));
+                                }
+                                else
+                                {
+                                    if ($this->Session->read('positionSS')== 5)
+                                    {
+                                        $this->layout = 'human';
+                                        $this->redirect(array('controller'=>'users','action'=>'index'));
+                                    }
+                                }
+                            }
+                        }
+                        
+                }
         }
         //end
     }

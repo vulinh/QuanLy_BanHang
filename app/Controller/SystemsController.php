@@ -17,16 +17,11 @@
         var  $components = array('Session');
         public $theme = 'Cakestrap';
 
-        /**
-        * index method
-        *
-        * @return void
-        */
-        public function index() {
 
-        }
+
 
         public function backup() {
+            if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
             $db = $this->System->getDataSource()->config;
             //            $outputfilename = backup_tables($db['host'],$db['login'],$db['password'],$db['database']);
             //            
@@ -54,8 +49,13 @@
             unlink($outputfilename);
             exit;
         }
+        else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+        }
 
         public function restore(){
+           if ($this->Session->check('userSS') && $this->Session->check('passSS')) { 
             if ($this->request->is('post') || $this->request->is('put')) {
 
                 $target_path = getcwd();
@@ -79,13 +79,16 @@
             }
 
         }
+        else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
 
     }
 
     /* backup the db OR just a table */
     function backup_tables($host,$user,$pass,$name,$tables = '*')
     {
-
+if ($this->Session->check('userSS') && $this->Session->check('passSS')) {
         $link = mysql_connect($host,$user,$pass);
         mysql_select_db($name,$link);
 
@@ -144,4 +147,9 @@
         fclose($handle);
         return $filename;
     }
+    else{
+      $this->redirect(array('controller'=>'users','action'=>'login'));
+    }
+}
+}
 

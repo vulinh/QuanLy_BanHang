@@ -1,48 +1,63 @@
-
-<div id="page-container" class="row">
-
-	<div id="sidebar" class="col-sm-3">
-		
-		<div class="actions">
-		
-			<ul class="list-group">
-                            <li class="list-group-item" style="list-style: none">
-                                    <?php echo $this->Html->link(__('Danh sách nhà cung cấp'), array('action' => 'index'), array('class' => 'btn btn-default pull-right','style' => 'margin-top: 5px')); ?>
-                                </li>
-			</ul><!-- /.list-group -->
-		
-		</div><!-- /.actions -->
-		
-	</div><!-- /#sidebar .col-sm-3 -->
-	
-	<div id="page-content" class="col-sm-9">
-
-		<h2><?php echo __('Thêm nhà cung cấp'); ?></h2>
-
-		<div class="manufacturers form">
-		
-			<?php echo $this->Form->create('Manufacturer', array('role' => 'form')); ?>
-
-				<fieldset>
-
-					<div class="form-group">
-						<?php echo $this->Form->input('nameManufacturer', array('label' => 'Tên nhà cung cấp', 'type' => 'text','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('logo', array('label' => 'URL logo', 'type' => 'text','class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('enable', array('type' => 'checkbox','checked'=>true, 'value'=>'1', 'class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-
-					<?php echo $this->Form->submit('Thêm', array('class' => 'btn btn-large btn-primary')); ?>
-
-				</fieldset>
-
-			<?php echo $this->Form->end(); ?>
-
-		</div><!-- /.form -->
+<div class="row-fluid">
+    <div class="span12">
+        <div class="well" style="text-align:center;font-size:30px">
+            <?php echo __('THÊM NHÀ SẢN XUẤT'); ?>
+        </div>
+    </div>
+</div> 
+<div class="row-fluid">    
+	<div class="span12">	
+			<?php echo $this->Form->create('Manufacturer', array('action' => 'add')); ?>
+			<table class="table table-striped table-bordered table-advance table-hover">
+				<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Tên Nhà Sản Xuất'); ?></strong>
+				</td>
+				
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('nameManufacturer', array('label' => false, 'type' => 'text','div' => false)); ?>
+				</td>
+			</tr>	
 			
-	</div><!-- /#page-content .col-sm-9 -->
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('URL logo'); ?></strong>
+				</td>
+				
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('logo', array('label' => false, 'type' => 'text','div' => false)); ?>
+				</td>
+			</tr>
+			
+			<tr>
+				<td style="width:50%; text-align:center;font-size:15px">
+					<strong><?php echo __('Hiển Thị?'); ?></strong>
+				</td>
+				
+				<td style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Form->input('enable', array('div'=>false,'label'=>false,'type' => 'checkbox','checked'=>true, 'value'=>'1')); ?>
+					
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan=2 style="width:50%; text-align:center;font-size:15px">
+					<?php echo $this->Html->link('Quay Lại',array('controller'=>'manufacturers','action'=>'index'),array('class'=>'btn btn-success pull-right','style'=>'margin-top:30px;'));
+            echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px;margin-top:30px;')); ?>
+					&nbsp;
+				</td>
+			</tr>
+			
+					
+			
+					
+			
+			</table>
+			<?php echo $this->Form->end(); ?>
+			
+				
+	
+			
+	</div>
 
-</div><!-- /#page-container .row-fluid -->
+</div>

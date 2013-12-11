@@ -17,7 +17,7 @@
         </td>
 </tr><tr>        <td><strong><?php echo __('Giá trị'); ?></strong></td>
         <td>
-            <?php echo h($salary['Salary']['amount']); ?>
+            <?php echo number_format(h($salary['Salary']['amount'])); ?>
             &nbsp;
         </td>
 </tr>                    </tbody>

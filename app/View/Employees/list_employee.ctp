@@ -9,9 +9,12 @@ foreach ($dataUserNotGivePosition as $userNotGivePosition) {
 	echo $userNotGivePosition['User']['username'];
 	echo $this->Form->create('Employee', array('controller'=>'employees','action' => 'givePosition','class' => 'form-horizontal'));
 	echo $this->Form->checkbox('isManagerSale');echo 'Nhân viên quản lý bán hàng';
+	
 	echo $this->Form->checkbox('isManagerFinance');echo 'Nhân viên quản lý tài chính';
 	echo $this->Form->checkbox('isManagerStock');echo 'Nhân viên quản lý kho';
-	echo $this->Form->hidden('idUser',array('value'=>$userNotGivePosition['User']['id']));
+	echo $this->Form->checkbox('isManagerHuman');echo 'Nhân viên quản lý nhân sự';
+	echo $this->Form->input('id',array('value'=>$userNotGivePosition['User']['id']));
+	echo $this->Form->text('idSalary',array('value'=>1));
 	echo $this->Form->select('idDeparment',$dataDepartment,array('class'=>'span2'));
 	echo $this->Form->end('Xác Nhận Phân Quyền Cho '.$userNotGivePosition['User']['username']);
 }
@@ -36,4 +39,3 @@ if($userGavePosition['User']['username']!='admin'){
 ?>
 </div>
 </div>
-
