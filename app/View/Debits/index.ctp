@@ -43,8 +43,8 @@
 				// echo '<td>'.$valueUser['users']['id'].'</td>';
 				echo '<td>'.$valueDebit['Debit']['id'].'</td>';
         // echo '<td class="is_password">'.$valueUser['users']['pword'].'</td>';
-        echo '<td>'.$valueDebit['Debit']['moneyDebit'].'</td>';
-        echo '<td>'.$valueUser['Debit']['moneyDebited'].'</td>';
+        echo '<td>'.number_format($valueDebit['Debit']['moneyDebit']).'</td>';
+        echo '<td>'.number_format($valueUser['Debit']['moneyDebited']).'</td>';
         // echo '<td>'.$valueUser['users']['phone'].'</td>';
         // echo '<td>'.$valueUser['users']['mobile'].'</td>';
         // echo '<td>'.$valueUser['areas']['nameArea'].'</td>';

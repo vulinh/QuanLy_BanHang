@@ -18,20 +18,31 @@
 			echo $this->Html->css('style.min');
 			echo $this->Html->css('style_responsive');
 			echo $this->Html->css('style_default');
-			echo $this->Html->css('jquery.fancybox');
-			echo $this->Html->css('uniform.default');
-			echo $this->Html->css('bootstrap-fullcalendar');
-			echo $this->Html->css('jqvmap');
-			echo $this->Html->css('bootstrap-fullcalendar');
-			echo $this->Html->css('main');
+			echo $this->Html->css('fancybox');
+			echo $this->Html->css('uniform');
+			echo $this->Html->css('css-bootstrap-fullcalendar');
+			echo $this->Html->css('css-jqvmap');
+			echo $this->Html->css('jquery.appendGrid-1.2.0');
+			echo $this->Html->css('theme.bootstrap');
+			echo $this->Html->css('jquery.tablesorter.pager');
+			echo $this->Html->script('jquery.tablesorter.pager');
+			
 
-			echo $this->fetch('css');
+
+			echo $this->Html->css('main_web');
+
+			// echo $this->fetch('css');
 			
-			echo $this->Html->script('jquery-1.8.3.min');
+			echo $this->Html->script('jquery.min');
 			echo $this->Html->script('libs/bootstrap.min');
-			
-			echo $this->fetch('script');
+			echo $this->Html->script('jquery.tablesorter');
+			echo $this->Html->script('jquery.tablesorter.widgets');
+			echo  $this->Html->script('message');
+
+			// echo $this->fetch('script');
 		?>
+
+
 	</head>
 	<body class="fixed-top">
 		<div id="header" class="navbar navbar-inverse navbar-fixed-top">
@@ -46,81 +57,24 @@
 						<span class="icon-bar"></span>
 						<span class="arrow"></span>
 					</a>
-					<!--<div id="top_menu" class="nav notify-row">
+					<div id="top_menu" class="nav notify-row">
 						<ul class="nav top-menu">
-							<li class="dropdown">
+						<!--	<li class="dropdown">
 								<a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Settings">
 									<i class="icon-cog"></i>
 								</a>
-							</li>
+							</li>   -->
 							<li class="dropdown" id="header_inbox_bar">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="icon-envelope-alt"></i>
-									<span class="badge badge-important">5</span>
-								</a>
-								<ul class="dropdown-menu extended inbox">
-									<li>
-										<p>You have 5 new messages</p>
-									</li>
-									<li>
-										<a href="#">
-											<span class="photo"><img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="avatar">
-											</span>
-											<span class="subject">
-												<span class="from">Dulal Khan
-												</span>
-												<span class="time">Just now</span>
-											</span>
-											<span class="message"> Hello, this is an example messages please check 
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="photo">
-												<img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="avatar">
-											</span>
-											<span class="subject">
-												<span class="from">Rafiqul Islam
-												</span>
-												<span class="time">10 mins</span>
-											</span>
-											<span class="message"> Hi, Mosaddek Bhai how are you ? 
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="photo">
-												<img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="avatar">
-											</span>
-											<span class="subject">
-												<span class="from">Sumon Ahmed
-												</span>
-												<span class="time">3 hrs
-												</span>
-											</span>
-											<span class="message"> This is awesome dashboard templates </span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="photo">
-												<img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="avatar">
-											</span>
-											<span class="subject">
-												<span class="from">Dulal Khan</span>
-												<span class="time">Just now</span>
-											</span>
-											<span class="message"> Hello, this is an example messages please check </span>
-										</a>
-									</li>
-									<li>
-										<a href="#">See all messages</a>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown" id="header_notification_bar">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-envelope-alt"></i>
+                                    <span class="badge badge-important messageNumber"></span>
+                                </a>
+                                <ul class="dropdown-menu extended inbox" id='newmessage'>
+                                    
+                                </ul>
+                            </li>
+                            
+						<!--	<li class="dropdown" id="header_notification_bar">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<i class="icon-bell-alt"></i>
 									<span class="badge badge-warning">7</span>
@@ -179,9 +133,9 @@
 										</a>
 									</li>
 								</ul>
-							</li>
+							</li> -->
 						</ul>
-					</div>-->
+					</div>
 					<div class="top-nav ">
 						<ul class="nav pull-right top-menu">
 							<!--<li class="dropdown mtop5">
@@ -197,7 +151,7 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="">
-									<span class="username">Padyn Team
+									<span class="username"><?php echo $this->Session->read('userSS') ?>
 									</span>
 									<b class="caret"></b>
 								</a>
@@ -244,23 +198,10 @@
 					<a href="javascript:;" class="">
 						<span class="icon-box">
 							<i class="icon-user"></i>
-						</span> Quản Lý Nhân Sự 
-						<span class="arrow"></span>
+						</span>  Nhân Sự <i class="icon-lock"></i>
+						<!-- <span class="arrow"></span> -->
 					</a>
-					<ul class="sub">
-						<li>
-							<?php echo $this->Html->link('Người Dùng',array('controller'=>'users','action'=>'index')) ?>
-						</li>
-						<li>
-							<?php echo $this->Html->link('Phân Quyền',array('controller'=>'employees','action'=>'index')) ?>
-						</li>
-						<!-- <li>
-							<a class="" href="./ui_elements_tabs_accordions.html">Tabs &amp; Accordions</a>
-						</li> -->
-						<!-- <li>
-							<a class="" href="./ui_elements_typography.html">Typography</a>
-						</li> -->
-					</ul>
+					
 				</li>
 				<li class="has-sub">
 					<a href="javascript:;" class="">
@@ -288,6 +229,41 @@
 						
 					</ul>
 				</li>
+
+				<li class="has-sub">
+					<a href="javascript:;" class="">
+						<span class="icon-box">
+							<i class="icon-home"></i>
+						</span> Quản Lý Kho 
+						<span class="arrow"></span>
+					</a>
+					<ul class="sub">
+						<li>
+							<?php echo $this->Html->link('Kho',array('controller'=>'stocks','action'=>'index')) ?>
+						</li>
+						<li>
+							<?php echo $this->Html->link('Loại Kho',array('controller'=>'typestocks','action'=>'index')) ?>
+						</li>
+
+						<li>
+							<?php echo $this->Html->link('Nhập Hàng',array('controller'=>'detailstocks','action'=>'import')) ?>
+						</li>
+
+						<li>
+							<?php echo $this->Html->link('Xuất Hàng',array('controller'=>'detailstocks','action'=>'export')) ?>
+						</li>
+					</ul>
+				</li>
+                
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                        <span class="icon-box">
+                            <i class="icon-file-alt"></i>
+                        </span> Hóa Đơn <i class="icon-lock"></i>
+                        <!-- <span class="arrow"></span> -->
+                    </a>
+                   
+                </li>
 				
 			</ul>
 		</div>
@@ -299,13 +275,13 @@
 		</div>
 
 
-
-<div id="footer"> 2013 © Padyn. <div class="span pull-right"><span class="go-top"><i class="icon-arrow-up"></i></span></div></div>
+</div>
+<div id="footer"> 2013 © Padyn.<br/> <div class="span pull-right"><span class="go-top"><i class="icon-arrow-up"></i></span></div></div>
 		<?php echo $this->Html->script('jquery-ui-1.9.2.custom.min'); ?>
 		<?php echo $this->Html->script('jquery.slimscroll.min'); ?> 
 		<?php echo $this->Html->script('fullcalendar.min'); ?> 
-		<?php echo $this->Html->script('blockui'); ?> 
-		<?php echo $this->Html->script('cookie'); ?> 
+		<?php echo $this->Html->script('jquery.blockui'); ?> 
+		<?php echo $this->Html->script('jquery.cookie'); ?> 
 		<?php echo $this->Html->script('jquery.vmap'); ?> 
 		<?php echo $this->Html->script('jquery.vmap.russia'); ?> 
 		<?php echo $this->Html->script('jquery.vmap.world'); ?>
@@ -313,17 +289,22 @@
 		<?php echo $this->Html->script('jquery.vmap.germany'); ?>
 		<?php echo $this->Html->script('jquery.vmap.usa'); ?>
 		<?php echo $this->Html->script('jquery.vmap.sampledata'); ?>
-		<?php echo $this->Html->script('jquery.knob'); ?> 
-		<?php echo $this->Html->script('jquery.flot'); ?> 
-		<?php echo $this->Html->script('jquery.flot.resize'); ?> 
+		<?php echo $this->Html->script('knob'); ?> 
+		<?php echo $this->Html->script('flot'); ?> 
+		<?php echo $this->Html->script('flot.resize'); ?> 
 		<?php echo $this->Html->script('jquery.flot.pie'); ?> 
 		<?php echo $this->Html->script('jquery.flot.stack'); ?> 
 		<?php echo $this->Html->script('jquery.flot.crosshair'); ?> 
-		<?php echo $this->Html->script('jquery.peity.min'); ?> 
+		<?php echo $this->Html->script('peity.min'); ?> 
 		<?php echo $this->Html->script('jquery.uniform.min'); ?> 
-		<?php echo $this->Html->script('jquery.dataTables'); ?> 
+		<?php echo $this->Html->script('dataTables'); ?> 
 		<?php echo $this->Html->script('DT_bootstrap'); ?> 
-		<?php echo $this->Html->script('scripts'); 
+		<?php echo $this->Html->script('jquery.scripts'); ?>
+		
+
+		
+		
+		<?php
 		echo $this->Html->script('libs/bootstrap-tooltip');
  		?> 
 		<script>jQuery(document).ready(
@@ -339,9 +320,81 @@
 		$(document).ready(function() {
 			$('.is_password').hide();
 			$('.tt').tooltip();
+            
+            loadnewmessage('<?php echo $this->webroot; ?>');
 		});
 	
 		</script>
-		<?php echo $this->fetch('script');?>
+
+		<script type="text/javascript">
+$(function() {
+
+  $.extend($.tablesorter.themes.bootstrap, {
+    // these classes are added to the table. To see other table classes available,
+    // look here: http://twitter.github.com/bootstrap/base-css.html#tables
+    table      : 'table table-bordered',
+    caption    : 'caption',
+    header     : 'bootstrap-header', // give the header a gradient background
+    footerRow  : '',
+    footerCells: '',
+    icons      : '', // add "icon-white" to make them white; this icon class is added to the <i> in the header
+    sortNone   : 'bootstrap-icon-unsorted',
+    sortAsc    : 'icon-chevron-up glyphicon glyphicon-chevron-up',     // includes classes for Bootstrap v2 & v3
+    sortDesc   : 'icon-chevron-down glyphicon glyphicon-chevron-down', // includes classes for Bootstrap v2 & v3
+    active     : '', // applied when column is sorted
+    hover      : 'opacity:0.7', // use custom css here - bootstrap class may not override it
+    filterRow  : '', // filter row class
+    even       : '', // odd row zebra striping
+    odd        : ''  // even row zebra striping
+  });
+
+  // call the tablesorter plugin and apply the uitheme widget
+  $("table").tablesorter({
+    // this will apply the bootstrap theme if "uitheme" widget is included
+    // the widgetOptions.uitheme is no longer required to be set
+    theme : "bootstrap",
+
+    widthFixed: true,
+
+    headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
+
+    // widget code contained in the jquery.tablesorter.widgets.js file
+    // use the zebra stripe widget if you plan on hiding any rows (filter widget)
+    widgets : [ "uitheme", "filter", "zebra" ],
+
+    widgetOptions : {
+      // using the default zebra striping class name, so it actually isn't included in the theme variable above
+      // this is ONLY needed for bootstrap theming if you are using the filter widget, because rows are hidden
+      zebra : ["even", "odd"],
+
+      // reset filters button
+      filter_reset : ".reset"
+
+      // set the uitheme widget to use the bootstrap theme class names
+      // this is no longer required, if theme is set
+      // ,uitheme : "bootstrap"
+
+    }
+  })
+  .tablesorterPager({
+
+    // target the pager markup - see the HTML block below
+    container: $(".ts-pager"),
+
+    // target the pager page select dropdown - choose a page
+    cssGoto  : ".pagenum",
+
+    // remove rows from the table to speed up the sort of large tables.
+    // setting this to false, only hides the non-visible rows; needed if you plan to add/remove rows with the pager enabled.
+    removeRows: false,
+
+    // output string - default is '{page}/{totalPages}';
+    // possible variables: {page}, {totalPages}, {filteredPages}, {startRow}, {endRow}, {filteredRows} and {totalRows}
+    output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
+
+  });
+
+});
+		</script>
 	</body>
 </html>

@@ -1,8 +1,8 @@
 <div class="row-fluid">
     <div class="span12">
-        <div class="well" style="text-align:center;font-size:30px">
+        <div class="well" style="text-align:center;font-size:25px">
        
-           NGƯỜI DÙNG <?php echo '(ID: '.$idUser.')' ?>
+           NGƯỜI DÙNG
         </div>
     </div>
 </div>

@@ -8,7 +8,7 @@
 
 <div class="row-fluid">
   <div class="span2 pull-right">
-    <?php echo $this->Html->link('Tạo Mới   ',array('controller'=>'suppliers','action'=>'add'),array('class'=>'btn btn-success')) ?>
+    <?php echo $this->Html->link('Tạo Mới   ',array('controller'=>'manufacturers','action'=>'add'),array('class'=>'btn btn-success')) ?>
   </div>
 </div>
 

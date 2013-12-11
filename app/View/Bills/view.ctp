@@ -23,7 +23,7 @@
         </td>
 </tr><tr>        <td><strong><?php echo __('Tổng tiền'); ?></strong></td>
         <td>
-            <?php echo h($bill['Bill']['total']); ?>
+            <?php echo number_format(h($bill['Bill']['total'])); ?>
             &nbsp;
         </td>
 </tr><tr>        <td><strong><?php echo __('Người lập'); ?></strong></td>
@@ -33,13 +33,7 @@
         </td>
 </tr><tr>        <td><strong><?php echo __('Trạng thái'); ?></strong></td>
         <td>
-            <?php 
-                if($bill['Bill']['status'] == 0){
-                    echo 'Chưa thanh toán'; 
-                }else{
-                    echo 'Đã thanh toán';
-                }
-            ?>
+            <?php echo h($bill['Bill']['status']); ?>
             &nbsp;
         </td>
 </tr>                    </tbody>

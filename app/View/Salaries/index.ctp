@@ -31,7 +31,7 @@
     <tr>
         <td><?php echo h($salary['Salary']['id']); ?>&nbsp;</td>
         <td><?php echo h($salary['Salary']['name']); ?>&nbsp;</td>
-        <td><?php echo h($salary['Salary']['amount']); ?>&nbsp;</td>
+        <td><?php echo number_format(h($salary['Salary']['amount'])); ?>&nbsp;</td>
         <td class="actions"> 
             <?php echo $this->Html->link('<i class="icon-list"></i>', array('action' => 'view', $salary['Salary']['id']), array('class'=>'tt', 'escape'=>false, 'data-toggle'=>'tooltip', 'data-original-title'=> 'Xem Chi Tiết '.$salary['Salary']['name'])); ?>
             <?php echo $this->Html->link('<i class=" icon-pencil"></i>', array('action' => 'edit', $salary['Salary']['id']), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$salary['Salary']['name'])); ?>

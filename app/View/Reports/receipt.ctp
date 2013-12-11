@@ -1,3 +1,29 @@
+<div class="row-fluid">
+	  <div class="span12">
+		<ul class="nav nav-tabs" id="tab_NV">
+		  <li class="active">
+		  	<a href="#" id='all'>Tất Cả</a>
+		  </li>
+		  <!--  -->
+		  <li>
+		  	<a href="#" id='today' data-filter-column="0" data-filter-text="<?php echo date('Y-m-d') ?>" >Hôm Nay
+		  	</a>
+		  </li>
+		  <li>
+		  	<a href="#" id='this_month' data-filter-column="0" data-filter-text="<?php echo date('Y-m') ?>">Tháng Này
+		  	</a>
+		  </li>
+		  <li>
+		  	<a href="#" id='this_year' data-filter-column="0" data-filter-text="<?php echo date('Y-') ?>">Năm Này
+		  	</a>
+		  </li>	
+		</ul>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span9 offset1">
+		<div class="tab-content">
+		  <div class="tab-pane active" id="not_yet">
 
 <table class="table table-bordered">
 	
@@ -13,7 +39,7 @@
 	<?php
 		foreach ($dataReceipt as $receipt) {
 			echo "<tr><td>".$receipt['Receipt']['time']."</td>";
-			echo "<td>".$receipt['Receipt']['money']."</td>";
+			echo "<td>".number_format($receipt['Receipt']['money'])."</td>";
 			echo "<td>".$receipt['typebills']['nameTypeBill']."</td>";
 			echo "<td>".$receipt['users']['name']."</td>";
             if($receipt['bills']['status']==1){
@@ -55,3 +81,24 @@
 	 </tfoot>
 </table>
 
+</div></div></div></div>
+
+<?php echo $this->Html->script('libs/bootstrap-tab');
+echo $this->fetch('script');?>
+<script>
+	$('#tab_NV a').click(function (e) {
+  		e.preventDefault();
+  		$(this).tab('show');
+  		var filters = [],
+      	$t = $(this),
+      	col = $t.data('filter-column'),
+      	txt = $t.data('filter-text') || $t.text();
+      	filters[col] = txt;
+      	$.tablesorter.setFilters( $('table.hasFilters'), filters, true );
+      	return false;
+  	});
+</script>
+
+<script>
+	$('#tab_NV #all').tab('show');
+</script>

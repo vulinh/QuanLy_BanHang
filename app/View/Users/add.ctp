@@ -63,15 +63,3 @@
 </div>
 </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('input:checkbox:first').prop('checked', true);
-    });
-    
-
-    $('input:checkbox').change(function(event) {
-        $('input:checkbox:checked').not(this).prop('checked', false); 
-    });
-
-
-</script>

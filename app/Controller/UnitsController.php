@@ -24,6 +24,7 @@ class UnitsController extends AppController {
  */
 	public function index() {
 		if ($this->Session->check('userSS') && $this->Session->check('passSS')){ 
+			$this->_positionSS();
 			$this->Unit->recursive = 0;
 			$this->set('units', $this->paginate());
 		}
@@ -42,6 +43,7 @@ class UnitsController extends AppController {
  */
 	public function view($id = null) {
 		if ($this->Session->check('userSS') && $this->Session->check('passSS')) { 
+			$this->_positionSS();
 			if (!$this->Unit->exists($id)) {
 				throw new NotFoundException(__('Invalid unit'));
 			}
@@ -61,6 +63,7 @@ class UnitsController extends AppController {
  */
 	public function add() {
 		if ($this->Session->check('userSS') && $this->Session->check('passSS')){ 
+			$this->_positionSS();
 			if ($this->request->is('post')) {
 				$this->Unit->create();
 				if ($this->Unit->save($this->request->data)) {
@@ -86,6 +89,7 @@ class UnitsController extends AppController {
  */
 	public function edit($id = null) {
 		if ($this->Session->check('userSS') && $this->Session->check('passSS')){
+			$this->_positionSS();
         $this->Unit->id = $id;
 		if (!$this->Unit->exists($id)) {
 			throw new NotFoundException(__('Invalid unit'));
@@ -118,6 +122,7 @@ class UnitsController extends AppController {
  */
 	public function delete($id = null) {
 		if ($this->Session->check('userSS') && $this->Session->check('passSS')){
+			$this->_positionSS();
 			if (!$this->request->is('post')) {
 				throw new MethodNotAllowedException();
 			}
@@ -140,4 +145,44 @@ class UnitsController extends AppController {
 	    }
 	
 	}
+	public function _positionSS(){
+            if($this->Session->read('positionSS')== 1){
+                   $this->layout = 'default';
+                   // $this->redirect(array('controller'=>'users','action'=>'index'));
+                }
+                else
+                {
+
+                        if ($this->Session->read('positionSS')== 2) 
+                        {
+                            $this->layout = 'sale';
+                            $this->redirect(array('controller'=>'detailstocks','action'=>'export'));
+                        }
+                        else
+                        {
+                            if ($this->Session->read('positionSS')== 3)
+                            {
+                                $this->layout = 'finance';
+                                $this->redirect(array('controller'=>'bills','action'=>'index'));
+                            }
+                            else
+                            {
+                                if ($this->Session->read('positionSS')== 4)
+                                {
+                                    $this->layout = 'stock';
+                                    // $this->redirect(array('controller'=>'stocks','action'=>'index'));
+                                }
+                                else
+                                {
+                                    if ($this->Session->read('positionSS')== 5)
+                                    {
+                                        $this->layout = 'human';
+                                        $this->redirect(array('controller'=>'users','action'=>'index'));
+                                    }
+                                }
+                            }
+                        }
+                        
+                }
+        }
 }

@@ -1,17 +1,8 @@
 <?php
 class Debit extends AppModel{
 	var $name = 'Debit';
-	public $useTable = 'debits';
+	public $useTable = 'Debit';
 	
-	public $belongsTo = array(
-		'Suppliers' => array(
-			'className' => 'Suppliers',
-			'foreignKey' => 'idSupplier',
-			'conditions' => '',
-			'fields' => 'id,nameSupplier',
-			'order' => ''
-		),
-	);
 
 }
 ?>

@@ -115,4 +115,5 @@ class DetailbillsController extends AppController {
 		}
 		$this->Session->setFlash(__('Không thể xóa chi tiết hóa đơn '.$id), 'flash/error');
 		$this->redirect(array('action' => 'index'));
-	}}
+	}
+}

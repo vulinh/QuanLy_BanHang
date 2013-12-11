@@ -1,7 +1,12 @@
+<style>
+.span2 a:hover{
+	text-decoration:none;
+}
+</style>
 <div id="page" class="dashboard" style="padding:45px">
 	<div class="row-fluid circle-state-overview">
 		<div class="span2 responsive" data-tablet="span3" data-desktop="span2" style="background-color:#4cc5cd">
-			<div class="circle-stat block">
+			<a href="reports/user"><div class="circle-stat block">
 				<div class="visual">
 					<div class="circle-state-icon">
 						<i class="icon-user turquoise-color"></i>
@@ -15,12 +20,12 @@
 				<div class="number" style="color:transparent;font-weight:bolder"><?php echo $countAllUser?></div>
 				<div class="title" style="color:transparent;font-weight:bolder">Người Dùng</div>
 			</div>
-			</div>
+			</div></a>
 			
 		</div>
 
 		<div class="span2 responsive" data-tablet="span3" data-desktop="span2" style="background-color:#c8abdb">
-			<div class="circle-stat block">
+			<a href="reports/receipt"><div class="circle-stat block">
 				<div class="visual">
 				<div class="circle-state-icon">
 					<i class="icon-tags purple-color"></i>
@@ -33,14 +38,14 @@
 			<div class="details" >
 				<div class="number" style="color:transparent;font-weight:bolder">
 					<?php
-					echo $total .' VND';  ?></div>
+					echo number_format($total) .' VND';  ?></div>
 				<div class="title" style="color:transparent;font-weight:bolder">Thu</div>
 			</div>
-		</div>
+		</div></a>
 	</div>
 
 		<div class="span2 responsive" data-tablet="span3" data-desktop="span2" style="background-color:#b9baba">
-			<div class="circle-stat block">
+			<a href="reports/expense"><div class="circle-stat block">
 				<div class="visual">
 					<div class="circle-state-icon">
 						<i class="icon-shopping-cart gray-color"></i>
@@ -51,14 +56,14 @@
 				</div>
 				</div>
 				<div class="details">
-				<div class="number" style="color:transparent;font-weight:bolder"><?php echo $totalExpense ?></div>
+				<div class="number" style="color:transparent;font-weight:bolder"><?php echo number_format($totalExpense). ' VND' ?></div>
 				<div class="title" style="color:transparent;font-weight:bolder">Chi</div>
 			</div>
 			</div>
 		</div>
 
 		<div class="span2 responsive" data-tablet="span3" data-desktop="span2" style="background-color:#e17f90">
-			<div class="circle-stat block">
+			<a href="reports/debit"><div class="circle-stat block">
 				<div class="visual">
 					<div class="circle-state-icon">
 						<i class="icon-minus red-color"></i>
@@ -70,17 +75,17 @@
 				</div>
 				<div class="details" >
 					<div class="number" style="color:transparent;font-weight:bolder">
-						<?php echo $totalDebit .' VND';  ?>
+						<?php echo number_format($totalDebit) .' VND';  ?>
 					</div>
 					<div class="title" style="color:transparent;font-weight:bolder">
 						Nợ Nhà Cung Cấp
 					</div>
 				</div>
-			</div>
+			</div></a>
 		</div>
 
 		<div class="span2 responsive" data-tablet="span3" data-desktop="span2" style="background-color:#a8c77b">
-			<div class="circle-stat block">
+			<a href="reports/debited"><div class="circle-stat block">
 				<div class="visual">
 					<div class="circle-state-icon">
 						<i class="icon-minus green-color"></i>
@@ -92,17 +97,17 @@
 				</div>
 				<div class="details" >
 					<div class="number" style="color:transparent;font-weight:bolder">
-						<?php echo $totalDebited .' VND';  ?>
+						<?php echo number_format($totalDebited) .' VND';  ?>
 					</div>
 					<div class="title" style="color:transparent;font-weight:bolder">
 						Khách Hàng Nợ
 					</div>
 				</div>
-			</div>
+			</div></a>
 		</div>
 
 		<div class="span2 responsive" data-tablet="span3" data-desktop="span2" style="background-color:#93c4e4">
-			<div class="circle-stat block">
+			<a href="reports/product"><div class="circle-stat block">
 				<div class="visual">
 					<div class="circle-state-icon">
 						<i class="icon-th-large blue-color"></i>
@@ -120,7 +125,7 @@
 						Sản Phẩm Trong Kho
 					</div>
 				</div>
-			</div>
+			</div></a>
 		</div>
 
 

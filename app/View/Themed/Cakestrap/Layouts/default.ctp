@@ -5,8 +5,9 @@
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 		<title>
 			
-			<?php echo $title_for_layout; ?>
+			<?php echo $title_for_layout." admin"; ?>
 		</title>
+		
 		<?php
 			echo $this->Html->meta('icon');
 			
@@ -31,16 +32,19 @@
 
 			echo $this->Html->css('main_web');
 
+
 			// echo $this->fetch('css');
 			
 			echo $this->Html->script('jquery.min');
 			echo $this->Html->script('libs/bootstrap.min');
 			echo $this->Html->script('jquery.tablesorter');
 			echo $this->Html->script('jquery.tablesorter.widgets');
+			echo  $this->Html->script('jquery.form');
 			echo  $this->Html->script('message');
 
 			// echo $this->fetch('script');
 		?>
+		<link rel="stylesheet" id="style_color"/>
 
 
 	</head>
@@ -151,16 +155,15 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<img src="<?php echo $this->webroot; ?>img/avatar-mini.png" alt="">
-									<span class="username">Padyn Team
+									<span class="username"><?php echo $this->Session->read('userSS') ?>
 									</span>
 									<b class="caret"></b>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">
-										<i class="icon-user"></i> My Profile
-									</a>
+									<li>
+									<?php echo $this->Html->link('<i class="icon-user"></i> My Profile',array('controller'=>'users','action'=>'profile'),array('escape'=>false));?>
 								</li>
-								<li>
+								<!--<li>
 									<a href="#">
 										<i class="icon-tasks"></i> My Tasks
 									</a>
@@ -169,7 +172,7 @@
 									<a href="#">
 										<i class="icon-calendar"></i> Calendar
 									</a>
-								</li>
+								</li>-->
 								<li class="divider"></li>
 								<li>
 									<?php echo $this->Html->link('<i class="icon-key"></i> Log Out',array('controller'=>'users','action'=>'logout'),array('escape'=>false));?>
@@ -292,21 +295,15 @@
                         <li>
                             <?php echo $this->Html->link('Chi tiết hóa đơn',array('controller'=>'detailbills','action'=>'index')) ?>
                         </li>
-                    </ul>
-                </li>
-                
-                <li class="has-sub">
-                    <a href="javascript:;" class="">
-                        <span class="icon-box">
-                            <i class="icon-file-alt"></i>
-                        </span> Quản Lý Tài Chính
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub">
                         <li>
                             <?php echo $this->Html->link('Công nợ',array('controller'=>'bills','action'=>'congno')) ?>
                         </li>
                     </ul>
+                </li>
+                
+               <li><?php echo $this->Html->link('<span class="icon-box"><i class="icon-signal"></i></span> Thống Kê',
+                array('controller'=>'reports','action'=>'index'),
+                array('escape'=>false)) ;?>
                 </li>
 				
 			</ul>
@@ -316,14 +313,16 @@
 		<div id="main-content">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
+			<!--<div id="theme-change" class="hidden-phone" style="overflow: hidden; width: 20px; height: 22px; padding-top: 3px;"><i class="icon-cogs"></i><span class="settings" style="display: none;"><span class="text">Theme:</span><span class="colors"><span class="color-default" data-style="default"></span><span class="color-gray" data-style="gray"></span><span class="color-purple" data-style="purple"></span><span class="color-navy-blue" data-style="navy-blue"></span></span></span></div>-->
 		</div>
 
 
 
-<div id="footer"> 2013 © Padyn.<br/><?php echo $this->element('sql_dump'); ?> <div class="span pull-right"><span class="go-top"><i class="icon-arrow-up"></i></span></div></div>
+<div id="footer"> 2013 © Padyn. <div class="span pull-right"><span class="go-top"><i class="icon-arrow-up"></i></span></div></div>
 		<?php echo $this->Html->script('jquery-ui-1.9.2.custom.min'); ?>
 		<?php echo $this->Html->script('jquery.slimscroll.min'); ?> 
 		<?php echo $this->Html->script('fullcalendar.min'); ?> 
+		<?php echo $this->Html->script('bootstrap-modal'); ?> 
 		<?php echo $this->Html->script('jquery.blockui'); ?> 
 		<?php echo $this->Html->script('jquery.cookie'); ?> 
 		<?php echo $this->Html->script('jquery.vmap'); ?> 

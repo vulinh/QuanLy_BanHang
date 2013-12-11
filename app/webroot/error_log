@@ -1,0 +1,32 @@
+[28-Nov-2013 15:14:16] PHP Parse error:  syntax error, unexpected ']' in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 72
+[28-Nov-2013 15:15:24] PHP Parse error:  syntax error, unexpected T_STRING in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 159
+[30-Nov-2013 12:02:31] PHP Parse error:  syntax error, unexpected T_IF, expecting T_FUNCTION in /home1/vulinh/public_html/vlsimple.com/app/Controller/UsersController.php on line 9
+[30-Nov-2013 13:14:26] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting T_FUNCTION in /home1/vulinh/public_html/vlsimple.com/app/Model/Typebill.php on line 8
+[30-Nov-2013 16:31:30] PHP Parse error:  syntax error, unexpected '<' in /home1/vulinh/public_html/vlsimple.com/app/View/Themed/Cakestrap/Layouts/default.ctp on line 29
+[03-Dec-2013 10:32:39] PHP Fatal error:  Can't use function return value in write context in /home1/vulinh/public_html/vlsimple.com/app/View/Products/index.ctp on line 57
+[03-Dec-2013 10:32:49] PHP Fatal error:  Can't use function return value in write context in /home1/vulinh/public_html/vlsimple.com/app/View/Products/index.ctp on line 57
+[03-Dec-2013 10:33:03] PHP Fatal error:  Can't use function return value in write context in /home1/vulinh/public_html/vlsimple.com/app/View/Products/index.ctp on line 57
+[03-Dec-2013 10:45:47] PHP Fatal error:  Can't use function return value in write context in /home1/vulinh/public_html/vlsimple.com/app/View/Products/index.ctp on line 57
+[03-Dec-2013 10:45:49] PHP Fatal error:  Can't use function return value in write context in /home1/vulinh/public_html/vlsimple.com/app/View/Products/index.ctp on line 57
+[03-Dec-2013 10:46:22] PHP Parse error:  syntax error, unexpected '}' in /home1/vulinh/public_html/vlsimple.com/app/View/Products/index.ctp on line 87
+[03-Dec-2013 15:29:49] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home1/vulinh/public_html/vlsimple.com/app/Controller/BillsController.php on line 179
+[03-Dec-2013 15:31:33] PHP Fatal error:  Call to a member function find() on a non-object in /home1/vulinh/public_html/vlsimple.com/app/Controller/BillsController.php on line 105
+[06-Dec-2013 13:49:06] PHP Fatal error:  require_once() [<a href='http://php.net/function.require'>function.require</a>]: Failed opening required 'ArrayphpFlickr.php' (include_path='/home1/vulinh/public_html/vlsimple.com/lib:.:/usr/lib/php:/usr/local/lib/php') in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 194
+[06-Dec-2013 13:52:32] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 208
+[06-Dec-2013 14:27:08] PHP Parse error:  syntax error, unexpected T_ELSE, expecting T_FUNCTION in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 133
+[06-Dec-2013 14:38:44] PHP Parse error:  syntax error, unexpected ')' in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 76
+[06-Dec-2013 14:52:49] PHP Parse error:  syntax error, unexpected '/' in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 122
+[06-Dec-2013 14:53:03] PHP Parse error:  syntax error, unexpected '/' in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 127
+[06-Dec-2013 14:53:13] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 146
+[06-Dec-2013 14:53:42] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 197
+[06-Dec-2013 14:53:57] PHP Parse error:  syntax error, unexpected $end, expecting T_FUNCTION in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 281
+[06-Dec-2013 14:55:09] PHP Parse error:  syntax error, unexpected '{' in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 166
+[06-Dec-2013 14:56:20] PHP Parse error:  syntax error, unexpected $end, expecting T_FUNCTION in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 281
+[06-Dec-2013 14:56:43] PHP Parse error:  syntax error, unexpected $end, expecting T_FUNCTION in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 254
+[06-Dec-2013 17:49:23] PHP Parse error:  syntax error, unexpected T_ELSE, expecting T_FUNCTION in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 144
+[06-Dec-2013 18:31:18] PHP Fatal error:  Call to undefined function  _uploadphoto() in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 107
+[06-Dec-2013 18:32:37] PHP Fatal error:  Call to undefined method ProductsController::_uploadPhoto() in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 107
+[09-Dec-2013 10:55:33] PHP Parse error:  syntax error, unexpected T_ELSE, expecting T_FUNCTION in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 141
+[09-Dec-2013 11:03:04] PHP Fatal error:  Function name must be a string in /home1/vulinh/public_html/vlsimple.com/app/Controller/ProductsController.php on line 101
+[10-Dec-2013 14:16:29] PHP Fatal error:  Call to a member function respondAs() on a non-object in /home1/vulinh/public_html/vlsimple.com/app/Controller/DebitsController.php on line 256
+[10-Dec-2013 14:16:41] PHP Fatal error:  Call to a member function respondAs() on a non-object in /home1/vulinh/public_html/vlsimple.com/app/Controller/DebitsController.php on line 256

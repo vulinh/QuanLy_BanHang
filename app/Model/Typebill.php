@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  */
 class Typebill extends AppModel {
-
+	var $name = 'Typebill';
     public $useTable = 'typebills';
     
 /**
