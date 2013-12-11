@@ -44847,3 +44847,22 @@ Request URL: /img/behind.png
 Stack Trace:
 #0 /home1/vulinh/public_html/vlsimple.com/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2013-12-11 16:31:20 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /QuanLy_BanHang/js/jquery.tablesorter.pager.js
+Stack Trace:
+#0 C:\xampp\htdocs\QuanLy_BanHang\app\webroot\index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-12-11 16:31:33 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [C:\xampp\htdocs\QuanLy_BanHang\app\Model\Categoryproduct.php, line 82]
+2013-12-11 16:31:34 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /QuanLy_BanHang/products
+Stack Trace:
+#0 C:\xampp\htdocs\QuanLy_BanHang\lib\Cake\Error\ErrorHandler.php(205): ErrorHandler::handleFatalError(64, 'Call-time pass-...', 'C:\xampp\htdocs...', 82)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', 'C:\xampp\htdocs...', 82, Array)
+#2 C:\xampp\htdocs\QuanLy_BanHang\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', 'C:\xampp\htdocs...', 82, Array)
+#3 C:\xampp\htdocs\QuanLy_BanHang\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
