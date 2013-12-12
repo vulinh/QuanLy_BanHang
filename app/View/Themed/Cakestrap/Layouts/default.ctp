@@ -301,6 +301,27 @@
                     </ul>
                 </li>
                 
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                        <span class="icon-box">
+                            <i class="icon-file-alt"></i>
+                        </span> Quản Lý Tin Tức
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+                            <?php echo $this->Html->link('Project',array('controller'=>'News','action'=>'project')) ?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('Review',array('controller'=>'News','action'=>'review')) ?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link('Guide',array('controller'=>'News','action'=>'guide')) ?>
+                        </li>
+                        
+                    </ul>
+                </li>
+                
                <li><?php echo $this->Html->link('<span class="icon-box"><i class="icon-signal"></i></span> Thống Kê',
                 array('controller'=>'reports','action'=>'index'),
                 array('escape'=>false)) ;?>
