@@ -107,7 +107,8 @@
 					<strong><?php echo __('Hình Ảnh'); ?></strong>
 				</td>
 				<td style="width:50%; text-align:center;font-size:15px">
-					<input type="text" id="link_pic" name="link_pic" placeholder="link hình">
+					<!-- <input type="text" id="link_pic" name="link_pic" placeholder="link hình"> -->
+					<?php echo $this->Form->input('image', array('type' => 'text','div'=>false, 'label'=>false , 'placeholder' => 'link hình','class' => 'form-control')); ?>
 					<a href="#myModal" id="choose_img" role="button" class="btn btn-primary" data-toggle="modal">Chọn Hình</a>
 					<!--  -->
 				</td>

@@ -1,7 +1,7 @@
 <style type="text/css">
-	.img-polaroid{
-		background-color:#4cc5cd;
-	}
+    .img-polaroid{
+        background-color:#4cc5cd;
+    }
 </style>
 <?php
     function printCategory($categorys,$id,$kitu,$idselect)
@@ -28,18 +28,18 @@
     <h3 id="myModalLabel">Danh Sách Hình Ảnh</h3>
   </div>
   <div class="modal-body">
-  	<div id="upload"> 
-  		<legend> Upload </legend>
-  		<!-- <div id="progress">
+    <div id="upload"> 
+        <legend> Upload </legend>
+        <!-- <div id="progress">
 
-        	<div id="bar"></div>
-        	<div id="percent">0%</div >
-    	</div> -->
+            <div id="bar"></div>
+            <div id="percent">0%</div >
+        </div> -->
     <?php echo $this->Form->create('Product',array('controller'=>'products','action'=>'upLoadToFlickr','enctype'=>'multipart/form-data','id'=>'ProductUpLoadToFlickrForm')) ?>
     <!-- <form action="/upLoadToFlickr" id="ProductUpLoadToFlickrForm" enctype="multipart/form-data"> -->
-    		<input type="text" name="name_pic" placeholder="Tên Hình">
-    		<?php echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px','id'=>'submit_upload'));?>
-			<input type="file" name="file_pic">
+            <input type="text" name="name_pic" placeholder="Tên Hình">
+            <?php echo $this->Form->input('Chấp Nhận',array('type'=>'button','class'=>'btn btn-primary pull-right','div'=>false,'label'=>false,'style'=>'margin-right:5px','id'=>'submit_upload'));?>
+            <input type="file" name="file_pic">
 
     <!-- </form> -->
     <?php echo $this->Form->end() ?>
@@ -48,9 +48,9 @@
     <legend>Tất Cả Hình Ảnh</legend>
     <div class="list_img">
 
-    	<div id="loading" style="z-index:2000;position:fixed;left:45%;top:50%;display:none">
-			<img src="<?php echo $this->Html->url('/img/loading-animation-fd.gif')?>" alt="">
-		</div>
+        <div id="loading" style="z-index:2000;position:fixed;left:45%;top:50%;display:none">
+            <img src="<?php echo $this->Html->url('/img/loading-animation-fd.gif')?>" alt="">
+        </div>
     </div>
   </div>
   <div class="modal-footer">
@@ -61,17 +61,28 @@
 <div class="row-fluid">
     <div class="span12">
         <div class="well" style="text-align:center;font-size:30px">
-            <?php echo __('CẬP NHẬT THÔNG TIN SẢN PHẨM'); ?>
+            <?php echo __('THÊM SẢN PHẨM'); ?>
         </div>
     </div>
 </div> 
 
 <div class="row-fluid">    
     <div class="span12">    
-        <?php echo $this->Form->create('Product', array('action' => 'edit')); ?>
+        <?php echo $this->Form->create('Product', array('controller'=>'products','action' => 'edit','enctype'=>'multipart/form-data')); ?>
         <table class="table table-striped table-bordered table-advance table-hover">
 
             <tr>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <strong><?php echo __('ID Sản Phẩm'); ?></strong>
+                </td>
+                
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <?php echo $this->Form->input('idProductManufacturer', array('type' => 'text','div'=>false , 'label' => false,'class' => 'form-control','placeholder'=>'ID Sản Phẩm')); ?>
+                    &nbsp;
+                </td>
+            </tr>
+
+            <!-- <tr>
                 <td style="width:50%; text-align:center;font-size:15px">
                     <strong><?php echo __('ID Site'); ?></strong>
                 </td>
@@ -79,7 +90,7 @@
                     <?php echo $this->Form->input('idSite', array('type' => 'text','div'=>false , 'label' => false,'class' => 'form-control','placeholder'=>'ID Site')); ?>
                     &nbsp;
                 </td>
-            </tr>
+            </tr> -->
 
             <tr>
                 <td style="width:50%; text-align:center;font-size:15px">
@@ -90,16 +101,19 @@
                     &nbsp;
                 </td>
             </tr>
+            
             <tr>
-				<td style="width:50%; text-align:center;font-size:15px">
-					<strong><?php echo __('Hình Ảnh'); ?></strong>
-				</td>
-				<td style="width:50%; text-align:center;font-size:15px">
-					<input type="text" id="link_pic" name="link_pic" placeholder="link hình">
-					<a href="#myModal" id="choose_img" role="button" class="btn btn-primary" data-toggle="modal">Chọn Hình</a>
-					<!--  -->
-				</td>
-			</tr>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <strong><?php echo __('Hình Ảnh'); ?></strong>
+                </td>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <!-- <input type="text" id="link_pic" name="link_pic" placeholder="link hình"> -->
+                    <?php echo $this->Form->input('image', array('type' => 'text','div'=>false, 'label'=>false , 'placeholder' => 'link hình','class' => 'form-control')); ?>
+                    <a href="#myModal" id="choose_img" role="button" class="btn btn-primary" data-toggle="modal">Chọn Hình</a>
+                    <!--  -->
+                </td>
+            </tr>
+            
             <tr>
                 <td style="width:50%; text-align:center;font-size:15px">
                     <strong><?php echo __('Giá'); ?></strong>
@@ -200,16 +214,6 @@
                     &nbsp;
                 </td>
             </tr>
-
-            <tr>
-                <td style="width:50%; text-align:center;font-size:15px">
-                    <strong><?php echo __('Nhà Sản Xuất'); ?></strong>
-                </td>
-                <td style="width:50%; text-align:center;font-size:15px">
-                    <?php echo $this->Form->select('idManufacturer', $manufacturers , array('class' => 'span2')); ?>
-                    &nbsp;
-                </td>
-            </tr>
             
             <tr>
                 <td style="width:50%; text-align:center;font-size:15px">
@@ -219,9 +223,19 @@
                      <select name="data[Product][idCategoryProduct]">
                         <option value='0'>Không có</option>
                         <?php
-                           printCategory($categoryproducts,0, '++',$this->request->data['Product']['idCategoryProduct']); 
+                           printCategory($categoryproducts,0, '++',0); 
                         ?>
                      </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <strong><?php echo __('Nhà Sản Xuất'); ?></strong>
+                </td>
+                <td style="width:50%; text-align:center;font-size:15px">
+                    <?php echo $this->Form->select('idManufacturer', $manufacturers, array('class' => 'span2')); ?>
+                    &nbsp;
                 </td>
             </tr>
             
@@ -267,73 +281,74 @@
         <?php echo $this->Form->end(); ?>
     </div>
 </div>
+
 <script type="text/javascript">
 $(document).ready(function() {
-	multi_link=" ";
-	var options = { 
+    multi_link=" ";
+    var options = { 
     beforeSend: function() 
     {
-    	$("#progress").show();
-    	//clear everything
-    	// $("#bar").width('0%');
-    	// $("#message").html("");
-		// $("#percent").html("0%");
+        $("#progress").show();
+        //clear everything
+        // $("#bar").width('0%');
+        // $("#message").html("");
+        // $("#percent").html("0%");
     },
     uploadProgress: function(event, position, total, percentComplete) 
     {
-    	// $("#bar").width(percentComplete+'%');
-    	// $("#percent").html(percentComplete+'%');
-    	$("#submit_upload").hide("fast");
+        // $("#bar").width(percentComplete+'%');
+        // $("#percent").html(percentComplete+'%');
+        $("#submit_upload").hide("fast");
 
     
     },
     success: function() 
     {
      //    $("#bar").width('100%');
-    	// $("#percent").html('100%');
+        // $("#percent").html('100%');
 
     },
-	complete: function(response) 
-	{
-		// $("#message").html("<font color='green'>"+response.responseText+"</font>");
-		// HideUpload();
-		// addImagesToCanvas('http://rena.vn/files//uploads/'+$('#val_file').val());
-		// $("#bar").width('100%');
-    	// $("#percent").html('100%');
-		alert('Upload Thành Công');
-		$(".list_img").empty();
-		loadImagesFlickr();
-		$("#submit_upload").show("fast");
-	},
-	error: function()
-	{
-		alert(response.responseText);
-		$(".list_img").empty();
-		loadImagesFlickr();
-		$("#submit_upload").show("fast");
+    complete: function(response) 
+    {
+        // $("#message").html("<font color='green'>"+response.responseText+"</font>");
+        // HideUpload();
+        // addImagesToCanvas('http://rena.vn/files//uploads/'+$('#val_file').val());
+        // $("#bar").width('100%');
+        // $("#percent").html('100%');
+        alert('Upload Thành Công');
+        $(".list_img").empty();
+        loadImagesFlickr();
+        $("#submit_upload").show("fast");
+    },
+    error: function()
+    {
+        alert(response.responseText);
+        $(".list_img").empty();
+        loadImagesFlickr();
+        $("#submit_upload").show("fast");
 
-	}
+    }
      
 }; 
-	$("#ProductUpLoadToFlickrForm").ajaxForm(options);
+    $("#ProductUpLoadToFlickrForm").ajaxForm(options);
 });
 
 function loadImagesFlickr(){
-		$.ajax({
+        $.ajax({
         url: 'http://api.flickr.com/services/rest/',
         cache: true,
-    	beforeSend: function(){
-        	$('#loading').show();
-        	$('body').css('opacity', '0.8');
-    	},
+        beforeSend: function(){
+            $('#loading').show();
+            $('body').css('opacity', '0.8');
+        },
         success: function(html){
-        	$('#loading').show();
-        	$('body').css('opacity', '0.9');
-      	},
-      	complete: function(){
-        	$('#loading').hide();
-        	$('body').css('opacity', '1');
-      	},
+            $('#loading').show();
+            $('body').css('opacity', '0.9');
+        },
+        complete: function(){
+            $('#loading').hide();
+            $('body').css('opacity', '1');
+        },
         data: {
             format: 'json',
             method: 'flickr.people.getPublicPhotos',
@@ -344,7 +359,7 @@ function loadImagesFlickr(){
             // per_page: per_page,
             // page: page
         },
-	    dataType: 'jsonp',
+        dataType: 'jsonp',
         jsonp: 'jsoncallback'
     }).done(function (data) {
         var gallery = $('.list_img'),
@@ -363,29 +378,29 @@ function loadImagesFlickr(){
          
         });
         $(".list_img span img").click(function(event) {
-        	if($(".list_img span .img-polaroid").length<5 || $(this).hasClass('img-polaroid')){
-        		$(this).toggleClass('img-polaroid');
-        	}
-        	else{
-        		alert("Mỗi Sản Phẩm Chỉ Được Chọn 5 Hình");
-        	}
+            if($(".list_img span .img-polaroid").length<5 || $(this).hasClass('img-polaroid')){
+                $(this).toggleClass('img-polaroid');
+            }
+            else{
+                alert("Mỗi Sản Phẩm Chỉ Được Chọn 5 Hình");
+            }
 
-        	 
+             
         });
     });
-	}
+    }
 $("#choose_img").click(function(event) {
-	$(".list_img").empty();
-	loadImagesFlickr();
+    $(".list_img").empty();
+    loadImagesFlickr();
 });
 
 $("#btn_ok").click(function(event) {
-	$(".list_img span .img-polaroid").each(function(){
-		// $(this).attr('src').slice(0, -4);
-   		multi_link +=$(this).attr('src').slice(0, -6)+"_b.jpg,";
-   		$('#link_pic').val(multi_link);
-	});
-	$('#myModal').modal('hide')
+    $(".list_img span .img-polaroid").each(function(){
+        // $(this).attr('src').slice(0, -4);
+        multi_link +=$(this).attr('src').slice(0, -6)+"_b.jpg,";
+        $('#link_pic').val(multi_link);
+    });
+    $('#myModal').modal('hide')
 });
 
 

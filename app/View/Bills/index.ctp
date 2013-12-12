@@ -36,9 +36,16 @@
 		<?php echo '<td>'.h($bill['Bill']['id']).'</td>';
 		echo '<td>'.$this->Html->link($bill['Typebills']['nameTypeBill'], array('controller' => 'typebills', 'action' => 'view', $bill['Typebills']['id'])).'</td>';
 		echo '<td>'.h($bill['Bill']['time']).'</td>';
+		if(h($bill['Bill']['total'])!=null){
 		echo '<td>'.number_format(h($bill['Bill']['total'])).'</td>';
+		}
 	//	echo '<td>'.$this->Html->link($bill['Users']['name'], array('controller' => 'users', 'action' => 'view', $bill['Users']['id'])).'</td>';
+		if(h($bill['Bill']['status'])!=null){
 		echo '<td>'.h($bill['Bill']['status']).'</td>'; 
+		}
+		else{
+			echo " rfer ";
+		}
         ?> 
 		
         <td class="actions"> 

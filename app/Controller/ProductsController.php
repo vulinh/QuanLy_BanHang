@@ -44,6 +44,22 @@ class ProductsController extends AppController {
         }
     }
 
+    public function index2() {
+        //1 -> tren, 0 -> duoi
+        $this->layout = "client_index";
+       $this->loadModel("Slide");
+       $this->set('dataSlide6',$this->Slide->find('all',
+        array("conditions"=>
+            array("AND"=> 
+                array("Slide.enable"=>1),
+                array("Slide.position"=>1)))));
+       $this->set('dataSlide7',$this->Slide->find('all',
+        array("conditions"=>
+            array("AND"=> 
+                array("Slide.enable"=>1),
+                array("Slide.position"=>0)))));
+    }
+
 /**
  * view method
  *
@@ -79,37 +95,10 @@ class ProductsController extends AppController {
             if ($this->request->is('post')) {
                 $this->Product->create();
 		
-//////////////////////////////////////////////////////////////////////////////////////
-		if(empty($_POST['name_pic']) || !isset($_FILES["file_pic"])){
-			$this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Vui lòng nhập tên hoặc hình ảnh </h4></div>'));
-		}
-		
-		else{
-       
-        		if ($_FILES["file_pic"]["error"] > 0){
-        			$this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lỗi, xin vui lòng upload lại hình </h4></div>'));
-        		}
-        		else{
-        			if($_FILES["file_pic"]["type"] != "image/jpg" && $_FILES["file_pic"]["type"] != "image/jpeg" && $_FILES["file_pic"]["type"] != "image/png" && $_FILES["file_pic"]["type"] != "image/gif"){
-        				$this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Lỗi,sai định dạng hình (chỉ chấp nhận .jpg,.jpeg,.png,.gif) </h4></div>'));
-        			}
-        			else{
-            				$dir= dirname($_FILES["file_pic"]["tmp_name"]);
-            				$newpath=$dir."/".$_FILES["file_pic"]["name"];
-            				rename($_FILES["file_pic"]["tmp_name"],$newpath);
-           				 /* Call uploadPhoto on success to upload photo to flickr */
-            				$status = $this->_upLoadToFlickr($newpath, $_POST["name_pic"]);
-            				if(!$status) {
-                				$this->Session->setFlash(__('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><h4>Không Thể Upload Được Hình </h4></div>'));
-            				
-            				}
-            			}
-        		}
-        	}
-/////////////////////////////////////////////////////////////////////////////////////
+
                 if ($this->Product->save($this->request->data)) {
 
-		    $this->loadModel('Detailcat');
+		              $this->loadModel('Detailcat');
                     $this->Detailcat->add($this->request->data['Product']['idCategoryProduct'], $this->request->data['Product']['idManufacturer']);
 
                     $this->Product->updateAll(
