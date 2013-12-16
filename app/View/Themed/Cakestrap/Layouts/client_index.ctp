@@ -83,47 +83,7 @@
 					
 			</div>
 			<nav id="main-menu" class="header-bottom pull overlay clearfix">
-				<ul class="sf-menu span12">
-					<li>
-						<a href="#">Trang Chủ</a>
-					</li>
-					<li>
-						<a href="#">Sản Phẩm<span class="indicator">&nbsp;</span></a>
-						<ul>
-							<li>
-								<a href="categories.html">Featured</a>
-								<ul>
-									<li><a href="categories.html">Create a Backyard Escape</a></li>
-									<li><a href="categories.html">Cafe Solutions</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="categories.html">Shop by category</a>
-								<ul>
-									<li><a href="categories.html">Collection</a></li>
-									<li><a href="categories.html">Living</a></li>
-									<li><a href="categories.html">Dining</a></li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">Dịch Vụ</a>
-					</li>
-					<li class="current">
-						<a href="#">Dự Án</a>
-					</li>
-					<li>
-						<a href="#">Đánh Giá</a>
-					</li>
-					<li>
-						<a href="#">Hướng Dẫn</a>
-					</li>
-					<li>
-						<a href="#">Liên Hệ</a>
-					</li>
-					
-				</ul>
+                <?php echo $this->element('menu/client_menu'); ?>
 			</nav>
 
 			<div class="span4 pull-right" style="margin:5px">

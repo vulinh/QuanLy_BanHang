@@ -177,6 +177,12 @@
       $this->redirect(array('controller'=>'users','action'=>'login'));
     }
     }
+    
+     public function loadAllCategory() {
+        $options = array('conditions' => array('Categoryproduct.enable ' => 1));
+        $categorys = $this->Categoryproduct->find('all', $options);
+        return $categorys;
+    }
 
     public function _positionSS(){
             if($this->Session->read('positionSS')== 1){

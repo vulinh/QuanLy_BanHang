@@ -8,16 +8,18 @@
     */
     class ClientsController extends AppController {
         public $components = array('Paginator');
+        public $theme = "Cakestrap";
         
         public function index($id = null){
-            $this->loadModel('Categoryproduct');
-            $options = array('conditions' => array('Categoryproduct.enable' => 1));
-            $categoryproducts = $this->Categoryproduct->find('all', $options);
-            
+            $this->layout = "client_index";
+//            $this->loadModel('Categoryproduct');
+//            $options = array('conditions' => array('Categoryproduct.enable' => 1));
+//            $categoryproducts = $this->Categoryproduct->find('all', $options);
+//            
             $this->loadModel('Product');
             if($id != null){
                 $this->paginate = array('limit'=>10,'recursive'=>0,
-                    'fields' => 'Product.idSite,Product.nameProduct',
+                    'fields' => 'Product.idSite,Product.nameProduct,Product.wholesale',
                     'conditions' => array('Product.idCategoryProduct' => $id)
                 );
             }else{
@@ -27,7 +29,7 @@
             }
             $Products = $this->paginate('Product');
             
-            $this->set(compact('categoryproducts','Products'));
+            $this->set(compact('Products'));
           //  echo '<pre>';
 //            print_r($categoryproducts);
 //            echo '</pre>';
@@ -39,10 +41,11 @@
         }
         
         public function viewproduct($id = null){
-            $this->loadModel('Categoryproduct');
-            $options = array('conditions' => array('Categoryproduct.enable' => 1));
-            $categoryproducts = $this->Categoryproduct->find('all', $options);
-            
+            $this->layout = "client_index";
+//            $this->loadModel('Categoryproduct');
+//            $options = array('conditions' => array('Categoryproduct.enable' => 1));
+//            $categoryproducts = $this->Categoryproduct->find('all', $options);
+//            
             $this->loadModel('Product');
             if($id != null){
                 $options = array('conditions' => array('Product.idSite' => $id));
@@ -51,7 +54,7 @@
                 $this->redirect(array('controller'=>'clients','action'=>'index'));
             }
             
-            $this->set(compact('categoryproducts','product'));
+            $this->set(compact('product'));
 //            echo '<pre>';
 //            print_r($product);
 //            echo '</pre>';

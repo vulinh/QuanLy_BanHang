@@ -49,7 +49,7 @@
         <td class="actions"> 
             <?php echo $this->Html->link('<i class="icon-list"></i>', array('action' => 'view', $news['News']['id'],3), array('class'=>'tt', 'escape'=>false, 'data-toggle'=>'tooltip', 'data-original-title'=> 'Xem Chi Tiết '.$news['News']['title'])); ?>
             <?php echo $this->Html->link('<i class=" icon-pencil"></i>', array('action' => 'edit', $news['News']['id'], 3), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Sửa đổi thông tin của '.$news['News']['title'])); ?>
-            <?php echo $this->Form->postLink('<i class=" icon-remove"></i>', array('action' => 'delete', $news['News']['id']), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$news['News']['title']), __('Bạn có muốn xóa tin tức "%s?"', $news['News']['title'])); ?>
+            <?php echo $this->Form->postLink('<i class=" icon-remove"></i>', array('action' => 'delete', $news['News']['id'],3), array('class'=>'tt','escape'=>false,'data-toggle'=>'tooltip','data-original-title'=>'Xóa '.$news['News']['title']), __('Bạn có muốn xóa tin tức "%s?"', $news['News']['title'])); ?>
         </td>
     </tr>
 <?php endforeach; ?>

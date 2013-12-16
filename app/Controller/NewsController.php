@@ -50,8 +50,16 @@
             $idTypeNews = 1;
             $this->paginate = array(
                 'conditions' => array('News.idTypeNews' => $idTypeNews, 'News.status' => 1),
-                'fields'=>array('News.id, News.title, News.epitomize, News.image'),
+                'fields'=>array('News.id, News.title, News.time, News.summary, News.image, users.name'),
                 'recursive'=>0,
+                'joins' => array(
+                   array(
+                        'table' => 'users',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                   //     'foreignKey' => 'idBill',
+                        'conditions' => array('News.idUser=users.id')),
+                ),'limit'=>10
             );
             $this->set('news', $this->paginate());
         }
@@ -73,6 +81,25 @@
             );
             $this->set('news', $this->paginate());
         }
+        
+        public function reviewindex() {
+            $this->layout = "client_index";
+            $idTypeNews = 2;
+            $this->paginate = array(
+                'conditions' => array('News.idTypeNews' => $idTypeNews, 'News.status' => 1),
+                'fields'=>array('News.id, News.title, News.time, News.summary, News.image, users.name'),
+                'recursive'=>0,
+                'joins' => array(
+                   array(
+                        'table' => 'users',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                   //     'foreignKey' => 'idBill',
+                        'conditions' => array('News.idUser=users.id')),
+                ),'limit'=>10
+            );
+            $this->set('news', $this->paginate());
+        }
 
         public function guide() {
             $idTypeNews = 3;
@@ -91,6 +118,25 @@
             );
             $this->set('news', $this->paginate());
         }
+        
+        public function guideindex() {
+            $this->layout = "client_index";
+            $idTypeNews = 3;
+            $this->paginate = array(
+                'conditions' => array('News.idTypeNews' => $idTypeNews, 'News.status' => 1),
+                'fields'=>array('News.id, News.title, News.time, News.summary, News.image, users.name'),
+                'recursive'=>0,
+                'joins' => array(
+                   array(
+                        'table' => 'users',
+                        //     'alias' => 'Sector',
+                        'type' => 'left',
+                   //     'foreignKey' => 'idBill',
+                        'conditions' => array('News.idUser=users.id')),
+                ),'limit'=>10
+            );
+            $this->set('news', $this->paginate());
+        }
 
         /**
         * view method
@@ -100,6 +146,7 @@
         * @return void
         */
         public function view($id = null) {
+            $this->layout = "client_index";
             if (!$this->News->exists($id)) {
                 throw new NotFoundException(__('Invalid news'));
             }

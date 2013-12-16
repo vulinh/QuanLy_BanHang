@@ -28,7 +28,7 @@
                     </div><!-- .form-group -->
                     <br>
                     <div class="form-group">
-                        <?php echo $this->Form->input('epitomize', array('label' => 'Tóm tắt','class' => 'form-control', 'style' => 'width:80%')); ?>
+                        <?php echo $this->Form->input('summary', array('label' => 'Tóm tắt','class' => 'form-control', 'style' => 'width:80%')); ?>
                     </div><!-- .form-group -->
                     <br>
                     <div class="form-group">
